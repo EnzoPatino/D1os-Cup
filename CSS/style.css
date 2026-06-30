@@ -1,55 +1,1157 @@
-body {
-  font-family: sans-serif;
-  background-color: #080b11;
-  color: #f8fafc;
-  text-align: center;
-  padding: 50px 20px;
+/* ================================================================================================
+   1. IMPORTACIÓN DE FUENTES (GOOGLE FONTS)
+   ==========================================
+   @import : Regla de CSS que permite importar recursos externos.
+             Aquí importamos dos fuentes desde Google Fonts:
+             - 'Outfit' : Geometría moderna, ideal para títulos (pesos 300 a 800).
+             - 'Inter'  : Muy legible en pantalla, ideal para párrafos (pesos 300 a 700).
+             Se colocan al inicio para que estén disponibles cuando se usen en el resto del CSS.
+================================================================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ================================================================================================
+   2. VARIABLES CSS (CUSTOM PROPERTIES)
+   ======================================
+   :root    : Pseudoclase que selecciona el elemento raíz del documento (<html>).
+              Las variables definidas aquí están disponibles globalmente en todo el CSS.
+   --*      : Las variables CSS (también llamadas "custom properties") comienzan con "--".
+              Se usan con la función var(), ej: color: var(--accent-gold).
+   
+   Ventajas de usar variables:
+   - Centralizan los valores reutilizables (colores, tamaños, etc.).
+   - Facilitan mantener consistencia visual.
+   - Permiten cambiar el tema completo modificando solo las variables.
+
+   Categorías de variables:
+   - --bg-*         : Colores de fondo (background).
+   - --text-*       : Colores de texto.
+   - --accent-*     : Colores de acento (el dorado de la marca).
+   - --border-*     : Colores de bordes.
+   - --font-*       : Familias tipográficas.
+   - --shadow-*     : Sombras.
+   - --transition-* : Transiciones generales.
+================================================================================================ */
+:root {
+  /* -------- Colores de fondo -------- */
+  --bg-primary: #080b11; /* Fondo principal (casi negro, ligeramente azulado) */
+  --bg-secondary: #0f131e; /* Fondo secundario (un tono más claro) */
+  --bg-card: rgba(21, 28, 45, 0.7); /* Fondo de tarjetas (semitransparente) */
+  --bg-card-hover: rgba(28, 37, 59, 0.9); /* Fondo de tarjeta al hacer hover */
+
+  /* -------- Colores de texto -------- */
+  --text-main: #f8fafc; /* Texto principal (blanco ligeramente azulado) */
+  --text-muted: #94a3b8; /* Texto secundario (gris azulado) */
+
+  /* -------- Acento dorado (marca) -------- */
+  --accent-gold: #e5b842; /* Dorado principal de la marca */
+  --accent-gold-hover: #f0c965; /* Dorado más claro para hover */
+  --accent-gold-muted: rgba(229, 184, 66, 0.15); /* Dorado semitransparente */
+
+  /* -------- Bordes -------- */
+  --border-color: rgba(255, 255, 255, 0.06); /* Borde sutil */
+  --border-color-hover: rgba(
+    229,
+    184,
+    66,
+    0.3
+  ); /* Borde al hover (dorado tenue) */
+
+  /* -------- Tipografía -------- */
+  --font-title: "Outfit", sans-serif; /* Fuente para títulos */
+  --font-body: "Inter", sans-serif; /* Fuente para cuerpo de texto */
+
+  /* -------- Sombras -------- */
+  --shadow-premium: 0 20px 40px -15px rgba(0, 0, 0, 0.8); /* Sombra profunda */
+  --shadow-gold-glow: 0 0 25px rgba(229, 184, 66, 0.15); /* Resplandor dorado */
+
+  /* -------- Transiciones -------- */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transición suave */
+
+  /* -------- Tamaños -------- */
+  --navbar-height: 70px; /* Altura de la barra de navegación */
+}
+
+/* ================================================================================================
+   3. RESET / ESTILOS BASE
+   ==========================
+   * selector universal: Aplica a TODOS los elementos de la página.
+     - box-sizing: border-box : Hace que el padding y border se incluyan dentro del ancho/alto
+                                total del elemento (evita desbordes inesperados).
+     - margin: 0 ; padding: 0 : Elimina márgenes y rellenos por defecto del navegador.
+
+   html : 
+     - scroll-behavior: smooth : Hace que toda navegación por anclas (#) sea animada.
+                                  También se puede lograr con JS, pero esta propiedad CSS
+                                  es más simple y eficiente (aunque no funciona en Safari).
+
+   body :
+     - background-color : Aplica el fondo oscuro principal.
+     - color            : Color de texto principal.
+     - font-family      : Fuente para todo el cuerpo (Inter).
+     - min-height: 100vh: El body ocupa al menos el 100% del viewport height.
+     - padding-top      : Deja espacio arriba para el navbar fijo (misma altura que el navbar).
+================================================================================================ */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
-h1 {
-  color: #e5b842;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+html {
+  scroll-behavior: smooth; /* Scroll suave nativo entre anclas */
 }
 
-.welcome-text {
-  color: #94a3b8;
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 auto 30px;
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  padding-top: var(--navbar-height); /* Espacio para el navbar fijo */
+  line-height: 1.6;
 }
 
-.button-container {
-  margin-bottom: 40px;
+/* ================================================================================================
+   4. TIPOGRAFÍA GLOBAL
+   ======================
+   Estilos base para encabezados (h1..h6) y párrafos.
+   font-family hereda la del body, pero los títulos usan --font-title (Outfit).
+================================================================================================ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  line-height: 1.2;
 }
 
-.shop-link {
-  display: inline-block;
-  background-color: #e5b842;
+a {
+  color: inherit; /* Hereda el color del elemento padre */
+  text-decoration: none; /* Quita el subrayado por defecto de los enlaces */
+}
+
+img {
+  max-width: 100%; /* Las imágenes nunca superan el ancho de su contenedor */
+  display: block; /* Elimina el espacio fantasma debajo de las imágenes (inline) */
+}
+
+/* ================================================================================================
+   5. CLASES DE UTILIDAD (UTILITY CLASSES)
+   ==========================================
+   .gold : Aplica el color dorado de la marca a cualquier texto.
+================================================================================================ */
+.gold {
+  color: var(--accent-gold); /* Texto en color dorado */
+}
+
+/* ================================================================================================
+   6. BOTONES (COMPONENTE REUTILIZABLE)
+   =======================================
+   .btn : Clase base para todos los botones y enlaces con aspecto de botón.
+          - display: inline-flex : Se comporta como inline pero permite flexbox interno.
+          - align-items + justify-content: Centra el contenido del botón.
+          - gap : Espacio entre ícono y texto si los hay.
+          - transition : Suaviza los cambios de estado (hover, focus).
+
+   .btn-outline : Botón con borde dorado, fondo transparente.
+                  Al hacer hover, se llena de dorado y cambia el texto a negro.
+
+   .btn-solid : Botón con fondo dorado sólido y texto negro.
+                Al hacer hover, se aclara ligeramente.
+
+   .btn-sm / .btn-lg : Modificadores de tamaño (small / large).
+================================================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espacio entre ícono y texto */
+  padding: 12px 24px;
+  border-radius: 8px; /* Bordes redondeados */
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer; /* Manito al hacer hover */
+  transition: var(--transition-smooth);
+  border: 1.5px solid transparent; /* Borde transparente por defecto (para mantener altura) */
+  white-space: nowrap; /* Evita que el texto del botón se rompa en múltiples líneas */
+}
+
+/* Botón "outline" o outline: fondo oscuro, borde dorado, texto dorado */
+.btn-outline {
+  background: transparent;
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-gold); /* Se llena de dorado */
+  color: #000; /* Texto se vuelve negro */
+  box-shadow: 0 0 15px rgba(229, 184, 66, 0.3); /* Sombra dorada */
+}
+
+/* Botón sólido: fondo dorado, texto negro */
+.btn-solid {
+  background-color: var(--accent-gold);
+  border-color: var(--accent-gold);
   color: #000;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(229, 184, 66, 0.3);
-  transition: all 0.3s ease;
 }
 
-.shop-link:hover {
-  background-color: #f0c965;
-  box-shadow: 0 4px 20px rgba(229, 184, 66, 0.5);
+.btn-solid:hover {
+  background-color: var(--accent-gold-hover); /* Dorado más claro */
+  border-color: var(--accent-gold-hover);
+  box-shadow: 0 0 15px rgba(229, 184, 66, 0.4);
+}
+
+/* Modificadores de tamaño */
+.btn-sm {
+  padding: 8px 18px;
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 14px 32px;
+  font-size: 1rem;
+}
+
+/* ================================================================================================
+   7. CONTENEDOR DE SECCIÓN
+   ===========================
+   .section-container : Contenedor que centra horizontalmente el contenido de una sección
+                        y define un ancho máximo (1200px). Se usa en Productos, Contacto, etc.
+   margin: 0 auto     : Centra el bloque horizontalmente.
+   padding: 0 20px    : Agrega relleno lateral para que el contenido no toque los bordes
+                        en pantallas pequeñas.
+================================================================================================ */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* .section-header : Encabezado de cada sección (título + subtítulo) */
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  max-width: min(500px, 100%);
+  margin: 0 auto; /* Centramos el subtítulo */
+}
+
+/* ================================================================================================
+   8. BARRA DE NAVEGACIÓN (NAVBAR)
+   ==================================
+   .navbar :
+     - position: fixed   : Se mantiene fija en la parte superior al hacer scroll.
+     - top: 0 ; left: 0 ; right: 0 : Se extiende a lo ancho completo.
+     - z-index: 1000     : Se superpone a todos los demás elementos.
+     - backdrop-filter   : Efecto de vidrio esmerilado (frosted glass) sobre el fondo.
+     - border-bottom     : Una línea sutil que separa el navbar del contenido.
+
+   .nav-container :
+     - display: flex     : Coloca logo, menú y botones en una fila horizontal.
+     - justify-content: space-between : Distribuye el espacio entre los 3 grupos.
+     - align-items: center : Centra verticalmente todos los elementos.
+     - max-width + margin: 0 auto : Centra el contenido con un ancho máximo.
+
+   .nav-logo :
+     - display: flex ; align-items: center : El logo y el texto se alinean en fila.
+
+   .nav-list :
+     - display: flex ; gap : Los enlaces se muestran en fila horizontal con separación.
+
+   .nav-link.active :
+     - color del texto en dorado para indicar la página actual.
+
+   .nav-toggle :
+     - display: none por defecto (solo se muestra en mobile con media query).
+     - Las tres <span> hijas forman las líneas de la hamburguesa.
+================================================================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: rgba(8, 11, 17, 0.85); /* Fondo semitransparente */
+  backdrop-filter: blur(12px); /* Efecto de desenfoque (frosted glass) */
+  -webkit-backdrop-filter: blur(12px); /* Prefijo para Safari */
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000; /* Por encima de todo */
+  transition: var(--transition-smooth);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* -------- LOGO -------- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0; /* Evita que el logo se encoja */
+}
+
+.nav-logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(
+    0 0 8px rgba(229, 184, 66, 0.25)
+  ); /* Sutil resplandor dorado */
+}
+
+.nav-logo-text {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* -------- MENÚ DE NAVEGACIÓN -------- */
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none; /* Elimina los puntos de la lista (<ul>) */
+  gap: 8px;
+}
+
+/* Cada enlace del navbar */
+.nav-link {
+  padding: 8px 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: var(--transition-smooth);
+}
+
+.nav-link:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-link.active {
+  color: var(--accent-gold); /* Dorado para el enlace activo */
+  background-color: var(--accent-gold-muted); /* Fondo dorado sutil */
+}
+
+/* -------- BOTONES DE AUTENTICACIÓN -------- */
+.nav-auth {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0; /* No se encogen */
+}
+
+/* -------- BOTÓN HAMBURGUESA (RESPONSIVE) -------- */
+.nav-toggle {
+  display: none; /* Oculta el botón en desktop */
+  flex-direction: column; /* Las 3 líneas apiladas verticalmente */
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* Cada línea de la hamburguesa: un <span> rectangular */
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+  transform-origin: center; /* Para que la animación a "X" gire desde el centro */
+}
+
+/* ================================================================================================
+   9. SECCIÓN HERO (INICIO)
+   ===========================
+   .hero :
+     - min-height: calc(100vh - var(--navbar-height)) : Ocupa casi toda la pantalla,
+       restando la altura del navbar fijo.
+     - position: relative      : Para posicionar los elementos decorativos hijos.
+     - display: flex           : Centra el contenido vertical y horizontalmente.
+     - overflow: hidden        : Oculta cualquier desbordamiento de los elementos decorativos.
+
+   DECORACIONES:
+   .hero-field-lines : Líneas sutiles que simulan un campo de fútbol (usando gradientes).
+   .hero-grass       : Capa inferior con textura de césped (clip-path + gradiente verde).
+
+   .hero-content :
+     - text-align: center : Centra el texto.
+     - position: relative ; z-index: 1 : Se asegura de estar por encima de las decoraciones.
+
+   .hero-badge : Pequeña etiqueta tipo "pill" (border-radius: 999px) que flota sobre el título.
+   .hero-title : Título masivo con tamaño de 3.5rem a 4.5rem.
+   .hero-subtitle : Texto descriptivo con un ancho máximo para mejor legibilidad.
+   .hero-cta : Contenedor flex para los botones, con gap y wrap para responsive.
+================================================================================================ */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Evita que las decoraciones se desborden */
+  padding: clamp(40px, 5vw, 60px) 20px;
+  background: linear-gradient(
+    180deg,
+    var(--bg-primary) 0%,
+    #0d1420 50%,
+    #0a1a0f 100% /* Leve tono verdoso en la base para sugerir césped */
+  );
+}
+
+/* -------- DECORACIÓN: LÍNEAS DE CAMPO -------- */
+.hero-field-lines {
+  position: absolute;
+  inset: 0; /* top: 0; right: 0; bottom: 0; left: 0; ocupa todo */
+  pointer-events: none; /* Permite que los clics "atraviesen" este elemento */
+  opacity: 0.12; /* Muy sutil */
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 120px,
+    rgba(229, 184, 66, 0.08) 120px,
+    rgba(229, 184, 66, 0.08) 121px
+  );
+}
+
+/* -------- DECORACIÓN: CÉSPED (POTRERO) -------- */
+.hero-grass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(60px, 10vw, 120px);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(34, 120, 34, 0.2) 40%,
+    rgba(34, 120, 34, 0.35) 100%
+  );
+  clip-path: polygon(
+    0% 40%,
+    3% 35%,
+    7% 42%,
+    12% 33%,
+    16% 40%,
+    20% 30%,
+    25% 38%,
+    30% 28%,
+    35% 35%,
+    40% 25%,
+    45% 33%,
+    50% 22%,
+    55% 30%,
+    60% 20%,
+    65% 28%,
+    70% 18%,
+    75% 26%,
+    80% 16%,
+    85% 24%,
+    90% 14%,
+    95% 22%,
+    100% 12%,
+    100% 100%,
+    0% 100%
+  );
+  z-index: 0;
+}
+
+/* -------- CONTENIDO DEL HERO -------- */
+.hero-content {
+  position: relative;
+  z-index: 1; /* Por encima de field-lines y grass */
+  text-align: center;
+  max-width: min(750px, 100%);
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: clamp(4px, 0.6vw, 6px) clamp(14px, 2vw, 18px);
+  border-radius: 999px; /* Forma de píldora completa */
+  font-size: clamp(0.7rem, 1.4vw, 0.8rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background-color: var(--accent-gold-muted);
+  color: var(--accent-gold);
+  border: 1px solid rgba(229, 184, 66, 0.2);
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-size: clamp(
+    3rem,
+    8vw,
+    5rem
+  ); /* Tamaño fluido: mínimo 3rem, máximo 5rem */
+  font-weight: 800;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  color: var(--text-muted);
+  max-width: min(600px, 100%);
+  margin: 0 auto clamp(24px, 4vw, 36px);
+  line-height: 1.7;
+}
+
+.hero-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap; /* Los botones se envuelven si no hay espacio */
+}
+
+/* ================================================================================================
+   10. SECCIÓN DE PRODUCTOS
+   ===========================
+   .productos :
+     - padding : Espaciado vertical amplio (100px arriba y abajo).
+
+   .productos-grid :
+     - display: grid             : Activa CSS Grid Layout.
+     - grid-template-columns     : Distribuye en columnas de igual ancho (1fr cada una).
+       repeat(auto-fit, minmax(260px, 1fr)) : Crea tantas columnas de mínimo 260px como
+       quepan en el contenedor. Es responsive sin media queries.
+     - gap: 24px                 : Espacio entre celdas de la grilla.
+
+   .product-card :
+     - background: var(--bg-card) : Fondo semitransparente.
+     - backdrop-filter: blur     : Efecto de vidrio esmerilado.
+     - border : Borde sutil.
+     - border-radius : Esquinas redondeadas.
+     - overflow: hidden          : La imagen no se sale de las esquinas redondeadas.
+     - transition : Suaviza el hover (elevación y glow).
+     - display: flex ; flex-direction: column : Para que el contenido se apile.
+
+   .product-card:hover :
+     - transform: translateY(-8px) : Se eleva hacia arriba.
+     - border-color: tinte dorado.
+     - box-shadow + shadow-gold-glow : Sombra oscura + resplandor dorado.
+
+   TARJETAS DE ENTRADAS (.ticket-card):
+     .ticket-tag    : Etiqueta tipo pill para la fase (grupos, semifinal, final).
+     .tag-grupos    : Azul (fase de grupos).
+     .tag-semifinal : Rojo.
+     .tag-final     : Ámbar/dorado.
+
+     .ticket-matchup : Nombres de equipos. .vs-text resalta el "vs" en dorado.
+     .ticket-info    : Información de fecha y lugar con íconos.
+     .info-item      : Cada línea de info (flex con gap para ícono + texto).
+     .ticket-footer  : Precio a la izquierda, botón a la derecha (space-between).
+     .price-label    : Texto pequeño "General".
+     .price-value    : Precio grande en dorado.
+
+   TARJETAS DE INDUMENTARIA (.apparel-card):
+     .product-image-container : Área de la imagen (fondo oscuro, centrada).
+     .product-image           : Imagen que escala con object-fit: contain.
+       Al hacer hover en la card, la imagen crece ligeramente (scale 1.08).
+     .product-details : Nombre, precio, talles y botón.
+     .product-name    : Nombre del producto.
+     .product-price   : Precio en dorado y fuente de títulos.
+     .product-sizes   : Texto pequeño indicando los talles disponibles.
+================================================================================================ */
+.productos {
+  padding: clamp(60px, 8vw, 100px) 0;
+  background-color: var(--bg-primary);
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+
+/* -------- TARJETA BASE -------- */
+.product-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-color-hover);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-premium), var(--shadow-gold-glow);
+}
+
+/* -------- TARJETA DE ENTRADA (TICKET) -------- */
+.ticket-card {
+  padding: 24px;
+}
+
+.ticket-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  width: fit-content; /* La etiqueta se ajusta al contenido */
+}
+
+/* Variantes de color para las etiquetas de fase */
+.tag-grupos {
+  background-color: rgba(30, 64, 175, 0.2);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.tag-semifinal {
+  background-color: rgba(220, 38, 38, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.tag-final {
+  background-color: rgba(180, 83, 9, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.ticket-matchup {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.vs-text {
+  color: var(--accent-gold);
+  font-weight: 600;
+}
+
+.ticket-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--border-color); /* Línea divisoria punteada */
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.info-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Empuja el footer al fondo de la card */
+}
+
+.ticket-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.price-value {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+/* -------- TARJETA DE INDUMENTARIA -------- */
+.apparel-card {
+  height: 100%; /* Ocupa toda la altura disponible en la celda de la grid */
+}
+
+.product-image-container {
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: var(--transition-smooth);
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.08); /* Efecto de zoom suave al hacer hover */
+}
+
+.product-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.product-name {
+  font-family: var(--font-title);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.product-price {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.product-sizes {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.02);
+  width: fit-content;
+  margin-bottom: 8px;
+}
+
+/* -------- CTA "VER CATÁLOGO COMPLETO" -------- */
+.productos-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* ================================================================================================
+   11. SECCIÓN DE CONTACTO
+   ==========================
+   .contactos :
+     - padding: 100px 0.
+
+   .contact-form :
+     - max-width: 600px : El formulario no se estira demasiado.
+     - margin: 0 auto   : Centrado horizontal.
+     - background + border + border-radius : Fondo tipo tarjeta.
+     - display: flex ; flex-direction: column ; gap: 24px.
+
+   .form-group :
+     - display: flex ; flex-direction: column ; gap: 6px.
+
+   .form-label :
+     - font-weight: 600 ; font-size: 0.9rem.
+
+   .form-input / .form-textarea :
+     - background-color: rgba(255,255,255,0.03) : Fondo sutil.
+     - border: 1px sólido : Borde sutil.
+     - border-radius : Esquinas redondeadas.
+     - padding + font-size : Área de clickeable y texto legible.
+     - color: var(--text-main) : Texto blanco.
+     - outline: none ; transition : Para el estado :focus.
+     - .form-input:focus : Borde dorado al enfocar.
+
+   .form-textarea :
+     - resize: vertical : El usuario puede estirar el textarea solo verticalmente.
+     - min-height: 120px.
+
+   .form-error :
+     - display: none (oculto por defecto).
+     - color: #ef4444 (rojo), font-size pequeña.
+     - Se muestra (display:block) mediante JavaScript cuando la validación falla.
+
+   .input-error :
+     - border-color: #ef4444 (rojo) para indicar visualmente el campo inválido.
+
+   .form-submit :
+     - align-self: flex-start o center : El botón no ocupa todo el ancho.
+================================================================================================ */
+.contactos {
+  padding: clamp(60px, 8vw, 100px) 0;
+  background-color: var(--bg-secondary);
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: clamp(24px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Cada grupo de label + input */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Estilo base para inputs y textareas */
+.form-input {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  outline: none; /* Quita el borde azul por defecto del navegador */
+  transition: var(--transition-smooth);
+}
+
+/* Placeholder (texto de ejemplo dentro del input) */
+.form-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Estado :focus (cuando el input está seleccionado) */
+.form-input:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px var(--accent-gold-muted); /* Anillo de enfoque dorado */
+}
+
+/* Área de texto multilínea */
+.form-textarea {
+  resize: vertical; /* Solo redimensionable verticalmente */
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* Mensaje de error (oculto por defecto) */
+.form-error {
+  display: none; /* Invisible hasta que JS lo active */
+  color: #ef4444; /* Rojo para indicar error */
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Clase que se agrega al input cuando tiene error (borde rojo) */
+.input-error {
+  border-color: #ef4444 !important; /* !important para sobrescribir cualquier otro borde */
+}
+
+/* Botón de envío del formulario */
+.form-submit {
+  align-self: center; /* Centra el botón horizontalmente */
+  margin-top: 8px;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+/* ================================================================================================
+   12. FOOTER (PIE DE PÁGINA)
+   ============================
+   .footer :
+     - background-color : Un tono más oscuro que el fondo principal.
+     - border-top : Línea separadora sutil.
+
+   .footer-container :
+     - display: grid ; grid-template-columns: 2fr 1fr 1fr : Tres columnas de distinto ancho.
+     - gap: 40px.
+
+   .footer-col : Cada columna de contenido.
+
+   .footer-brand : Marca con fuente Outfit y dorado.
+   .footer-desc  : Descripción breve de la plataforma.
+
+   .footer-heading : Título de cada columna (mayúsculas, pequeño, espaciado).
+
+   .footer-links : Lista de enlaces (sin viñetas). Cada enlace cambia a dorado al hover.
+
+   .footer-social : Contenedor flex con los íconos de redes sociales (anchor tags).
+
+   .footer-bottom :
+     - border-top : Línea separadora.
+     - text-align: center ; color: muted.
+================================================================================================ */
+.footer {
+  background-color: #06080d; /* Un negro más profundo */
+  border-top: 1px solid var(--border-color);
+  padding: clamp(40px, 6vw, 60px) 20px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* 3 columnas: la primera el doble de ancha */
+  gap: clamp(24px, 4vw, 40px);
+  padding-bottom: clamp(24px, 4vw, 40px);
+}
+
+.footer-brand {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.footer-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+.footer-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  transition: var(--transition-smooth);
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold);
+}
+
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-social a {
+  font-size: 1.5rem;
+  opacity: 0.6;
+  transition: var(--transition-smooth);
+}
+
+.footer-social a:hover {
+  opacity: 1;
   transform: translateY(-2px);
 }
 
-.footer-text {
-  color: #94a3b8;
-  font-size: 0.9rem;
+.footer-bottom {
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  padding: 20px 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
-.highlight-text {
-  color: #e5b842;
-  font-weight: 600;
-  margin-top: 20px;
+/* ================================================================================================
+   13. MEDIA QUERIES (RESPONSIVE DESIGN)
+   ========================================
+   Las Media Queries permiten aplicar estilos condicionales según las características
+   del dispositivo (ancho de pantalla, orientación, etc.).
+
+   Sintaxis: @media (max-width: Npx) { ... }
+     - Los estilos dentro se aplican SOLO si la pantalla tiene <= Npx de ancho.
+
+   Puntos de quiebre (breakpoints):
+   - 1024px : Tablets en landscape / laptops pequeñas.
+   - 768px  : Tablets en portrait / móviles grandes.
+   - 480px  : Móviles pequeños.
+================================================================================================ */
+
+/* -------- 1024px: Tablets landscape -------- */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr; /* Pasa a 2 columnas */
+  }
+}
+
+/* -------- 768px: Tablets portrait / móviles grandes -------- */
+@media (max-width: 768px) {
+  /* 
+    NAVBAR: En mobile:
+    - El menú se oculta (display: none) y el botón hamburguesa se muestra.
+    - Al hacer clic en el botón, .nav-menu.active se despliega como columna.
+  */
+  .nav-menu {
+    position: fixed; /* Se superpone al contenido */
+    top: var(--navbar-height); /* Justo debajo del navbar */
+    left: 0;
+    right: 0;
+    background-color: rgba(8, 11, 17, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px;
+    flex-direction: column;
+    transform: translateY(-120%); /* Oculta el menú arriba de la pantalla */
+    opacity: 0;
+    transition: var(--transition-smooth);
+    pointer-events: none; /* No recibe clics cuando está oculto */
+  }
+
+  .nav-menu.active {
+    transform: translateY(0); /* Despliega el menú */
+    opacity: 1;
+    pointer-events: all; /* Recibe clics cuando está visible */
+  }
+
+  .nav-list {
+    flex-direction: column; /* Enlaces en columna */
+    gap: 4px;
+  }
+
+  /* Botón de autenticación se oculta en mobile (está en el menú desplegado) */
+  .nav-auth {
+    display: none;
+  }
+
+  /* Botón hamburguesa visible */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Animación del botón hamburguesa al activarse -> se convierte en "X" */
+  .nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg); /* Primera línea baja y rota */
+  }
+
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0; /* Segunda línea desaparece */
+  }
+
+  .nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg); /* Tercera línea sube y rota */
+  }
+
+  /* 
+    HERO 
+  */
+  .hero {
+    min-height: auto;
+    padding: 80px 20px 100px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: min(100%, 300px); /* Máximo 300px, si no hay espacio ocupa el 100% */
+  }
+
+  .productos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  }
+
+  /* 
+    FOOTER 
+  */
+  .footer-container {
+    grid-template-columns: 1fr; /* Una sola columna */
+    text-align: center;
+  }
+
+  .footer-desc {
+    margin: 0 auto;
+  }
+
+  .footer-links {
+    align-items: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}
+
+/* -------- 480px: Móviles pequeños -------- */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .productos-grid {
+    grid-template-columns: 1fr; /* Una sola columna para las cards */
+  }
+
+  .ticket-card,
+  .product-details {
+    padding: 16px;
+  }
 }

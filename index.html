@@ -1,30 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- D10S Cup - index.html. Landing page: Hero, Productos, Contacto. -->
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - D1os-Cup</title>
-  <link rel="stylesheet" href="index.css">
-</head>
-<body>
-  <h1>Bienvenido a D1os-Cup</h1>
-  <p class="welcome-text">
-    ¡Prepárate para la competencia de fútbol más emocionante del año!
-    En D1os-Cup, los mejores equipos de todo el mundo se enfrentarán en un
-    torneo épico para coronar al campeón definitivo.
-  </p>
-  
-  <div class="button-container">
-    <a href="HTML/productos.html" class="shop-link">
-      Ir a la Tienda de Productos
-    </a>
-  </div>
+  <head>
+    <!-- Meta: charset UTF-8, viewport responsive, description SEO, título -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="D10S Cup - Plataforma de organización deportiva. Entradas, indumentaria y toda la información del torneo de fútbol más emocionante."
+    />
+    <title>D10S Cup | Inicio</title>
 
-  <p class="footer-text">
-    ¡No te pierdas ni un solo momento de la acción! Sigue nuestras redes
-    sociales para estar al tanto de las últimas noticias, resultados y
-    momentos destacados.
-  </p>
-  <p class="highlight-text">¡Que comience la diversión y que gane el mejor equipo!</p>
-</body>
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="CSS/style.css" />
+
+    <!-- System fonts en CSS (sin Google Fonts ni @import) -->
+  </head>
+  <body>
+    <!-- NAVBAR: fijo arriba, logo, menú (Inicio/Productos/Contactos), auth y hamburguesa -->
+    <header class="navbar">
+      <div class="nav-container">
+        <!-- Logo -->
+        <a href="#inicio" class="nav-logo">
+          <img
+            src="assets/logo_d1os_cup.png"
+            alt="D10S Cup Logo"
+            class="nav-logo-img"
+          />
+          <span class="nav-logo-text">D10S <span class="gold">CUP</span></span>
+        </a>
+
+        <!-- Menú de navegación -->
+        <nav class="nav-menu" id="nav-menu" aria-label="Menú principal">
+          <ul class="nav-list">
+            <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+            <li><a href="HTML/productos.html" class="nav-link">Productos</a></li>
+            <li><a href="#contactos" class="nav-link">Contactos</a></li>
+          </ul>
+        </nav>
+
+        <!-- Botones auth -->
+        <div class="nav-auth">
+          <a href="#" class="d10s-btn d10s-btn--outline d10s-btn--sm"
+            >Iniciar Sesión</a
+          >
+          <a href="#" class="d10s-btn d10s-btn--solid d10s-btn--sm"
+            >Registrarse</a
+          >
+        </div>
+
+        <!-- Hamburguesa responsive -->
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+      <!-- HERO: fondo oscuro degradado, badge, título, CTA -->
+      <section id="inicio" class="hero">
+        <!-- Hero content: badge, título, subtítulo, CTA -->
+        <div class="hero-content">
+          <!-- Badge -->
+          <span class="hero-badge">Torneo Oficial 2026</span>
+
+          <!-- Título -->
+          <h1 class="hero-title">D10S <span class="gold">CUP</span></h1>
+
+          <!-- Subtítulo -->
+          <p class="hero-subtitle">
+            El fútbol vuelve a su esencia. Viví la competencia más apasionante
+            del año donde los mejores equipos se enfrentan por la gloria eterna
+            en el potrero más grande de la ciudad.
+          </p>
+
+          <!-- CTA botones -->
+          <div class="hero-cta">
+            <a
+              href="HTML/productos.html"
+              class="d10s-btn d10s-btn--solid d10s-btn--lg"
+            >
+              Ver Productos
+            </a>
+            <a
+              href="HTML/productos.html"
+              class="d10s-btn d10s-btn--outline d10s-btn--lg"
+            >
+              Ir a la Tienda
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTOS: grilla de entradas e indumentaria -->
+      <section id="productos" class="productos">
+        <div class="section-container">
+          <!-- Encabezado sección -->
+          <header class="section-header">
+            <h2 class="section-title">
+              Nuestros <span class="gold">Productos</span>
+            </h2>
+            <p class="section-subtitle">
+              Entradas oficiales e indumentaria deportiva de la D10S Cup
+            </p>
+          </header>
+
+          <!-- Grilla de tarjetas -->
+          <div class="productos-grid">
+            <!-- Entrada Fase de Grupos -->
+            <article class="product-card ticket-card">
+              <!-- Badge fase -->
+              <span class="ticket-tag tag-grupos">Fase de Grupos</span>
+
+              <!-- Encuentro -->
+              <h3 class="ticket-matchup">
+                Los Halcones <span class="vs-text">vs</span> La 10 FC
+              </h3>
+
+              <!-- Fecha y lugar -->
+              <div class="ticket-info">
+                <div class="info-item">
+                  <!-- Icono -->
+                  <span class="info-icon"></span>
+                  <span>Sáb, 24 May — 16:00 hs</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-icon"></span>
+                  <span>Cancha Principal</span>
+                </div>
+              </div>
+
+              <!-- Precio + botón -->
+              <div class="ticket-footer">
+                <div class="ticket-price">
+                  <span class="price-label">General</span>
+                  <span class="price-value">$5.000</span>
+                </div>
+                <a
+                  href="HTML/productos.html"
+                  class="d10s-btn d10s-btn--outline d10s-btn--sm"
+                  >Comprar</a
+                >
+              </div>
+            </article>
+
+            <!-- Entrada Final -->
+            <article class="product-card ticket-card">
+              <span class="ticket-tag tag-final">Final</span>
+              <h3 class="ticket-matchup">
+                Por Confirmar <span class="vs-text">vs</span> Por Confirmar
+              </h3>
+              <div class="ticket-info">
+                <div class="info-item">
+                  <span class="info-icon"></span>
+                  <span>Dom, 7 Jun — 17:00 hs</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-icon"></span>
+                  <span>Cancha Principal</span>
+                </div>
+              </div>
+              <div class="ticket-footer">
+                <div class="ticket-price">
+                  <span class="price-label">General</span>
+                  <span class="price-value">$10.000</span>
+                </div>
+                <a
+                  href="HTML/productos.html"
+                  class="d10s-btn d10s-btn--solid d10s-btn--sm"
+                  >Comprar</a
+                >
+              </div>
+            </article>
+
+            <!-- Camiseta Oficial -->
+            <article class="product-card apparel-card">
+              <div class="product-image-container">
+                <img
+                  src="assets/camiseta_oficial.png"
+                  alt="Camiseta Oficial 2026"
+                  class="product-image"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-details">
+                <h3 class="product-name">Camiseta Oficial 2026</h3>
+                <span class="product-price-det">$25.000</span>
+                <span class="product-sizes">Talles: S - M - L - XL</span>
+                <a
+                  href="HTML/productos.html"
+                  class="d10s-btn d10s-btn--outline d10s-btn--sm"
+                  >Ver detalles</a
+                >
+              </div>
+            </article>
+
+            <!-- Gorra Oficial -->
+            <article class="product-card apparel-card">
+              <div class="product-image-container">
+                <img
+                  src="assets/gorra_oficial.png"
+                  alt="Gorra Oficial D10S Cup"
+                  class="product-image"
+                  loading="lazy"
+                />
+              </div>
+              <div class="product-details">
+                <h3 class="product-name">Gorra Oficial</h3>
+                <span class="product-price-det">$10.000</span>
+                <span class="product-sizes">Talle: Único</span>
+                <a
+                  href="HTML/productos.html"
+                  class="d10s-btn d10s-btn--outline d10s-btn--sm"
+                  >Ver detalles</a
+                >
+              </div>
+            </article>
+          </div>
+          <!-- /.productos-grid -->
+
+          <!-- CTA ver catálogo completo -->
+          <div class="productos-cta">
+            <a
+              href="HTML/productos.html"
+              class="d10s-btn d10s-btn--outline d10s-btn--lg"
+            >
+              Ver catálogo completo →
+            </a>
+          </div>
+        </div>
+        <!-- /.section-container -->
+      </section>
+
+      <!-- CONTACTO: formulario con Nombre, Email, Mensaje -->
+      <section id="contactos" class="contactos">
+        <div class="section-container">
+          <header class="section-header">
+            <h2 class="section-title">Contacto</h2>
+            <p class="section-subtitle">
+              Dejanos tu mensaje y te responderemos a la brevedad
+            </p>
+          </header>
+
+          <!-- Formulario con validación JS (novalidate desactiva la nativa) -->
+          <form class="contact-form" id="contact-form" novalidate>
+            <!-- Nombre -->
+            <div class="form-group">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                class="form-input"
+                placeholder="Tu nombre"
+                required
+              />
+              <span class="form-error" id="error-nombre"
+                >Por favor, ingresá tu nombre.</span
+              >
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="tu@email.com"
+                required
+              />
+              <span class="form-error" id="error-email"
+                >Por favor, ingresá un email válido.</span
+              >
+            </div>
+
+            <!-- Mensaje -->
+            <div class="form-group">
+              <label for="mensaje" class="form-label">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                class="form-input form-textarea"
+                placeholder="Escribí tu mensaje acá..."
+                rows="5"
+                required
+              ></textarea>
+              <span class="form-error" id="error-mensaje"
+                >El mensaje debe tener al menos 10 caracteres.</span
+              >
+            </div>
+
+            <!-- Botón enviar -->
+            <button
+              type="submit"
+              class="d10s-btn d10s-btn--solid d10s-btn--lg form-submit"
+            >
+              Enviar Mensaje
+            </button>
+          </form>
+        </div>
+        <!-- /.section-container -->
+      </section>
+    </main>
+
+    <!-- FOOTER: marca, navegación, redes sociales, copyright -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Columna: Marca -->
+        <div class="footer-col">
+          <h4 class="footer-brand">D10S <span class="gold">CUP</span></h4>
+          <p class="footer-desc">
+            La plataforma de organización deportiva más apasionante. Fútbol,
+            competencia y gloria.
+          </p>
+        </div>
+
+        <!-- Columna: Navegación -->
+        <div class="footer-col">
+          <h5 class="footer-heading">Navegación</h5>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="HTML/productos.html">Productos</a></li>
+            <li><a href="#contactos">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna: Redes sociales -->
+        <div class="footer-col">
+          <h5 class="footer-heading">Seguinos</h5>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"></a>
+            <a href="#" aria-label="Facebook"></a>
+            <a href="#" aria-label="Twitter"></a>
+            <a href="#" aria-label="YouTube"></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Línea divisoria + copyright -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 D10S Cup. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- JS externo: menú mobile, scroll suave, validación formulario -->
+    <script src="JS/app.js"></script>
+  </body>
 </html>

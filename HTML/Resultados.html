@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>D10S CUP - Resultados</title>
+<link rel="stylesheet" href="../CSS/resultados.css">
+</head>
+<body>
+
+  <h1>Resultados</h1>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-view="grupos">Fase de Grupos</button>
+    <button class="tab-btn" data-view="eliminatoria">Fase Eliminatoria</button>
+  </div>
+
+  <!-- FASE DE GRUPOS -->
+  <div id="grupos" class="view active">
+    <div class="section-title">Tablas de Grupos <div class="line"></div></div>
+    <div class="groups-grid" id="groupsGrid"></div>
+  </div>
+
+  <!-- FASE ELIMINATORIA -->
+  <div id="eliminatoria" class="view">
+    <div class="section-title">Llave de Eliminación <div class="line"></div></div>
+    <div class="bracket-container" id="bracketContainer"></div>
+  </div>
+
+<script src="../JS/resultados.js"></script>
+</body>
+</html>

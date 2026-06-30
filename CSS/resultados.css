@@ -1,0 +1,296 @@
+:root{
+  --bg: #0a0e1a;
+  --panel: #121826;
+  --panel-border: #1f2737;
+  --gold: #e8b94d;
+  --gold-soft: #d4a843;
+  --text: #ffffff;
+  --text-dim: #9aa3b2;
+  --line: #e8b94d;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 40px 60px;
+}
+h1{
+  font-size: 34px;
+  margin-bottom: 24px;
+}
+
+/* Tabs */
+.tabs{
+  display:flex;
+  gap:12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.tab-btn{
+  background: #161d2c;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  padding: 12px 26px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.tab-btn:hover{ border-color: var(--gold); }
+.tab-btn.active{
+  background: var(--gold);
+  color: #1a1305;
+  border-color: var(--gold);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin: 30px 0 22px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.section-title .line{
+  flex:1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  max-width: 60px;
+}
+
+.view{ display:none; }
+.view.active{ display:block; }
+
+/* ===================== GRUPOS ===================== */
+.groups-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+@media (max-width: 1300px){
+  .groups-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px){
+  .groups-grid{ grid-template-columns: 1fr; }
+}
+.group-card{
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.group-header{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--panel-border);
+}
+.group-header h3{
+  font-size: 16px;
+  letter-spacing: .5px;
+}
+.group-header span.tag{
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--gold);
+  background: rgba(232,185,77,0.12);
+  border: 1px solid rgba(232,185,77,0.3);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+table{
+  width:100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+thead th{
+  text-align:center;
+  color: var(--text-dim);
+  font-weight: 600;
+  padding: 10px 6px;
+  background: #0e1422;
+}
+thead th:first-child{ text-align:left; padding-left: 20px; }
+tbody td{
+  text-align:center;
+  padding: 10px 6px;
+  border-top: 1px solid var(--panel-border);
+}
+tbody td:first-child{
+  text-align:left;
+  padding-left: 20px;
+  font-weight: 600;
+}
+tbody tr:nth-child(-n+2) td:first-child{
+  color: var(--gold);
+}
+.pts{
+  font-weight: 700;
+  color: var(--gold);
+}
+.pos{
+  display:inline-block;
+  width: 18px;
+  color: var(--text-dim);
+  margin-right: 6px;
+}
+
+/* ===================== ELIMINATORIA (estilo Mundial) ===================== */
+.bracket-container{
+  background: radial-gradient(ellipse at center, #1a1024 0%, #0a0e1a 70%);
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
+  padding: 80px 50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 0;
+  overflow-x:auto;
+  min-height: 620px;
+}
+
+.bracket-side{
+  display:flex;
+  align-items:center;
+  gap: 70px;
+}
+.bracket-side.right{
+  flex-direction: row-reverse;
+}
+
+.round{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 90px;
+  position:relative;
+}
+
+/* Caja de equipo dentro del bracket */
+.team-box{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 14px 22px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: .5px;
+  min-width: 200px;
+  white-space: nowrap;
+}
+.team-box .flag{
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--gold), #6b5219);
+  flex-shrink:0;
+}
+
+/* Par de equipos que arma un partido */
+.match-pair{
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+  position:relative;
+}
+
+/* Grupo de 2 partidos que convergen a la siguiente ronda */
+.connector-group{
+  display:flex;
+  flex-direction: column;
+  gap: 80px;
+  position:relative;
+  padding-right: 36px;
+}
+.bracket-side.right .connector-group{
+  padding-right: 0;
+  padding-left: 36px;
+}
+.connector-group::after{
+  content:'';
+  position:absolute;
+  top: 25%;
+  bottom: 25%;
+  right: 0;
+  width: 36px;
+  border-top: 3px solid var(--line);
+  border-right: 3px solid var(--line);
+  border-bottom: 3px solid var(--line);
+  border-radius: 0 4px 4px 0;
+}
+.bracket-side.right .connector-group::after{
+  right:auto;
+  left:0;
+  border-right:none;
+  border-left: 3px solid var(--line);
+  border-radius: 4px 0 0 4px;
+}
+
+/* Conector simple de un solo partido (semi -> final) */
+.connector-single{
+  position:relative;
+  padding-right: 36px;
+}
+.bracket-side.right .connector-single{
+  padding-right:0;
+  padding-left: 36px;
+}
+.connector-single::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  right:0;
+  width:36px;
+  height:0;
+  border-top: 3px solid var(--line);
+  transform: translateY(-1px);
+}
+.bracket-side.right .connector-single::after{
+  right:auto;
+  left:0;
+}
+
+/* Logo central */
+.bracket-center{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  gap: 18px;
+  padding: 0 40px;
+}
+.bracket-center .center-logo{
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 22px rgba(232,185,77,0.6));
+}
+.bracket-center .label{
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  font-weight: 700;
+}
+.bracket-center .meta{
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align:center;
+}
+
+@media (max-width: 1100px){
+  .bracket-side{ gap: 24px; }
+  .round{ gap: 34px; }
+  .connector-group{ gap: 30px; }
+}
+@media (max-width: 700px){
+  body{ padding: 24px; }
+  .bracket-container{ flex-direction: column; }
+  .bracket-side{ flex-direction: column !important; }
+  .bracket-center{ order: -1; padding: 20px 0; }
+}

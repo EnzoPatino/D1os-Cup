@@ -3,7 +3,7 @@
 
 const groups = [
   { name: "Grupo A", teams: [
-    { team: "Los Halcones", pj:3, pg:2, pe:1, pp:0, gf:6, gc:2, pts:7 },
+    { team: "Los Halcones", pj:0, pg:2, pe:1, pp:0, gf:6, gc:2, pts:7 },
     { team: "La 10 FC",     pj:3, pg:2, pe:0, pp:1, gf:5, gc:3, pts:6 },
     { team: "Talento FC",   pj:3, pg:1, pe:0, pp:2, gf:3, gc:5, pts:3 },
     { team: "Los Cracks",   pj:3, pg:0, pe:1, pp:2, gf:2, gc:6, pts:1 },
@@ -149,7 +149,7 @@ function renderBracket(){
   container.innerHTML = `
     ${renderBracketSide(bracketData.left, 'left')}
     <div class="bracket-center">
-      <img class="center-logo" src="../assets/logo.png" alt="D10S CUP">
+      <div class="trophy">🏆</div>
       <div class="label">FINAL</div>
       ${matchPairHTML(bracketData.final)}
       <div class="meta">${bracketData.final.date}<br>${bracketData.final.venue}</div>

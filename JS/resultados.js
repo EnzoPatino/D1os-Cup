@@ -3,52 +3,28 @@
 
 const groups = [
   { name: "Grupo A", teams: [
-    { team: "Los Halcones", pj:0, pg:2, pe:1, pp:0, gf:6, gc:2, pts:7 },
-    { team: "La 10 FC",     pj:3, pg:2, pe:0, pp:1, gf:5, gc:3, pts:6 },
-    { team: "Talento FC",   pj:3, pg:1, pe:0, pp:2, gf:3, gc:5, pts:3 },
-    { team: "Los Cracks",   pj:3, pg:0, pe:1, pp:2, gf:2, gc:6, pts:1 },
+    { team: "Los Halcones", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "La 10 FC",     pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Talento FC",   pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Los Cracks",   pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
   ]},
   { name: "Grupo B", teams: [
-    { team: "Equipo B1", pj:3, pg:3, pe:0, pp:0, gf:8, gc:1, pts:9 },
-    { team: "Equipo B2", pj:3, pg:1, pe:1, pp:1, gf:4, gc:4, pts:4 },
-    { team: "Equipo B3", pj:3, pg:1, pe:0, pp:2, gf:3, gc:5, pts:3 },
-    { team: "Equipo B4", pj:3, pg:0, pe:1, pp:2, gf:1, gc:6, pts:1 },
+    { team: "Deportivo Grasa", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Panchos FC", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Fiorito FC", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Atletico Zarpado", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
   ]},
   { name: "Grupo C", teams: [
-    { team: "Equipo C1", pj:3, pg:2, pe:0, pp:1, gf:5, gc:4, pts:6 },
-    { team: "Equipo C2", pj:3, pg:2, pe:0, pp:1, gf:4, gc:3, pts:6 },
-    { team: "Equipo C3", pj:3, pg:1, pe:1, pp:1, gf:3, gc:3, pts:4 },
-    { team: "Equipo C4", pj:3, pg:0, pe:1, pp:2, gf:2, gc:4, pts:1 },
+    { team: "Camioneros Club", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Team Balanza", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "La Crema", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Lobitos Crew", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
   ]},
   { name: "Grupo D", teams: [
-    { team: "Equipo D1", pj:3, pg:2, pe:1, pp:0, gf:7, gc:2, pts:7 },
-    { team: "Equipo D2", pj:3, pg:1, pe:2, pp:0, gf:5, gc:3, pts:5 },
-    { team: "Equipo D3", pj:3, pg:1, pe:0, pp:2, gf:3, gc:5, pts:3 },
-    { team: "Equipo D4", pj:3, pg:0, pe:1, pp:2, gf:1, gc:6, pts:1 },
-  ]},
-  { name: "Grupo E", teams: [
-    { team: "Equipo E1", pj:3, pg:2, pe:1, pp:0, gf:6, gc:3, pts:7 },
-    { team: "Equipo E2", pj:3, pg:1, pe:1, pp:1, gf:4, gc:4, pts:4 },
-    { team: "Equipo E3", pj:3, pg:1, pe:1, pp:1, gf:3, gc:3, pts:4 },
-    { team: "Equipo E4", pj:3, pg:0, pe:1, pp:2, gf:2, gc:5, pts:1 },
-  ]},
-  { name: "Grupo F", teams: [
-    { team: "Equipo F1", pj:3, pg:3, pe:0, pp:0, gf:9, gc:1, pts:9 },
-    { team: "Equipo F2", pj:3, pg:2, pe:0, pp:1, gf:5, gc:4, pts:6 },
-    { team: "Equipo F3", pj:3, pg:1, pe:0, pp:2, gf:3, gc:5, pts:3 },
-    { team: "Equipo F4", pj:3, pg:0, pe:0, pp:3, gf:1, gc:8, pts:0 },
-  ]},
-  { name: "Grupo G", teams: [
-    { team: "Equipo G1", pj:3, pg:2, pe:0, pp:1, gf:6, gc:5, pts:6 },
-    { team: "Equipo G2", pj:3, pg:2, pe:0, pp:1, gf:5, gc:4, pts:6 },
-    { team: "Equipo G3", pj:3, pg:1, pe:0, pp:2, gf:4, gc:5, pts:3 },
-    { team: "Equipo G4", pj:3, pg:1, pe:0, pp:2, gf:3, gc:4, pts:3 },
-  ]},
-  { name: "Grupo H", teams: [
-    { team: "Equipo H1", pj:3, pg:2, pe:1, pp:0, gf:5, gc:2, pts:7 },
-    { team: "Equipo H2", pj:3, pg:1, pe:2, pp:0, gf:4, gc:3, pts:5 },
-    { team: "Equipo H3", pj:3, pg:1, pe:0, pp:2, gf:3, gc:4, pts:3 },
-    { team: "Equipo H4", pj:3, pg:0, pe:1, pp:2, gf:2, gc:5, pts:1 },
+    { team: "Ciclon", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Fuerte Apache", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "Ranita FC", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
+    { team: "La Bocha", pj:0, pg:0, pe:0, pp:0, gf:0, gc:0, pts:0 },
   ]},
 ];
 
@@ -111,18 +87,19 @@ function renderGroups(){
 }
 
 // ============ RENDER BRACKET (estilo Mundial) ============
-function teamBoxHTML(name){
+function teamBoxHTML(name, extraClass=''){
   return `
-    <div class="team-box">
+    <div class="team-box ${extraClass}">
       <span class="flag"></span>
       <span>${name}</span>
     </div>`;
 }
 
-function matchPairHTML(match){
+function matchPairHTML(match, extraClass=''){
   return `
-    <div class="match-pair">
+    <div class="match-pair ${extraClass}">
       ${teamBoxHTML(match.teamA)}
+      <div class="vs">VS</div>
       ${teamBoxHTML(match.teamB)}
     </div>`;
 }
@@ -131,12 +108,15 @@ function renderBracketSide(sideData, sideClass){
   return `
     <div class="bracket-side ${sideClass}">
       <div class="round round-cuartos">
+        <div class="round-label">Cuartos de Final</div>
         <div class="connector-group">
+          <div class="joint"></div>
           ${matchPairHTML(sideData.cuartos[0])}
           ${matchPairHTML(sideData.cuartos[1])}
         </div>
       </div>
       <div class="round round-semi">
+        <div class="round-label">Semifinal</div>
         <div class="connector-single">
           ${matchPairHTML(sideData.semi)}
         </div>
@@ -151,7 +131,7 @@ function renderBracket(){
     <div class="bracket-center">
       <div class="trophy">🏆</div>
       <div class="label">FINAL</div>
-      ${matchPairHTML(bracketData.final)}
+      ${matchPairHTML(bracketData.final, 'final-pair')}
       <div class="meta">${bracketData.final.date}<br>${bracketData.final.venue}</div>
     </div>
     ${renderBracketSide(bracketData.right, 'right')}
@@ -170,9 +150,21 @@ function setupTabs(){
   });
 }
 
+// ============ BOTÓN VOLVER A GRUPOS (dentro de eliminatoria) ============
+function setupInlineBack(){
+  const volverBtn = document.getElementById('volverAGrupos');
+  if(volverBtn){
+    volverBtn.addEventListener('click', () => {
+      document.querySelector('.tab-btn[data-view="grupos"]').click();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+}
+
 // ============ INIT ============
 document.addEventListener('DOMContentLoaded', () => {
   renderGroups();
   renderBracket();
   setupTabs();
+  setupInlineBack();
 });

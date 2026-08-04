@@ -20,6 +20,37 @@ h1{
   margin-bottom: 24px;
 }
 
+/* Botón Volver */
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--panel-border);
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all .15s ease;
+}
+.back-btn .arrow{
+  transition: transform .15s ease;
+}
+.back-btn:hover{
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(232,185,77,0.08);
+}
+.back-btn:hover .arrow{
+  transform: translateX(-3px);
+}
+.back-btn-inline{
+  margin: 0;
+}
+
 /* Tabs */
 .tabs{
   display:flex;
@@ -59,6 +90,15 @@ h1{
   background: linear-gradient(90deg, var(--gold), transparent);
   max-width: 60px;
 }
+
+.eliminatoria-header{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.eliminatoria-header .section-title{ margin: 30px 0 22px; }
 
 .view{ display:none; }
 .view.active{ display:block; }
@@ -144,19 +184,19 @@ tbody tr:nth-child(-n+2) td:first-child{
   background: radial-gradient(ellipse at center, #1a1024 0%, #0a0e1a 70%);
   border: 1px solid var(--panel-border);
   border-radius: 18px;
-  padding: 80px 50px;
+  padding: 70px 40px;
   display:flex;
   align-items:center;
   justify-content:center;
   gap: 0;
   overflow-x:auto;
-  min-height: 620px;
+  min-height: 640px;
 }
 
 .bracket-side{
   display:flex;
   align-items:center;
-  gap: 70px;
+  gap: 60px;
 }
 .bracket-side.right{
   flex-direction: row-reverse;
@@ -165,29 +205,46 @@ tbody tr:nth-child(-n+2) td:first-child{
 .round{
   display:flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: 90px;
-  position:relative;
+  align-items:center;
+  gap: 18px;
 }
+
+.round-label{
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  opacity: .85;
+  white-space: nowrap;
+}
+
+.round-cuartos .connector-group{ gap: 76px; }
 
 /* Caja de equipo dentro del bracket */
 .team-box{
   display:flex;
   align-items:center;
-  gap: 14px;
+  gap: 12px;
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 8px;
-  padding: 14px 22px;
+  padding: 12px 20px;
   font-weight: 700;
-  font-size: 16px;
-  letter-spacing: .5px;
-  min-width: 200px;
+  font-size: 15px;
+  letter-spacing: .3px;
+  min-width: 190px;
   white-space: nowrap;
+  transition: all .15s ease;
+}
+.team-box:hover{
+  border-color: var(--gold);
+  background: #171f30;
+  transform: translateX(2px);
 }
 .team-box .flag{
-  width: 28px;
-  height: 20px;
+  width: 24px;
+  height: 18px;
   border-radius: 3px;
   background: linear-gradient(135deg, var(--gold), #6b5219);
   flex-shrink:0;
@@ -197,8 +254,27 @@ tbody tr:nth-child(-n+2) td:first-child{
 .match-pair{
   display:flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 6px;
   position:relative;
+}
+
+/* Separador VS entre los dos equipos de un partido */
+.match-pair .vs{
+  align-self:center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  background: var(--bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin: -3px 0;
+  z-index: 1;
 }
 
 /* Grupo de 2 partidos que convergen a la siguiente ronda */
@@ -213,24 +289,38 @@ tbody tr:nth-child(-n+2) td:first-child{
   padding-right: 0;
   padding-left: 36px;
 }
+/* Dos tramos horizontales que salen de cada partido... */
+.connector-group::before,
 .connector-group::after{
   content:'';
+  position:absolute;
+  right: 0;
+  width: 36px;
+  height: 0;
+  border-top: 3px solid var(--line);
+}
+.connector-group::before{ top: 25%; }
+.connector-group::after{ bottom: 25%; }
+
+/* ...y el tramo vertical que las une */
+.connector-group > .joint{
   position:absolute;
   top: 25%;
   bottom: 25%;
   right: 0;
-  width: 36px;
-  border-top: 3px solid var(--line);
-  border-right: 3px solid var(--line);
-  border-bottom: 3px solid var(--line);
-  border-radius: 0 4px 4px 0;
+  width: 3px;
+  background: var(--line);
+  border-radius: 2px;
 }
+
+.bracket-side.right .connector-group::before,
 .bracket-side.right .connector-group::after{
   right:auto;
   left:0;
-  border-right:none;
-  border-left: 3px solid var(--line);
-  border-radius: 4px 0 0 4px;
+}
+.bracket-side.right .connector-group > .joint{
+  right:auto;
+  left:0;
 }
 
 /* Conector simple de un solo partido (semi -> final) */
@@ -262,14 +352,17 @@ tbody tr:nth-child(-n+2) td:first-child{
   display:flex;
   flex-direction: column;
   align-items:center;
-  gap: 18px;
-  padding: 0 40px;
+  gap: 14px;
+  padding: 0 44px;
 }
-.bracket-center .center-logo{
-  width: 140px;
-  height: 140px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 22px rgba(232,185,77,0.6));
+.bracket-center .trophy{
+  font-size: 34px;
+  filter: drop-shadow(0 0 14px rgba(232,185,77,0.55));
+  animation: trophy-pulse 2.6s ease-in-out infinite;
+}
+@keyframes trophy-pulse{
+  0%, 100%{ transform: scale(1); }
+  50%{ transform: scale(1.08); }
 }
 .bracket-center .label{
   font-size: 13px;
@@ -277,20 +370,32 @@ tbody tr:nth-child(-n+2) td:first-child{
   color: var(--gold);
   font-weight: 700;
 }
+.bracket-center .final-pair .team-box{
+  border-color: var(--gold);
+  background: rgba(232,185,77,0.08);
+  box-shadow: 0 0 18px rgba(232,185,77,0.15);
+}
 .bracket-center .meta{
   font-size: 12px;
   color: var(--text-dim);
   text-align:center;
+  margin-top: 4px;
 }
 
 @media (max-width: 1100px){
   .bracket-side{ gap: 24px; }
-  .round{ gap: 34px; }
-  .connector-group{ gap: 30px; }
+  .round{ gap: 12px; }
+  .round-cuartos .connector-group{ gap: 30px; }
 }
 @media (max-width: 700px){
   body{ padding: 24px; }
-  .bracket-container{ flex-direction: column; }
-  .bracket-side{ flex-direction: column !important; }
+  .bracket-container{ flex-direction: column; padding: 40px 20px; }
+  .bracket-side{ flex-direction: column !important; gap: 30px; }
   .bracket-center{ order: -1; padding: 20px 0; }
+  .connector-group::before,
+  .connector-group::after,
+  .connector-group > .joint,
+  .connector-single::after{ display:none; }
+  .connector-group,
+  .connector-single{ padding: 0 !important; }
 }

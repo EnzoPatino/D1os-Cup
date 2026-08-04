@@ -7,6 +7,10 @@
 </head>
 <body>
 
+  <button class="back-btn" onclick="history.back()">
+    <span class="arrow">←</span> Volver
+  </button>
+
   <h1>Resultados</h1>
 
   <div class="tabs">
@@ -22,7 +26,12 @@
 
   <!-- FASE ELIMINATORIA -->
   <div id="eliminatoria" class="view">
-    <div class="section-title">Llave de Eliminación <div class="line"></div></div>
+    <div class="eliminatoria-header">
+      <div class="section-title">Llave de Eliminación <div class="line"></div></div>
+      <button class="back-btn back-btn-inline" id="volverAGrupos">
+        <span class="arrow">←</span> Volver a Grupos
+      </button>
+    </div>
     <div class="bracket-container" id="bracketContainer"></div>
   </div>
 

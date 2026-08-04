@@ -8,7 +8,7 @@
         }
 
         body{
-            background: linear-gradient(135deg,#0f2027,#000000,#c9d521);
+            background: linear-gradient(135deg,#0f2027,#000000,#e5b842);
             display:flex;
             justify-content:center;
             align-items:center;
@@ -16,7 +16,7 @@
         }
 
         .login{
-            background:rgb(155, 151, 32);
+            background:rgb(225, 188, 39);
             padding:40px;
             border-radius:15px;
             width:350px;

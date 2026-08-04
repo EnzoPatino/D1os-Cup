@@ -988,19 +988,20 @@ img {
 }
 
 .footer-social {
+  list-style: none;
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .footer-social a {
-  font-size: 1.5rem;
-  opacity: 0.6;
+  color: var(--text-muted);
+  font-size: 0.9rem;
   transition: var(--transition-smooth);
 }
 
 .footer-social a:hover {
-  opacity: 1;
-  transform: translateY(-2px);
+  color: var(--accent-gold);
 }
 
 .footer-bottom {

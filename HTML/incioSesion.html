@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
-<link rel="stylesheet" href="../CSS/inicioSesion.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - D10S CUP</title>
+  <link rel="stylesheet" href="../CSS/inicioSesion.css">
 </head>
 <body>
-
-    <div class="login">
-        <h2>Iniciar Sesión</h2>
-
-        <form>
-            <input type="email" placeholder="Correo electrónico" required>
-            <input type="password" placeholder="Contraseña" required>
-
-            <button type="submit">Ingresar</button>
-
-            <a href="#">¿Olvidaste tu contraseña?</a>
-        </form>
+  <!-- Barra superior con logo -->
+  <header class="header">
+    <div class="logo-container">
+      <img src="../assets/WhatsApp Image 2026-04-07 at 10.10.12 (1).png" alt="Logo D10S CUP" class="logo">
+      <div class="logo-text">
+        <h1>D10S CUP</h1>
+        <p>Torneo de Fútbol</p>
+      </div>
     </div>
+  </header>
 
+  <!-- Caja de login -->
+  <div class="login-container">
+    <div class="login-box">
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="Correo electrónico" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit" class="btn-ingresar">Ingresar</button>
+        <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
+      </form>
+      <button class="btn-volver" onclick="window.location.href='../index.html'">Volver</button>
+    </div>
+  </div>
+
+  <script src="../JS/inicioSesion.js"></script>
 </body>
 </html>

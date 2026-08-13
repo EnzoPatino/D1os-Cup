@@ -85,8 +85,8 @@ body {
 }
 
 .sidebar-logo {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(229, 184, 66, 0.3));
 }

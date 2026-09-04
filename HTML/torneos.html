@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D10S Cup - Torneos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../CSS/base.css">
+  <link rel="stylesheet" href="../CSS/torneos.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="productos.html" class="site-nav__brand">
+        <i class="fas fa-shopping-bag"></i>
+        <span>D10S Cup</span>
+      </a>
+      <div class="site-nav__links">
+        <a href="productos.html" class="site-nav__link"><i class="fas fa-store"></i> Productos</a>
+        <a href="torneos.html" class="site-nav__link site-nav__link--active">Torneos</a>
+        <a href="partidos.html" class="site-nav__link">Partidos</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-left">
+        <a href="productos.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Productos</a>
+        <h1>Torneos</h1>
+      </div>
+    </div>
+
+    <div class="top-bar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Buscar torneo...">
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn">Fútbol 11</button>
+        <button class="filter-btn">Fútbol 8</button>
+        <button class="filter-btn">Fútbol 5</button>
+      </div>
+      <button class="btn-gold"><i class="fas fa-plus"></i> Nuevo Torneo</button>
+    </div>
+
+    <div class="grid-torneos">
+      <!-- Fútbol 11 - Oficial -->
+      <div class="card card-torneo">
+        <span class="badge badge--gold">Oficial</span>
+        <h3>Fútbol 11<br>Torneo Oficial 2026</h3>
+        <div class="meta">
+          <div class="meta-row"><i class="far fa-calendar-alt"></i> <strong>Inicio:</strong> 15 Jul 2026</div>
+          <div class="meta-row"><i class="fas fa-map-pin"></i> <strong>Sede:</strong> Estadio Central</div>
+          <div class="meta-row"><span class="status status--open"><i class="fas fa-circle"></i> Inscripción Abierta</span></div>
+        </div>
+        <button class="btn-outline card-action">Ver detalle</button>
+      </div>
+
+      <!-- Fútbol 8 - Relámpago -->
+      <div class="card card-torneo">
+        <span class="badge badge--blue">Relámpago</span>
+        <h3>Fútbol 8<br>Torneo Relámpago</h3>
+        <div class="meta">
+          <div class="meta-row"><i class="far fa-calendar-alt"></i> <strong>Inicio:</strong> 22 Ago 2026</div>
+          <div class="meta-row"><i class="fas fa-map-pin"></i> <strong>Sede:</strong> Complejo Deportivo Norte</div>
+          <div class="meta-row"><span class="status status--open"><i class="fas fa-circle"></i> Inscripción Abierta</span></div>
+        </div>
+        <button class="btn-outline card-action">Ver detalle</button>
+      </div>
+
+      <!-- Fútbol 5 - Local -->
+      <div class="card card-torneo">
+        <span class="badge badge--green">Local</span>
+        <h3>Fútbol 5<br>Liga Local</h3>
+        <div class="meta">
+          <div class="meta-row"><i class="far fa-calendar-alt"></i> <strong>Inicio:</strong> 10 Jun 2026</div>
+          <div class="meta-row"><i class="fas fa-map-pin"></i> <strong>Sede:</strong> Polideportivo Sur</div>
+          <div class="meta-row"><span class="status status--closed"><i class="fas fa-circle"></i> Inscripción Cerrada</span></div>
+        </div>
+        <button class="btn-outline card-action">Ver detalle</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../JS/torneos.js"></script>
+</body>
+</html>

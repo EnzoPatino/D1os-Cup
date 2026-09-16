@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D10S Cup - Partidos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../CSS/base.css">
+  <link rel="stylesheet" href="../CSS/partidos.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav">
+      <a href="productos.html" class="site-nav__brand">
+        <i class="fas fa-shopping-bag"></i>
+        <span>D10S Cup</span>
+      </a>
+      <div class="site-nav__links">
+        <a href="productos.html" class="site-nav__link"><i class="fas fa-store"></i> Productos</a>
+        <a href="torneos.html" class="site-nav__link">Torneos</a>
+        <a href="partidos.html" class="site-nav__link site-nav__link--active">Partidos</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-left">
+        <a href="productos.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a Productos</a>
+        <h1>Partidos</h1>
+      </div>
+      <div class="header-actions">
+        <button class="btn-icon" id="carousel-prev" style="width:36px;height:36px;border-radius:8px"><i class="fas fa-chevron-left"></i></button>
+        <button class="btn-icon" id="carousel-next" style="width:36px;height:36px;border-radius:8px"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="section-title"><i class="fas fa-clock"></i> Próximos Partidos</div>
+    <div class="carousel">
+      <!-- Partido 1 -->
+      <div class="match-card">
+        <div class="match-teams">
+          <div class="match-team"><div class="avatar">LR</div><span class="name">Los Rangers</span></div>
+          <span class="match-vs">VS</span>
+          <div class="match-team"><div class="avatar">FC</div><span class="name">Furia City</span></div>
+        </div>
+        <div class="match-info">
+          <div class="meta-row"><i class="far fa-clock"></i> <strong>20:30</strong> &middot; Sáb 12 Jul</div>
+          <div class="meta-row"><i class="fas fa-map-pin"></i> Cancha 1 - Estadio Central</div>
+        </div>
+        <div class="match-actions" style="display:flex;gap:8px;margin-top:12px;">
+          <a href="productos.html?buy_ticket=ticket-halcones" class="btn-primary match-btn" style="flex:1;text-decoration:none;text-align:center;"><i class="fas fa-ticket-alt"></i> Comprar Entrada</a>
+          <button class="btn-outline match-btn" style="flex:1"><i class="fas fa-chart-bar"></i> Stats</button>
+        </div>
+      </div>
+
+      <!-- Partido 2 -->
+      <div class="match-card">
+        <div class="match-teams">
+          <div class="match-team"><div class="avatar">AD</div><span class="name">Atlético Diesel</span></div>
+          <span class="match-vs">VS</span>
+          <div class="match-team"><div class="avatar">RB</div><span class="name">Real Bosque</span></div>
+        </div>
+        <div class="match-info">
+          <div class="meta-row"><i class="far fa-clock"></i> <strong>18:00</strong> &middot; Dom 13 Jul</div>
+          <div class="meta-row"><i class="fas fa-map-pin"></i> Cancha 3 - Complejo Norte</div>
+        </div>
+        <div class="match-actions" style="display:flex;gap:8px;margin-top:12px;">
+          <a href="productos.html?buy_ticket=ticket-talento" class="btn-primary match-btn" style="flex:1;text-decoration:none;text-align:center;"><i class="fas fa-ticket-alt"></i> Comprar Entrada</a>
+          <button class="btn-outline match-btn" style="flex:1"><i class="fas fa-chart-bar"></i> Stats</button>
+        </div>
+      </div>
+
+      <!-- Partido 3 -->
+      <div class="match-card">
+        <div class="match-teams">
+          <div class="match-team"><div class="avatar">UN</div><span class="name">Unión FC</span></div>
+          <span class="match-vs">VS</span>
+          <div class="match-team"><div class="avatar">DC</div><span class="name">Dep. Central</span></div>
+        </div>
+        <div class="match-info">
+          <div class="meta-row"><i class="far fa-clock"></i> <strong>16:15</strong> &middot; Mié 16 Jul</div>
+          <div class="meta-row"><i class="fas fa-map-pin"></i> Cancha 2 - Polideportivo Sur</div>
+        </div>
+        <div class="match-actions" style="display:flex;gap:8px;margin-top:12px;">
+          <a href="productos.html?buy_ticket=ticket-semifinal" class="btn-primary match-btn" style="flex:1;text-decoration:none;text-align:center;"><i class="fas fa-ticket-alt"></i> Comprar Entrada</a>
+          <button class="btn-outline match-btn" style="flex:1"><i class="fas fa-chart-bar"></i> Stats</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="calendar-header">
+      <h2><i class="fas fa-calendar-alt" style="color:var(--gold)"></i>Fixture Mensual</h2>
+      <div class="calendar-nav">
+        <button id="cal-prev"><i class="fas fa-chevron-left"></i></button>
+        <span id="cal-month">Julio 2026</span>
+        <button id="cal-next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <div class="calendar-grid" id="cal-grid">
+      <div class="cal-day-header">Lun</div>
+      <div class="cal-day-header">Mar</div>
+      <div class="cal-day-header">Mié</div>
+      <div class="cal-day-header">Jue</div>
+      <div class="cal-day-header">Vie</div>
+      <div class="cal-day-header">Sáb</div>
+      <div class="cal-day-header">Dom</div>
+    </div>
+  </div>
+
+  <script src="../JS/partidos.js"></script>
+</body>
+</html>

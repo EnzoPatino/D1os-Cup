@@ -38,14 +38,14 @@
             </a>
           </li>
           <li class="menu-item">
-            <a href="#" class="menu-link">
+            <a href="torneos.html" class="menu-link">
               <i data-lucide="trophy"></i>
               <span>Torneos</span>
             </a>
           </li>
           <li class="menu-item">
-            <a href="#" class="menu-link">
-              <i data-lucide="calendar"></i>
+            <a href="partidos.html" class="menu-link">
+2              <i data-lucide="calendar"></i>
               <span>Partidos</span>
             </a>
           </li>
@@ -482,10 +482,64 @@
         >
           <i data-lucide="x"></i>
         </button>
-        <div id="modal-body-content">
-          <!-- Generated dynamically in app.js -->
+
+        <div class="modal-content-layout">
+          <!-- Imagen del Producto -->
+          <div class="modal-img-container">
+            <img src="../assets/camiseta_oficial.png" alt="Detalle del Producto" class="modal-img" id="modal-product-img" />
+          </div>
+
+          <!-- Información del Producto -->
+          <div class="modal-info-side">
+            <div class="modal-header-info">
+              <h2 class="modal-title" id="modal-product-title">Camiseta Oficial 2026</h2>
+              <div class="modal-price-row">
+                <span class="modal-price" id="modal-product-price">$25.000</span>
+              </div>
+            </div>
+
+            <p class="modal-description" id="modal-product-description">
+              Camiseta oficial del torneo D10S Cup 2026. Tela deportiva transpirable de excelente calidad con escudo bordado.
+            </p>
+
+            <!-- Selección de Talle -->
+            <div class="modal-option-group">
+              <span class="modal-option-title">Talle:</span>
+              <div class="size-selector" id="modal-size-selector">
+                <button class="size-pill" data-size="S" type="button">S</button>
+                <button class="size-pill active" data-size="M" type="button">M</button>
+                <button class="size-pill" data-size="L" type="button">L</button>
+                <button class="size-pill" data-size="XL" type="button">XL</button>
+              </div>
+            </div>
+
+            <!-- Selector de Cantidad -->
+            <div class="modal-option-group">
+              <span class="modal-option-title">Cantidad:</span>
+              <div class="modal-qty-picker">
+                <button class="modal-qty-btn" id="modal-qty-minus" type="button"><i data-lucide="minus"></i></button>
+                <span class="modal-qty-val" id="modal-qty-val">1</span>
+                <button class="modal-qty-btn" id="modal-qty-plus" type="button"><i data-lucide="plus"></i></button>
+              </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="modal-actions-row">
+              <button class="btn btn-solid modal-add-cart-btn" id="modal-add-cart-btn" type="button">
+                <i data-lucide="shopping-cart"></i> Agregar al Carrito
+              </button>
+              <button class="btn btn-outline modal-buy-now-btn" id="modal-buy-now-btn" type="button">
+                Comprar Ahora
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Store & Modal Script -->
+    <script src="../JS/productos.js"></script>
   </body>
 </html>

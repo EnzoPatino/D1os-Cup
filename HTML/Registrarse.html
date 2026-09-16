@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registrarse - D10S CUP</title>
+	<link rel="stylesheet" href="../CSS/inicioSesion.css">
+</head>
+<body>
+	<header class="header">
+		<div class="logo-container">
+			<img src="../assets/WhatsApp Image 2026-04-07 at 10.10.12 (1).png" alt="Logo D10S CUP" class="logo">
+			<div class="logo-text">
+				<h1>D10S CUP</h1>
+				<p>Torneo de Fútbol</p>
+			</div>
+		</div>
+	</header>
+
+	<div class="login-container">
+		<div class="login-box register-box">
+			<h2>Crear cuenta</h2>
+			<form id="registerForm">
+				<input type="text" id="username" placeholder="Nombre de usuario" required>
+				<input type="email" id="email" placeholder="Correo electrónico" required>
+				<input type="password" id="password" placeholder="Contraseña" required>
+				<input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
+				<button type="submit" class="btn-ingresar">Registrarse</button>
+			</form>
+			<button class="btn-volver" type="button" onclick="window.location.href='incioSesion.html'">Volver a iniciar sesión</button>
+			<button class="btn-volver" type="button" onclick="window.location.href='../index.html'">Ir al inicio</button>
+		</div>
+	</div>
+
+	<script src="../JS/registrarse.js"></script>
+</body>
+</html>

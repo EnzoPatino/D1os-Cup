@@ -48,7 +48,7 @@ const PRODUCTS_DATA = {
 };
 
 // ============ ESTADO Y REFERENCIAS ============
-let cartState = [{ id: 'ticket-final', size: 'General', qty: 1 }];
+let cartState = [];
 let selectedProductState = { productId: null, size: null, quantity: 1 };
 
 const $ = id => document.getElementById(id);
@@ -59,6 +59,7 @@ const cartItemsList = $('cart-items-list');
 
 // ============ INICIALIZACIÓN ============
 document.addEventListener('DOMContentLoaded', () => {
+  initLucide();
   setupProductModalEvents();
   setupTicketBuyListeners();
   setupCartEvents();
@@ -73,10 +74,22 @@ function initLucide() {
 }
 
 function checkUrlQueryParams() {
-  const ticketId = new URLSearchParams(window.location.search).get('buy_ticket');
+  const params = new URLSearchParams(window.location.search);
+  const ticketId = params.get('buy_ticket');
   if (ticketId && PRODUCTS_DATA[ticketId]) {
     addToCart(ticketId, 'General', 1);
     openCart();
+  }
+
+  const filterParam = params.get('filter');
+  if (filterParam) {
+    const filterBtn = document.querySelector(`.filter-tabs .tab-btn[data-filter="${filterParam}"]`);
+    if (filterBtn) {
+      filterBtn.click();
+    } else if (filterParam === 'indumentaria') {
+      const apparelSubmenu = $('submenu-filter-apparel');
+      if (apparelSubmenu) apparelSubmenu.click();
+    }
   }
 }
 
@@ -316,15 +329,17 @@ function setupFilterTabs() {
     const isTodos = filter === 'todos';
     const isEntradas = filter === 'entradas';
     const isAgendar = filter === 'agendar';
+    const isIndumentaria = filter === 'indumentaria';
     
     if (ticketsSection) ticketsSection.style.display = (isTodos || isEntradas) ? 'block' : 'none';
-    if (apparelSection) apparelSection.style.display = (isTodos || filter === 'camisetas' || filter === 'accesorios') ? 'block' : 'none';
+    if (apparelSection) apparelSection.style.display = (isTodos || isIndumentaria || filter === 'camisetas' || filter === 'accesorios') ? 'block' : 'none';
     if (agendarBanner) agendarBanner.style.display = (isTodos || isAgendar) ? 'flex' : 'none';
 
-    if (filter === 'camisetas' || filter === 'accesorios' || isTodos) {
+    if (filter === 'camisetas' || filter === 'accesorios' || isIndumentaria || isTodos) {
       document.querySelectorAll('.apparel-card-item').forEach(card => {
         const p = PRODUCTS_DATA[card.dataset.id];
-        card.style.display = (isTodos || (p && p.category === filter)) ? 'flex' : 'none';
+        const match = isTodos || isIndumentaria || (p && p.category === filter);
+        card.style.display = match ? 'flex' : 'none';
       });
     }
   };
@@ -346,14 +361,33 @@ function setupFilterTabs() {
   };
 
   bindSubmenu('submenu-filter-tickets', 'entradas');
-  bindSubmenu('submenu-filter-apparel', 'camisetas');
+  bindSubmenu('submenu-filter-apparel', 'indumentaria');
 }
 
 // ============ MENÚ MOBILE ============
 function setupMobileSidebar() {
   const mobileMenuToggle = $('mobile-menu-toggle');
   const sidebar = $('sidebar');
+  const overlay = $('sidebar-overlay');
+
+  const toggle = (force) => {
+    const shouldOpen = force !== undefined ? force : !sidebar?.classList.contains('active');
+    sidebar?.classList.toggle('active', shouldOpen);
+    overlay?.classList.toggle('active', shouldOpen);
+  };
+
   if (mobileMenuToggle && sidebar) {
-    mobileMenuToggle.addEventListener('click', () => sidebar.classList.toggle('active'));
+    mobileMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggle();
+    });
   }
+
+  if (overlay) {
+    overlay.addEventListener('click', () => toggle(false));
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') toggle(false);
+  });
 }

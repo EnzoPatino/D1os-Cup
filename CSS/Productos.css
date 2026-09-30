@@ -645,6 +645,26 @@ body {
   min-width: 200px;
 }
 
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 95;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-smooth);
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 /* Shopping Cart Drawer */
 .cart-overlay {
   position: fixed;
@@ -785,6 +805,7 @@ body {
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 4px;
+  padding-right: 28px;
 }
 
 .cart-item-meta {
@@ -1018,7 +1039,9 @@ body {
 }
 
 .size-pill {
-  width: 40px;
+  min-width: 40px;
+  width: auto;
+  padding: 0 12px;
   height: 40px;
   border-radius: 8px;
   border: 1px solid var(--border-color);

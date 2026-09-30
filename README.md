@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/Logo_real.jpeg" alt="D10S Cup - Logo Oficial" width="360" />
+</p>
+
 # D10S Cup
 
 **Plataforma de Organización Deportiva**

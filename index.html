@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- D10S Cup - index.html. Landing page: Hero, Productos, Contacto. -->
+<!-- D10S Cup - página de inicio -->
 <html lang="es">
   <head>
     <!-- Meta: charset UTF-8, viewport responsive, description SEO, título -->
@@ -17,7 +17,7 @@
     <!-- System fonts en CSS (sin Google Fonts ni @import) -->
   </head>
   <body>
-    <!-- NAVBAR: fijo arriba, logo, menú (Inicio/Productos/Contactos), auth y hamburguesa -->
+    <!-- Navegación principal -->
     <header class="navbar">
       <div class="nav-container">
         <!-- Logo -->
@@ -60,152 +60,61 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <main>
-      <!-- HERO: fondo oscuro degradado, badge, título, CTA -->
+      <!-- Presentación del torneo -->
       <section id="inicio" class="hero">
-        <!-- Hero content: badge, título, subtítulo, CTA -->
         <div class="hero-content">
-          <!-- Badge -->
           <span class="hero-badge">Torneo Oficial 2026</span>
-
-          <!-- Título -->
-          <img src="assets/WhatsApp Image 2026-04-07 at 10.10.12 (1).png" alt="D10S Cup Logo" class="hero-logo">
-
-          <!-- Subtítulo -->
+          <img
+            src="assets/WhatsApp Image 2026-04-07 at 10.10.12 (1).png"
+            alt="D10S Cup"
+            class="hero-logo"
+          />
           <p class="hero-subtitle">
             El fútbol vuelve a su esencia. Viví la competencia más apasionante
             del año donde los mejores equipos se enfrentan por la gloria eterna
             en el potrero más grande de la ciudad.
           </p>
-          </div>
+          <a href="HTML/torneos.html" class="d10s-btn d10s-btn--solid d10s-btn--lg">
+            Explorá el torneo
+          </a>
         </div>
       </section>
+
+      <!-- Accesos rápidos al contenido del torneo -->
+      <section class="torneo-accesos" aria-labelledby="torneo-accesos-titulo">
+        <div class="section-container">
+          <header class="section-header">
+            <span class="section-kicker">Seguí cada jugada</span>
+            <h2 class="section-title" id="torneo-accesos-titulo">Todo el torneo, en un solo lugar</h2>
+            <p class="section-subtitle">
+              Encontrá la información que necesitás para vivir la D10S Cup desde adentro.
+            </p>
           </header>
 
-          <!-- Grilla de tarjetas -->
-          <div class="productos-grid">
-            <!-- Entrada Fase de Grupos -->
-            <article class="product-card ticket-card">
-              <!-- Badge fase -->
-              <span class="ticket-tag tag-grupos">Fase de Grupos</span>
+          <div class="torneo-accesos-grid">
+            <a class="torneo-acceso-card" href="HTML/torneos.html">
+              <span class="torneo-acceso-numero">01</span>
+              
+              <h3>Torneos</h3>
+              <p>Conocé las competencias y encontrá tu próximo desafío.</p>
+              <span class="torneo-acceso-link">Conocer torneos <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="torneo-acceso-card" href="HTML/partidos.html">
+              <span class="torneo-acceso-numero">02</span>
+            
+              <h3>Partidos</h3>
+              <p>Consultá los cruces y seguí de cerca la acción en la cancha.</p>
+              <span class="torneo-acceso-link">Ver partidos <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="torneo-acceso-card" href="HTML/Resultados.html">
+              <span class="torneo-acceso-numero">03</span>
 
-              <!-- Encuentro -->
-              <h3 class="ticket-matchup">
-                Los Halcones <span class="vs-text">vs</span> La 10 FC
-              </h3>
-
-              <!-- Fecha y lugar -->
-              <div class="ticket-info">
-                <div class="info-item">
-                  <!-- Icono -->
-                  <span class="info-icon"></span>
-                  <span>Sáb, 24 May — 16:00 hs</span>
-                </div>
-                <div class="info-item">
-                  <span class="info-icon"></span>
-                  <span>Cancha Principal</span>
-                </div>
-              </div>
-
-              <!-- Precio + botón -->
-              <div class="ticket-footer">
-                <div class="ticket-price">
-                  <span class="price-label">General</span>
-                  <span class="price-value">$5.000</span>
-                </div>
-                <a
-                  href="HTML/productos.html?buy_ticket=ticket-halcones"
-                  class="d10s-btn d10s-btn--outline d10s-btn--sm"
-                  >Comprar</a
-                >
-              </div>
-            </article>
-
-            <!-- Entrada Final -->
-            <article class="product-card ticket-card">
-              <span class="ticket-tag tag-final">Final</span>
-              <h3 class="ticket-matchup">
-                Por Confirmar <span class="vs-text">vs</span> Por Confirmar
-              </h3>
-              <div class="ticket-info">
-                <div class="info-item">
-                  <span class="info-icon"></span>
-                  <span>Dom, 7 Jun — 17:00 hs</span>
-                </div>
-                <div class="info-item">
-                  <span class="info-icon"></span>
-                  <span>Cancha Principal</span>
-                </div>
-              </div>
-              <div class="ticket-footer">
-                <div class="ticket-price">
-                  <span class="price-label">General</span>
-                  <span class="price-value">$10.000</span>
-                </div>
-                <a
-                  href="HTML/productos.html?buy_ticket=ticket-final"
-                  class="d10s-btn d10s-btn--solid d10s-btn--sm"
-                  >Comprar</a
-                >
-              </div>
-            </article>
-
-            <!-- Camiseta Oficial -->
-            <article class="product-card apparel-card">
-              <div class="product-image-container">
-                <img
-                  src="assets/camiseta_oficial.png"
-                  alt="Camiseta Oficial 2026"
-                  class="product-image"
-                  loading="lazy"
-                />
-              </div>
-              <div class="product-details">
-                <h3 class="product-name">Camiseta Oficial 2026</h3>
-                <span class="product-price-det">$25.000</span>
-                <span class="product-sizes">Talles: S - M - L - XL</span>
-                <a
-                  href="HTML/productos.html"
-                  class="d10s-btn d10s-btn--outline d10s-btn--sm"
-                  >Ver detalles</a
-                >
-              </div>
-            </article>
-
-            <!-- Gorra Oficial -->
-            <article class="product-card apparel-card">
-              <div class="product-image-container">
-                <img
-                  src="assets/gorra_oficial.png"
-                  alt="Gorra Oficial D10S Cup"
-                  class="product-image"
-                  loading="lazy"
-                />
-              </div>
-              <div class="product-details">
-                <h3 class="product-name">Gorra Oficial</h3>
-                <span class="product-price-det">$10.000</span>
-                <span class="product-sizes">Talle: Único</span>
-                <a
-                  href="HTML/productos.html"
-                  class="d10s-btn d10s-btn--outline d10s-btn--sm"
-                  >Ver detalles</a
-                >
-              </div>
-            </article>
-          </div>
-          <!-- /.productos-grid -->
-
-          <!-- CTA ver catálogo completo -->
-          <div class="productos-cta">
-            <a
-              href="HTML/productos.html"
-              class="d10s-btn d10s-btn--outline d10s-btn--lg"
-            >
-              Ver catálogo completo →
+              <h3>Resultados</h3>
+              <p>Revisá las tablas y descubrí cómo sigue el camino a la final.</p>
+              <span class="torneo-acceso-link">Ver resultados <span aria-hidden="true">→</span></span>
             </a>
           </div>
         </div>
-        <!-- /.section-container -->
       </section>
 
       <!-- CONTACTO: formulario con Nombre, Email, Mensaje -->

@@ -36,3 +36,4 @@ GEMINI.local.md
 *.log
 npm-debug.log*
 .~lock.*#
+.~lock.*#

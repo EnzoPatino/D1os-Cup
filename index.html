@@ -13,6 +13,7 @@
 
     <!-- CSS externo -->
     <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/auth.css" />
 
     <!-- System fonts en CSS (sin Google Fonts ni @import) -->
   </head>
@@ -40,7 +41,7 @@
         </nav>
 
         <!-- Botones auth -->
-        <div class="nav-auth">
+        <div class="nav-auth" data-auth-nav aria-label="Sesión de usuario">
           <a href="HTML/incioSesion.html" class="d10s-btn d10s-btn--outline d10s-btn--sm"
             >Iniciar Sesión</a
           >
@@ -145,6 +146,11 @@
               >
             </div>
 
+            <div class="form-group">
+              <label for="telefono" class="form-label">Teléfono (opcional)</label>
+              <input type="tel" id="telefono" name="telefono" class="form-input" maxlength="40" placeholder="Tu teléfono" />
+            </div>
+
             <!-- Email -->
             <div class="form-group">
               <label for="email" class="form-label">Email</label>
@@ -184,6 +190,7 @@
             >
               Enviar Mensaje
             </button>
+            <p id="contact-status" class="auth-message" role="status" aria-live="polite" hidden></p>
           </form>
         </div>
         <!-- /.section-container -->
@@ -231,6 +238,7 @@
     </footer>
 
     <!-- JS externo: menú mobile, scroll suave, validación formulario -->
-    <script src="JS/app.js"></script>
+    <script type="module" src="JS/app.js"></script>
+    <script type="module" src="JS/auth.js"></script>
   </body>
 </html>

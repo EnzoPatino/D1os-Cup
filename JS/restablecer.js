@@ -1,22 +1,15 @@
 import { supabase } from "./supabaseClient.js";
 import { showAuthMessage } from "./auth.js";
 
-const form = document.getElementById("registerForm");
+const form = document.getElementById("passwordResetForm");
 const message = document.getElementById("auth-message");
 
 form?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!form.reportValidity()) return;
 
-  const nombre_usuario = document.getElementById("username").value.trim();
-  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
   const confirmation = document.getElementById("confirmPassword").value;
-
-  if (!nombre_usuario) {
-    showAuthMessage(message, "Ingresá tu nombre de usuario.", "error");
-    return;
-  }
   if (password.length < 8) {
     showAuthMessage(message, "La contraseña debe tener al menos 8 caracteres.", "error");
     return;
@@ -29,30 +22,21 @@ form?.addEventListener("submit", async (event) => {
   const submit = form.querySelector('button[type="submit"]');
   submit.disabled = true;
   const originalLabel = submit.textContent;
-  submit.textContent = "Creando cuenta…";
+  submit.textContent = "Guardando…";
   showAuthMessage(message, "");
 
   try {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { nombre_usuario } },
-    });
-
+    const { error } = await supabase.auth.updateUser({ password });
     if (error) {
-      showAuthMessage(message, "No se pudo crear la cuenta. Verificá el correo y probá con otra contraseña.", "error");
+      showAuthMessage(
+        message,
+        "El enlace venció o ya fue usado. Solicitá uno nuevo para cambiar la contraseña.",
+        "error"
+      );
       return;
     }
-    if (data.session) {
-      window.location.replace("../index.html");
-      return;
-    }
-    showAuthMessage(
-      message,
-      "Cuenta creada. Revisá tu correo para confirmar el registro y luego iniciá sesión.",
-      "success"
-    );
-    form.reset();
+    showAuthMessage(message, "Contraseña actualizada. Te llevamos al inicio…", "success");
+    window.setTimeout(() => window.location.replace("../index.html"), 1200);
   } catch {
     showAuthMessage(message, "No se pudo conectar. Revisá tu conexión e intentá nuevamente.", "error");
   } finally {
@@ -60,3 +44,4 @@ form?.addEventListener("submit", async (event) => {
     submit.textContent = originalLabel;
   }
 });
+

@@ -198,3 +198,7 @@
   .cal-day { min-height: 56px; }
   .cal-event { display: none; }
 }
+.match-actions { display: flex; gap: 8px; margin-top: 12px; }
+.match-actions .match-btn { flex: 1; text-align: center; text-decoration: none; }
+.cal-event { overflow: hidden; max-height: 3.2em; padding: 2px 4px; border-radius: 4px; font-size: .62rem; line-height: 1.25; overflow-wrap: anywhere; }
+.cal-event--more { color: var(--gold, #e8b94d); }

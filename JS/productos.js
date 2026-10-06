@@ -1,393 +1,396 @@
-/**
- * D10S Cup - productos.js
- * Lógica optimizada en Vanilla JS para tienda y carrito.
- */
+import { supabase } from "./supabaseClient.js";
 
-// ============ DATOS DE PRODUCTOS ============
-const PRODUCTS_DATA = {
-  'apparel-camiseta-oficial': {
-    id: 'apparel-camiseta-oficial', title: 'Camiseta Oficial 2026', category: 'camisetas', tag: 'Indumentaria Oficial',
-    price: 25000, priceFormatted: '$25.000', image: '../assets/camiseta_oficial.png', sizes: ['S', 'M', 'L', 'XL'], defaultSize: 'M',
-    stockStatus: 'En Stock', stockAvailable: true, description: 'Camiseta oficial titular del torneo D10S Cup 2026. Tela deportiva transpirable de excelente calidad con escudo bordado.'
-  },
-  'apparel-camiseta-alternativa': {
-    id: 'apparel-camiseta-alternativa', title: 'Camiseta Alternativa', category: 'camisetas', tag: 'Indumentaria Oficial',
-    price: 25000, priceFormatted: '$25.000', image: '../assets/camiseta_alternativa.png', sizes: ['S', 'M', 'L', 'XL'], defaultSize: 'M',
-    stockStatus: 'En Stock', stockAvailable: true, description: 'Camiseta suplente oficial del torneo D10S Cup. Confeccionada en microfibra liviana ideal para partidos.'
-  },
-  'apparel-campera-oficial': {
-    id: 'apparel-campera-oficial', title: 'Campera Oficial', category: 'accesorios', tag: 'Indumentaria Oficial',
-    price: 35000, priceFormatted: '$35.000', image: '../assets/campera_oficial.png', sizes: ['S', 'M', 'L', 'XL'], defaultSize: 'L',
-    stockStatus: 'En Stock', stockAvailable: true, description: 'Campera de entrenamiento oficial con abrigo liviano y bolsillos laterales con cierre.'
-  },
-  'apparel-gorra-oficial': {
-    id: 'apparel-gorra-oficial', title: 'Gorra Oficial', category: 'accesorios', tag: 'Indumentaria Oficial',
-    price: 10000, priceFormatted: '$10.000', image: '../assets/gorra_oficial.png', sizes: ['Único'], defaultSize: 'Único',
-    stockStatus: 'En Stock', stockAvailable: true, description: 'Gorra oficial D10S Cup con visera curva y broche ajustable posterior. Escudo bordado en el frente.'
-  },
-  'ticket-halcones': {
-    id: 'ticket-halcones', title: 'Entrada: Los Halcones vs La 10 FC', category: 'entradas', tag: 'Fase de Grupos',
-    price: 5000, priceFormatted: '$5.000', image: '../assets/logo_d1os_cup.png', sizes: ['General'], defaultSize: 'General',
-    stockStatus: 'Disponible', stockAvailable: true, description: 'Entrada general para el partido entre Los Halcones y La 10 FC.'
-  },
-  'ticket-talento': {
-    id: 'ticket-talento', title: 'Entrada: Talento FC vs Los Cracks', category: 'entradas', tag: 'Fase de Grupos',
-    price: 5000, priceFormatted: '$5.000', image: '../assets/logo_d1os_cup.png', sizes: ['General'], defaultSize: 'General',
-    stockStatus: 'Disponible', stockAvailable: true, description: 'Entrada general para el partido entre Talento FC y Los Cracks.'
-  },
-  'ticket-semifinal': {
-    id: 'ticket-semifinal', title: 'Entrada: Semifinal', category: 'entradas', tag: 'Semifinal',
-    price: 7000, priceFormatted: '$7.000', image: '../assets/logo_d1os_cup.png', sizes: ['General'], defaultSize: 'General',
-    stockStatus: 'Disponible', stockAvailable: true, description: 'Entrada general para la Semifinal del torneo.'
-  },
-  'ticket-final': {
-    id: 'ticket-final', title: 'Entrada: Final', category: 'entradas', tag: 'Final',
-    price: 10000, priceFormatted: '$10.000', image: '../assets/logo_d1os_cup.png', sizes: ['General'], defaultSize: 'General',
-    stockStatus: 'Disponible', stockAvailable: true, description: 'Entrada general para la Gran Final de la D10S Cup.'
-  }
-};
+const grid = document.getElementById("product-grid");
+const catalogStatus = document.getElementById("catalog-status");
+const cartItemsNode = document.getElementById("cart-items-list");
+const cartStatus = document.getElementById("cart-status");
+const cartStorageKey = "d10s-cart-v1";
+const categoryButtons = [...document.querySelectorAll(".filter-tabs [data-filter]")];
+const productSearch = document.getElementById("product-search");
+const cartDrawer = document.getElementById("cart-drawer");
+const cartOverlay = document.getElementById("cart-overlay");
+const productOverlay = document.getElementById("modal-overlay");
+const purchaseOverlay = document.getElementById("purchase-overlay");
+let products = [];
+let variantsById = new Map();
+const requestedCategory = new URLSearchParams(window.location.search).get("filter");
+let activeCategory = categoryButtons.some((button) => button.dataset.filter === requestedCategory)
+  ? requestedCategory
+  : "todos";
+let selectedProduct = null;
+let selectedVariantId = null;
+let quantity = 1;
+let cart = readCart();
 
-// ============ ESTADO Y REFERENCIAS ============
-let cartState = [];
-let selectedProductState = { productId: null, size: null, quantity: 1 };
-
-const $ = id => document.getElementById(id);
-const modalOverlay = $('modal-overlay');
-const cartOverlay = $('cart-overlay');
-const cartDrawer = $('cart-drawer');
-const cartItemsList = $('cart-items-list');
-
-// ============ INICIALIZACIÓN ============
-document.addEventListener('DOMContentLoaded', () => {
-  initLucide();
-  setupProductModalEvents();
-  setupTicketBuyListeners();
-  setupCartEvents();
-  setupFilterTabs();
-  setupMobileSidebar();
-  checkUrlQueryParams();
-  updateCartUI();
+categoryButtons.forEach((button) => {
+  button.classList.toggle("active", button.dataset.filter === activeCategory);
 });
 
-function initLucide() {
-  if (window.lucide?.createIcons) window.lucide.createIcons();
+function node(tag, className, text) {
+  const item = document.createElement(tag);
+  if (className) item.className = className;
+  if (text !== undefined) item.textContent = String(text);
+  return item;
 }
 
-function checkUrlQueryParams() {
-  const params = new URLSearchParams(window.location.search);
-  const ticketId = params.get('buy_ticket');
-  if (ticketId && PRODUCTS_DATA[ticketId]) {
-    addToCart(ticketId, 'General', 1);
-    openCart();
+function money(value) {
+  return new Intl.NumberFormat("es-AR", { style: "currency", currency: "ARS", maximumFractionDigits: 0 }).format(Number(value) || 0);
+}
+
+function setNotice(target, message, error = false) {
+  target.textContent = message;
+  target.dataset.kind = error ? "error" : "info";
+  target.hidden = !message;
+}
+
+function readCart() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(cartStorageKey) || "[]");
+    if (!Array.isArray(saved)) return [];
+    return saved.filter((item) => typeof item?.variante_id === "string" && Number.isInteger(item?.cantidad) && item.cantidad > 0)
+      .map((item) => ({ variante_id: item.variante_id, cantidad: item.cantidad }));
+  } catch {
+    return [];
   }
+}
 
-  const filterParam = params.get('filter');
-  if (filterParam) {
-    const filterBtn = document.querySelector(`.filter-tabs .tab-btn[data-filter="${filterParam}"]`);
-    if (filterBtn) {
-      filterBtn.click();
-    } else if (filterParam === 'indumentaria') {
-      const apparelSubmenu = $('submenu-filter-apparel');
-      if (apparelSubmenu) apparelSubmenu.click();
-    }
+function saveCart() {
+  cart = cart.map(({ variante_id, cantidad }) => ({ variante_id, cantidad }));
+  localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+}
+
+function variants(product) {
+  return product.variantes_producto || [];
+}
+
+function productImage(product) {
+  const image = node("img", "product-image");
+  const fallback = "../assets/camiseta_oficial.png";
+  const value = product.imagen_url || fallback;
+  image.src = value.startsWith("/") || value.startsWith("../") || value.startsWith("./") || /^https:\/\//i.test(value)
+    ? value
+    : fallback;
+  image.alt = product.nombre || "Producto D10S Cup";
+  image.loading = "lazy";
+  image.addEventListener("error", () => { image.src = fallback; }, { once: true });
+  return image;
+}
+
+function stockText(variant) {
+  return variant.stock > 0 ? `Stock: ${variant.stock}` : "Agotado";
+}
+
+function productCard(product) {
+  const card = node("article", "card store-card");
+  const picture = node("div", "store-card-image");
+  picture.append(productImage(product));
+  const body = node("div", "store-card-body");
+  body.append(node("span", "store-category", product.categorias_producto?.nombre || "Producto"));
+  body.append(node("h3", "product-title", product.nombre));
+  body.append(node("p", "store-description", product.descripcion || "Producto oficial D10S Cup."));
+  body.append(node("strong", "product-price", money(product.precio)));
+  const variantLabel = node("label", "store-variant-label", product.categorias_producto?.nombre === "entradas" ? "Ubicación" : "Variante");
+  const selector = document.createElement("select");
+  selector.className = "store-variant-select";
+  selector.setAttribute("aria-label", `Variante de ${product.nombre}`);
+  const available = variants(product).filter((variant) => variant.stock > 0);
+  const options = variants(product).map((variant) => {
+    const option = node("option", "", `${variant.etiqueta} · ${stockText(variant)}`);
+    option.value = variant.id;
+    option.disabled = variant.stock <= 0;
+    return option;
+  });
+  selector.replaceChildren(...options);
+  const selectedVariant = available[0]?.id || "";
+  selector.value = selectedVariant;
+  variantLabel.append(selector);
+  const actions = node("div", "store-card-actions");
+  const detail = node("button", "btn btn-outline", "Ver detalles");
+  detail.type = "button";
+  detail.addEventListener("click", () => openDetails(product, selector.value || selectedVariant));
+  const add = node("button", "btn btn-solid", "Agregar al carrito");
+  add.type = "button";
+  add.disabled = !available.length;
+  add.addEventListener("click", () => addToCart(selector.value, 1));
+  actions.append(detail, add);
+  body.append(variantLabel, actions);
+  card.append(picture, body);
+  return card;
+}
+
+function renderProducts() {
+  const search = productSearch.value.trim().toLocaleLowerCase("es");
+  const visible = products.filter((product) => {
+    const category = product.categorias_producto?.nombre || "";
+    const matchesCategory = activeCategory === "todos" || category === activeCategory;
+    const matchesSearch = `${product.nombre} ${product.descripcion || ""} ${category}`.toLocaleLowerCase("es").includes(search);
+    return matchesCategory && matchesSearch;
+  });
+  grid.replaceChildren(...visible.map(productCard));
+  setNotice(catalogStatus, visible.length ? "" : products.length ? "No hay productos que coincidan con el filtro." : "No hay productos publicados por el momento.");
+}
+
+async function loadProducts() {
+  setNotice(catalogStatus, "Cargando productos desde Supabase…");
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 8000);
+  try {
+    const { data, error } = await supabase
+      .from("productos")
+      .select("id,nombre,descripcion,precio,imagen_url,categoria_id,partido_id,categorias_producto(nombre),variantes_producto(id,etiqueta,stock)")
+      .eq("activo", true)
+      .order("nombre", { ascending: true })
+      .abortSignal(controller.signal);
+    if (error) throw error;
+    products = data || [];
+    variantsById = new Map();
+    for (const product of products) for (const variant of variants(product)) variantsById.set(variant.id, { variant, product });
+    cart = cart.filter((item) => variantsById.has(item.variante_id));
+    saveCart();
+    renderProducts();
+    renderCart();
+  } catch {
+    setNotice(catalogStatus, "No se pudo cargar el catálogo. Revisá tu conexión e intentá nuevamente.", true);
+  } finally {
+    window.clearTimeout(timeout);
   }
 }
 
-// ============ NOTIFICACIONES TOAST ============
-function showNotification(message, type = 'info') {
-  let toast = $('d10s-toast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'd10s-toast';
-    toast.className = 'd10s-toast';
-    document.body.appendChild(toast);
-  }
-  toast.innerHTML = `<i data-lucide="${type === 'success' ? 'check-circle' : 'info'}"></i> <span>${message}</span>`;
-  toast.classList.add('show');
-  initLucide();
-  setTimeout(() => toast.classList.remove('show'), 3200);
-}
-
-// ============ MODAL DE PRODUCTO ============
-function setupProductModalEvents() {
-  document.querySelectorAll('.apparel-card-item').forEach(card => {
-    const id = card.dataset.id;
-    card.querySelector('.btn-detail')?.addEventListener('click', e => { e.stopPropagation(); openProductModal(id); });
-    const imgContainer = card.querySelector('.product-image-container');
-    if (imgContainer) {
-      imgContainer.style.cursor = 'pointer';
-      imgContainer.addEventListener('click', () => openProductModal(id));
-    }
-  });
-
-  $('close-modal-btn')?.addEventListener('click', closeProductModal);
-  modalOverlay?.addEventListener('click', e => { if (e.target === modalOverlay) closeProductModal(); });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeProductModal(); closeCart(); }
-  });
-
-  // Selector de cantidad
-  const qtyVal = $('modal-qty-val');
-  $('modal-qty-minus')?.addEventListener('click', () => {
-    if (selectedProductState.quantity > 1) {
-      selectedProductState.quantity--;
-      if (qtyVal) qtyVal.textContent = selectedProductState.quantity;
-    }
-  });
-  $('modal-qty-plus')?.addEventListener('click', () => {
-    if (selectedProductState.quantity < 10) {
-      selectedProductState.quantity++;
-      if (qtyVal) qtyVal.textContent = selectedProductState.quantity;
-    }
-  });
-
-  // Acciones modal
-  $('modal-add-cart-btn')?.addEventListener('click', () => {
-    const p = PRODUCTS_DATA[selectedProductState.productId] || { title: 'Producto' };
-    addToCart(selectedProductState.productId, selectedProductState.size, selectedProductState.quantity);
-    closeProductModal();
-    showNotification(`¡${p.title} (Talle ${selectedProductState.size}) agregado al carrito!`, 'success');
-  });
-
-  $('modal-buy-now-btn')?.addEventListener('click', () => {
-    addToCart(selectedProductState.productId, selectedProductState.size, selectedProductState.quantity);
-    closeProductModal();
-    openCart();
-  });
-}
-
-function openProductModal(productId) {
-  const p = PRODUCTS_DATA[productId];
-  if (!p) return;
-
-  selectedProductState = { productId, size: p.defaultSize || p.sizes[0], quantity: 1 };
-
-  const setEl = (id, val) => { const el = $(id); if (el) el.textContent = val; };
-  setEl('modal-product-tag', p.tag);
-  setEl('modal-product-title', p.title);
-  setEl('modal-product-price', p.priceFormatted);
-  setEl('modal-product-description', p.description);
-  setEl('modal-stock-text', p.stockStatus);
-  setEl('modal-qty-val', 1);
-
-  const imgEl = $('modal-product-img');
-  if (imgEl) { imgEl.src = p.image; imgEl.alt = p.title; }
-
-  const badgeEl = $('modal-stock-badge');
-  if (badgeEl) badgeEl.className = `stock-badge ${p.stockAvailable ? 'in-stock' : 'low-stock'}`;
-
-  const sizeSelectorEl = $('modal-size-selector');
-  if (sizeSelectorEl) {
-    sizeSelectorEl.innerHTML = p.sizes.map(s => `
-      <button class="size-pill ${s === selectedProductState.size ? 'active' : ''}" data-size="${s}" type="button">${s}</button>
-    `).join('');
-
-    sizeSelectorEl.querySelectorAll('.size-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        sizeSelectorEl.querySelectorAll('.size-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedProductState.size = btn.dataset.size;
-      });
+function openDetails(product, defaultVariantId) {
+  selectedProduct = product;
+  selectedVariantId = defaultVariantId || variants(product).find((item) => item.stock > 0)?.id || null;
+  quantity = 1;
+  document.getElementById("modal-product-tag").textContent = product.categorias_producto?.nombre || "D10S Cup";
+  document.getElementById("modal-product-title").textContent = product.nombre;
+  document.getElementById("modal-product-price").textContent = money(product.precio);
+  document.getElementById("modal-product-description").textContent = product.descripcion || "Producto oficial D10S Cup.";
+  document.getElementById("modal-stock-text").textContent = variants(product).some((item) => item.stock > 0) ? "Disponible" : "Agotado";
+  document.getElementById("modal-product-img").replaceWith(productImageForModal(product));
+  document.getElementById("modal-qty-val").textContent = String(quantity);
+  const selector = document.getElementById("modal-size-selector");
+  selector.replaceChildren(...variants(product).map((variant) => {
+    const button = node("button", `size-pill${variant.id === selectedVariantId ? " active" : ""}`, `${variant.etiqueta} · ${stockText(variant)}`);
+    button.type = "button";
+    button.disabled = variant.stock <= 0;
+    button.addEventListener("click", () => {
+      selectedVariantId = variant.id;
+      selector.querySelectorAll("button").forEach((item) => item.classList.toggle("active", item === button));
+      quantity = Math.min(quantity, variant.stock);
+      document.getElementById("modal-qty-val").textContent = String(quantity);
     });
+    return button;
+  }));
+  document.getElementById("modal-add-cart-btn").disabled = !selectedVariantId;
+  document.getElementById("modal-buy-now-btn").disabled = !selectedVariantId;
+  productOverlay.classList.add("active");
+}
+
+function productImageForModal(product) {
+  const image = productImage(product);
+  image.id = "modal-product-img";
+  image.className = "modal-img";
+  return image;
+}
+
+function closeDetails() {
+  productOverlay.classList.remove("active");
+}
+
+function addToCart(variantId, amount) {
+  const entry = variantsById.get(variantId);
+  if (!entry || entry.variant.stock <= 0) {
+    setNotice(cartStatus, "Esa variante está agotada.", true);
+    return;
   }
-
-  modalOverlay?.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  initLucide();
+  const existing = cart.find((item) => item.variante_id === variantId);
+  const requested = (existing?.cantidad || 0) + amount;
+  if (requested > entry.variant.stock) {
+    setNotice(cartStatus, `Solo quedan ${entry.variant.stock} unidades de esa variante.`, true);
+    return;
+  }
+  if (existing) existing.cantidad = requested;
+  else cart.push({ variante_id: variantId, cantidad: amount });
+  setNotice(cartStatus, "");
+  saveCart();
+  renderCart();
 }
 
-function closeProductModal() {
-  modalOverlay?.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-// ============ ENTRADAS & CARRITO ============
-function setupTicketBuyListeners() {
-  document.querySelectorAll('.btn-buy-ticket').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const card = btn.closest('.ticket-card-item');
-      if (card && PRODUCTS_DATA[card.dataset.id]) {
-        addToCart(card.dataset.id, 'General', 1);
-        openCart();
-      }
+function renderCart() {
+  const badge = document.getElementById("cart-count-badge");
+  const count = cart.reduce((total, item) => total + item.cantidad, 0);
+  badge.textContent = String(count);
+  badge.hidden = count === 0;
+  if (!cart.length) {
+    cartItemsNode.replaceChildren(node("div", "cart-empty", "Tu carrito está vacío."));
+    return;
+  }
+  cartItemsNode.replaceChildren(...cart.map((item, index) => {
+    const entry = variantsById.get(item.variante_id);
+    if (!entry) return node("div", "cart-item", "Producto no disponible");
+    const row = node("div", "cart-item");
+    const details = node("div", "cart-item-details");
+    details.append(node("strong", "cart-item-name", entry.product.nombre));
+    details.append(node("span", "cart-item-meta", `Variante: ${entry.variant.etiqueta}`));
+    details.append(node("span", "cart-item-meta", `${money(entry.product.precio)} · cantidad ${item.cantidad}`));
+    const controls = node("div", "qty-control");
+    const decrease = node("button", "qty-btn", "−");
+    decrease.type = "button";
+    decrease.setAttribute("aria-label", "Restar una unidad");
+    decrease.addEventListener("click", () => updateQuantity(index, -1));
+    const number = node("span", "qty-val", item.cantidad);
+    const increase = node("button", "qty-btn", "+");
+    increase.type = "button";
+    increase.setAttribute("aria-label", "Sumar una unidad");
+    increase.addEventListener("click", () => updateQuantity(index, 1));
+    controls.append(decrease, number, increase);
+    const remove = node("button", "remove-item", "Quitar");
+    remove.type = "button";
+    remove.addEventListener("click", () => {
+      cart.splice(index, 1);
+      saveCart();
+      renderCart();
     });
-  });
+    row.append(details, controls, remove);
+    return row;
+  }));
 }
 
-function setupCartEvents() {
-  $('cart-toggle-btn')?.addEventListener('click', openCart);
-  $('close-cart-btn')?.addEventListener('click', closeCart);
-  cartOverlay?.addEventListener('click', closeCart);
-
-  $('checkout-btn')?.addEventListener('click', () => {
-    if (cartState.length === 0) {
-      showNotification('Tu carrito está vacío.', 'info');
-      return;
-    }
-    showNotification('¡Gracias por tu compra! Procesando entrada(s)...', 'success');
-    cartState = [];
-    updateCartUI();
-    setTimeout(closeCart, 1500);
-  });
+function updateQuantity(index, change) {
+  const item = cart[index];
+  if (!item) return;
+  const available = variantsById.get(item.variante_id)?.variant.stock || 0;
+  const next = item.cantidad + change;
+  if (next <= 0) cart.splice(index, 1);
+  else if (next > available) setNotice(cartStatus, `Solo quedan ${available} unidades de esa variante.`, true);
+  else item.cantidad = next;
+  saveCart();
+  renderCart();
 }
 
 function openCart() {
-  cartDrawer?.classList.add('active');
-  cartOverlay?.classList.add('active');
+  cartDrawer.classList.add("active");
+  cartOverlay.classList.add("active");
 }
 
 function closeCart() {
-  cartDrawer?.classList.remove('active');
-  cartOverlay?.classList.remove('active');
+  cartDrawer.classList.remove("active");
+  cartOverlay.classList.remove("active");
 }
 
-function addToCart(productId, size, qty = 1) {
-  const item = cartState.find(i => i.id === productId && i.size === size);
-  if (item) item.qty += qty;
-  else cartState.push({ id: productId, size, qty });
-  updateCartUI();
-}
-
-function removeFromCart(index) {
-  cartState.splice(index, 1);
-  updateCartUI();
-}
-
-function changeCartQty(index, change) {
-  if (cartState[index]) {
-    cartState[index].qty += change;
-    if (cartState[index].qty <= 0) removeFromCart(index);
-    else updateCartUI();
+function renderReceipt(total, tickets) {
+  document.getElementById("purchase-total").textContent = `Total confirmado: ${money(total)}`;
+  const container = document.getElementById("purchase-tickets");
+  container.replaceChildren();
+  if (!tickets.length) container.append(node("p", "data-status", "Compra confirmada. Este pedido no incluye entradas."));
+  for (const ticket of tickets) {
+    const card = node("article", "purchase-ticket");
+    card.append(node("h3", "", "Entrada D10S Cup"));
+    card.append(node("p", "ticket-code", `Código: ${ticket.codigo}`));
+    const qr = node("div", "ticket-qr");
+    qr.setAttribute("aria-label", `Código QR del ticket ${ticket.codigo}`);
+    card.append(qr);
+    container.append(card);
+    if (window.QRCode) new window.QRCode(qr, { text: ticket.codigo, width: 144, height: 144, correctLevel: window.QRCode.CorrectLevel.M });
+    else qr.textContent = "No se pudo cargar el generador de QR; conservá el código de entrada.";
   }
+  purchaseOverlay.hidden = false;
 }
 
-function updateCartUI() {
-  const totalItems = cartState.reduce((acc, i) => acc + i.qty, 0);
-  const badge = $('cart-count-badge');
-  if (badge) {
-    badge.textContent = totalItems;
-    badge.style.display = totalItems > 0 ? 'flex' : 'none';
-  }
-
-  if (!cartItemsList) return;
-
-  if (cartState.length === 0) {
-    cartItemsList.innerHTML = `<div class="cart-empty"><i data-lucide="shopping-bag"></i><p>Tu carrito está vacío</p></div>`;
-    if ($('cart-subtotal')) $('cart-subtotal').textContent = '$0';
-    if ($('cart-total')) $('cart-total').textContent = '$0';
-    initLucide();
+async function checkout() {
+  if (!cart.length) {
+    setNotice(cartStatus, "Agregá productos antes de finalizar la compra.", true);
     return;
   }
-
-  let subtotal = 0;
-  cartItemsList.innerHTML = cartState.map((item, index) => {
-    const p = PRODUCTS_DATA[item.id] || { title: 'Producto', price: 0, image: '../assets/logo_d1os_cup.png' };
-    const itemTotal = p.price * item.qty;
-    subtotal += itemTotal;
-
-    return `
-      <div class="cart-item">
-        <div class="cart-item-img"><img src="${p.image}" alt="${p.title}" /></div>
-        <div class="cart-item-details">
-          <div class="cart-item-name">${p.title}</div>
-          <div class="cart-item-meta">Talle: ${item.size}</div>
-          <div class="cart-item-bottom">
-            <div class="qty-control">
-              <button class="qty-btn" onclick="changeCartQty(${index}, -1)"><i data-lucide="minus"></i></button>
-              <span class="qty-val">${item.qty}</span>
-              <button class="qty-btn" onclick="changeCartQty(${index}, 1)"><i data-lucide="plus"></i></button>
-            </div>
-            <span class="cart-item-price">$${itemTotal.toLocaleString('es-AR')}</span>
-          </div>
-        </div>
-        <button class="remove-item" onclick="removeFromCart(${index})" aria-label="Eliminar producto">
-          <i data-lucide="trash-2"></i>
-        </button>
-      </div>
-    `;
-  }).join('');
-
-  const formattedSubtotal = `$${subtotal.toLocaleString('es-AR')}`;
-  if ($('cart-subtotal')) $('cart-subtotal').textContent = formattedSubtotal;
-  if ($('cart-total')) $('cart-total').textContent = formattedSubtotal;
-
-  initLucide();
-}
-
-window.changeCartQty = changeCartQty;
-window.removeFromCart = removeFromCart;
-
-// ============ FILTROS ============
-function setupFilterTabs() {
-  const filterBtns = document.querySelectorAll('.filter-tabs .tab-btn');
-  const ticketsSection = $('entradas-section');
-  const apparelSection = $('indumentaria-section');
-  const agendarBanner = $('agendar-banner');
-
-  const applyFilter = filter => {
-    const isTodos = filter === 'todos';
-    const isEntradas = filter === 'entradas';
-    const isAgendar = filter === 'agendar';
-    const isIndumentaria = filter === 'indumentaria';
-    
-    if (ticketsSection) ticketsSection.style.display = (isTodos || isEntradas) ? 'block' : 'none';
-    if (apparelSection) apparelSection.style.display = (isTodos || isIndumentaria || filter === 'camisetas' || filter === 'accesorios') ? 'block' : 'none';
-    if (agendarBanner) agendarBanner.style.display = (isTodos || isAgendar) ? 'flex' : 'none';
-
-    if (filter === 'camisetas' || filter === 'accesorios' || isIndumentaria || isTodos) {
-      document.querySelectorAll('.apparel-card-item').forEach(card => {
-        const p = PRODUCTS_DATA[card.dataset.id];
-        const match = isTodos || isIndumentaria || (p && p.category === filter);
-        card.style.display = match ? 'flex' : 'none';
-      });
+  const button = document.getElementById("checkout-btn");
+  button.disabled = true;
+  button.textContent = "Procesando compra…";
+  setNotice(cartStatus, "Verificando sesión y reservando stock…");
+  let orderId = null;
+  try {
+    const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!sessionData.session) {
+      window.location.assign("incioSesion.html");
+      return;
     }
-  };
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilter(btn.dataset.filter);
+    const { data: order, error: createError } = await supabase.rpc("crear_pedido", {
+      p_items: cart.map(({ variante_id, cantidad }) => ({ variante_id, cantidad })),
     });
-  });
-
-  const bindSubmenu = (elId, filterName) => {
-    $(elId)?.addEventListener('click', e => {
-      e.preventDefault();
-      filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === filterName));
-      applyFilter(filterName);
-    });
-  };
-
-  bindSubmenu('submenu-filter-tickets', 'entradas');
-  bindSubmenu('submenu-filter-apparel', 'indumentaria');
+    if (createError) throw createError;
+    orderId = order?.pedido_id;
+    if (!orderId) throw new Error("No se recibió el identificador del pedido.");
+    const { data: confirmation, error: paymentError } = await supabase.rpc("confirmar_pago_simulado", { p_pedido_id: orderId });
+    if (paymentError) throw paymentError;
+    cart = [];
+    saveCart();
+    renderCart();
+    closeCart();
+    await loadProducts();
+    renderReceipt(order.total, Array.isArray(confirmation?.tickets) ? confirmation.tickets : []);
+    setNotice(cartStatus, "");
+  } catch {
+    if (orderId) {
+      let cancelError = null;
+      try {
+        ({ error: cancelError } = await supabase.rpc("cancelar_pedido", { p_pedido_id: orderId }));
+      } catch (error) {
+        cancelError = error;
+      }
+      if (cancelError) {
+        setNotice(cartStatus, `No se pudo confirmar ni liberar el pedido ${orderId}. Contactá al administrador con ese código.`, true);
+      } else {
+        setNotice(cartStatus, "La compra no se completó; se liberó el stock reservado. Intentá nuevamente.", true);
+      }
+    } else {
+      setNotice(cartStatus, "No se pudo procesar la compra. Revisá stock y conexión e intentá nuevamente.", true);
+    }
+  } finally {
+    button.disabled = false;
+    button.textContent = "Finalizar compra";
+  }
 }
 
-// ============ MENÚ MOBILE ============
-function setupMobileSidebar() {
-  const mobileMenuToggle = $('mobile-menu-toggle');
-  const sidebar = $('sidebar');
-  const overlay = $('sidebar-overlay');
+categoryButtons.forEach((button) => button.addEventListener("click", () => {
+  activeCategory = button.dataset.filter;
+  categoryButtons.forEach((filter) => filter.classList.toggle("active", filter === button));
+  renderProducts();
+}));
+productSearch.addEventListener("input", renderProducts);
+document.getElementById("cart-toggle-btn").addEventListener("click", openCart);
+document.getElementById("close-cart-btn").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+document.getElementById("close-modal-btn").addEventListener("click", closeDetails);
+productOverlay.addEventListener("click", (event) => { if (event.target === productOverlay) closeDetails(); });
+document.getElementById("modal-qty-minus").addEventListener("click", () => {
+  quantity = Math.max(1, quantity - 1);
+  document.getElementById("modal-qty-val").textContent = String(quantity);
+});
+document.getElementById("modal-qty-plus").addEventListener("click", () => {
+  const stock = variantsById.get(selectedVariantId)?.variant.stock || 0;
+  quantity = Math.min(stock, quantity + 1);
+  document.getElementById("modal-qty-val").textContent = String(quantity);
+});
+document.getElementById("modal-add-cart-btn").addEventListener("click", () => {
+  if (selectedVariantId) addToCart(selectedVariantId, quantity);
+  closeDetails();
+});
+document.getElementById("modal-buy-now-btn").addEventListener("click", () => {
+  if (selectedVariantId) addToCart(selectedVariantId, quantity);
+  closeDetails();
+  openCart();
+});
+document.getElementById("checkout-btn").addEventListener("click", checkout);
+document.getElementById("close-purchase-btn").addEventListener("click", () => { purchaseOverlay.hidden = true; });
+document.getElementById("mobile-menu-toggle").addEventListener("click", () => {
+  document.getElementById("sidebar").classList.toggle("active");
+  document.getElementById("sidebar-overlay").classList.toggle("active");
+});
+document.getElementById("sidebar-overlay").addEventListener("click", () => {
+  document.getElementById("sidebar").classList.remove("active");
+  document.getElementById("sidebar-overlay").classList.remove("active");
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") { closeCart(); closeDetails(); purchaseOverlay.hidden = true; }
+});
 
-  const toggle = (force) => {
-    const shouldOpen = force !== undefined ? force : !sidebar?.classList.contains('active');
-    sidebar?.classList.toggle('active', shouldOpen);
-    overlay?.classList.toggle('active', shouldOpen);
-  };
-
-  if (mobileMenuToggle && sidebar) {
-    mobileMenuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggle();
-    });
-  }
-
-  if (overlay) {
-    overlay.addEventListener('click', () => toggle(false));
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') toggle(false);
-  });
-}
+loadProducts();

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="../CSS/base.css">
   <link rel="stylesheet" href="../CSS/torneos.css">
+  <link rel="stylesheet" href="../CSS/auth.css">
 </head>
 <body>
   <header class="site-header">
@@ -20,6 +21,7 @@
         <a href="torneos.html" class="site-nav__link site-nav__link--active">Torneos</a>
         <a href="partidos.html" class="site-nav__link">Partidos</a>
       </div>
+      <div class="nav-auth" data-auth-nav aria-label="Sesión de usuario"></div>
     </nav>
   </header>
 
@@ -34,56 +36,36 @@
     <div class="top-bar">
       <div class="search-box">
         <i class="fas fa-search"></i>
-        <input type="text" placeholder="Buscar torneo...">
+        <input id="torneo-search" type="search" placeholder="Buscar torneo..." aria-label="Buscar torneo">
       </div>
       <div class="filter-group">
-        <button class="filter-btn active">Todos</button>
-        <button class="filter-btn">Fútbol 11</button>
-        <button class="filter-btn">Fútbol 8</button>
-        <button class="filter-btn">Fútbol 5</button>
+        <button class="filter-btn active" data-modalidad="todos" type="button">Todos</button>
+        <button class="filter-btn" data-modalidad="futbol_11" type="button">Fútbol 11</button>
+        <button class="filter-btn" data-modalidad="futbol_8" type="button">Fútbol 8</button>
+        <button class="filter-btn" data-modalidad="futbol_5" type="button">Fútbol 5</button>
       </div>
-      <button class="btn-gold"><i class="fas fa-plus"></i> Nuevo Torneo</button>
+      <button class="btn-gold" id="new-tournament-button" type="button" hidden><i class="fas fa-plus"></i> Nuevo Torneo</button>
     </div>
 
-    <div class="grid-torneos">
-      <!-- Fútbol 11 - Oficial -->
-      <div class="card card-torneo">
-        <span class="badge badge--gold">Oficial</span>
-        <h3>Fútbol 11<br>Torneo Oficial 2026</h3>
-        <div class="meta">
-          <div class="meta-row"><i class="far fa-calendar-alt"></i> <strong>Inicio:</strong> 15 Jul 2026</div>
-          <div class="meta-row"><i class="fas fa-map-pin"></i> <strong>Sede:</strong> Estadio Central</div>
-          <div class="meta-row"><span class="status status--open"><i class="fas fa-circle"></i> Inscripción Abierta</span></div>
-        </div>
-        <button class="btn-outline card-action">Ver detalle</button>
-      </div>
-
-      <!-- Fútbol 8 - Relámpago -->
-      <div class="card card-torneo">
-        <span class="badge badge--blue">Relámpago</span>
-        <h3>Fútbol 8<br>Torneo Relámpago</h3>
-        <div class="meta">
-          <div class="meta-row"><i class="far fa-calendar-alt"></i> <strong>Inicio:</strong> 22 Ago 2026</div>
-          <div class="meta-row"><i class="fas fa-map-pin"></i> <strong>Sede:</strong> Complejo Deportivo Norte</div>
-          <div class="meta-row"><span class="status status--open"><i class="fas fa-circle"></i> Inscripción Abierta</span></div>
-        </div>
-        <button class="btn-outline card-action">Ver detalle</button>
-      </div>
-
-      <!-- Fútbol 5 - Local -->
-      <div class="card card-torneo">
-        <span class="badge badge--green">Local</span>
-        <h3>Fútbol 5<br>Liga Local</h3>
-        <div class="meta">
-          <div class="meta-row"><i class="far fa-calendar-alt"></i> <strong>Inicio:</strong> 10 Jun 2026</div>
-          <div class="meta-row"><i class="fas fa-map-pin"></i> <strong>Sede:</strong> Polideportivo Sur</div>
-          <div class="meta-row"><span class="status status--closed"><i class="fas fa-circle"></i> Inscripción Cerrada</span></div>
-        </div>
-        <button class="btn-outline card-action">Ver detalle</button>
-      </div>
-    </div>
+    <p id="torneos-status" class="data-status" role="status">Cargando torneos…</p>
+    <div class="grid-torneos" id="torneos-grid"></div>
   </div>
 
-  <script src="../JS/torneos.js"></script>
+  <dialog class="tournament-dialog" id="new-tournament-dialog">
+    <form id="new-tournament-form">
+      <h2>Nuevo torneo</h2>
+      <label>Nombre<input name="nombre" maxlength="120" required></label>
+      <label>Modalidad<select name="modalidad" required><option value="futbol_11">Fútbol 11</option><option value="futbol_8">Fútbol 8</option><option value="futbol_5">Fútbol 5</option></select></label>
+      <label>Estado<select name="estado" required><option value="inscripciones_abiertas">Inscripciones abiertas</option><option value="en_curso">En curso</option><option value="finalizado">Finalizado</option></select></label>
+      <label>Fecha de inicio<input name="fecha_inicio" type="date"></label>
+      <label>Cupo de equipos<input name="cupo_equipos" type="number" min="1" value="16" required></label>
+      <label>Premio<input name="premio" maxlength="500"></label>
+      <p class="data-status" id="new-tournament-status" role="status"></p>
+      <div class="dialog-actions"><button type="button" id="cancel-new-tournament">Cancelar</button><button type="submit" class="btn-gold">Crear torneo</button></div>
+    </form>
+  </dialog>
+
+  <script type="module" src="../JS/torneos.js"></script>
+  <script type="module" src="../JS/auth.js"></script>
 </body>
 </html>

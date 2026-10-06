@@ -5,8 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registrarse - D10S CUP</title>
 	<link rel="stylesheet" href="../CSS/inicioSesion.css">
+	<link rel="stylesheet" href="../CSS/auth.css">
 </head>
-<body>
+<body data-auth-route="register">
 	<header class="header">
 		<div class="logo-container">
 			<img src="../assets/WhatsApp Image 2026-04-07 at 10.10.12 (1).png" alt="Logo D10S CUP" class="logo">
@@ -15,6 +16,7 @@
 				<p>Torneo de Fútbol</p>
 			</div>
 		</div>
+		<div class="nav-auth" data-auth-nav aria-label="Sesión de usuario"></div>
 	</header>
 
 	<div class="login-container">
@@ -23,15 +25,17 @@
 			<form id="registerForm">
 				<input type="text" id="username" placeholder="Nombre de usuario" required>
 				<input type="email" id="email" placeholder="Correo electrónico" required>
-				<input type="password" id="password" placeholder="Contraseña" required>
+				<input type="password" id="password" placeholder="Contraseña" minlength="8" required>
 				<input type="password" id="confirmPassword" placeholder="Confirmar contraseña" required>
 				<button type="submit" class="btn-ingresar">Registrarse</button>
+				<p id="auth-message" class="auth-message" role="status" aria-live="polite" hidden></p>
 			</form>
 			<button class="btn-volver" type="button" onclick="window.location.href='incioSesion.html'">Volver a iniciar sesión</button>
 			<button class="btn-volver" type="button" onclick="window.location.href='../index.html'">Ir al inicio</button>
 		</div>
 	</div>
 
-	<script src="../JS/registrarse.js"></script>
+	<script type="module" src="../JS/registrarse.js"></script>
+	<script type="module" src="../JS/auth.js"></script>
 </body>
 </html>

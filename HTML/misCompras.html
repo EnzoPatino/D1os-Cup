@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis compras y entradas - D10S Cup</title>
+    <link rel="stylesheet" href="../CSS/base.css" />
+    <link rel="stylesheet" href="../CSS/auth.css" />
+    <link rel="stylesheet" href="../CSS/tienda.css" />
+  </head>
+  <body class="purchases-page">
+    <header class="site-header"><nav class="site-nav">
+      <a href="../index.html" class="site-nav__brand">D10S Cup</a>
+      <div class="site-nav__links"><a href="productos.html" class="site-nav__link">Tienda</a><a href="partidos.html" class="site-nav__link">Partidos</a></div>
+      <div class="nav-auth" data-auth-nav aria-label="Sesión de usuario"></div>
+    </nav></header>
+    <main class="purchases-main">
+      <div class="purchases-heading"><div><a href="productos.html">← Volver a la tienda</a><h1>Mis compras y entradas</h1></div></div>
+      <p id="purchases-status" class="data-status" role="status">Cargando tus compras…</p>
+      <div id="purchases-list" class="purchases-list"></div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="../JS/misCompras.js"></script>
+    <script type="module" src="../JS/auth.js"></script>
+  </body>
+</html>

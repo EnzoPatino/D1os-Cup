@@ -1,109 +1,180 @@
-/* ─── Datos de ejemplo ─── */
-const MONTHS = [
-  'Enero','Febrero','Marzo','Abril','Mayo','Junio',
-  'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'
-];
+import { supabase } from "./supabaseClient.js";
 
-let currentDate = new Date(2026, 6); /* Julio 2026 */
+const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+const matchList = document.getElementById("scheduled-matches");
+const status = document.getElementById("partidos-status");
+const calendar = document.getElementById("cal-grid");
+const monthLabel = document.getElementById("cal-month");
+let matches = [];
+let currentDate = new Date();
 
-/* ─── Renderiza el calendario ─── */
-function renderCalendar(date) {
-  const year = date.getFullYear();
-  const month = date.getMonth();
+function setStatus(message, kind = "info") {
+  status.textContent = message;
+  status.dataset.kind = kind;
+  status.hidden = !message;
+}
 
-  /* Actualiza título */
-  document.getElementById('cal-month').textContent = `${MONTHS[month]} ${year}`;
+function initials(value) {
+  return (value || "?").trim().split(/\s+/).slice(0, 2).map((part) => part.slice(0, 1)).join("").toLocaleUpperCase("es");
+}
 
-  const firstDay = new Date(year, month, 1).getDay(); /* 0=Dom */
+function dateValue(match) {
+  return match.fecha_hora ? new Date(match.fecha_hora) : null;
+}
+
+function dateKey(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function matchDateKey(match) {
+  const date = dateValue(match);
+  return date ? dateKey(date) : "";
+}
+
+function formatDate(date, options) {
+  return new Intl.DateTimeFormat("es-AR", options).format(date);
+}
+
+function createTeam(name) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "match-team";
+  const avatar = document.createElement("div");
+  avatar.className = "avatar";
+  avatar.textContent = initials(name);
+  const label = document.createElement("span");
+  label.className = "name";
+  label.textContent = name || "Por confirmar";
+  wrapper.append(avatar, label);
+  return wrapper;
+}
+
+function matchCard(match) {
+  const card = document.createElement("article");
+  card.className = "match-card";
+  const teams = document.createElement("div");
+  teams.className = "match-teams";
+  const vs = document.createElement("span");
+  vs.className = "match-vs";
+  vs.textContent = "VS";
+  teams.append(createTeam(match.equipo_local?.nombre), vs, createTeam(match.equipo_visitante?.nombre));
+
+  const info = document.createElement("div");
+  info.className = "match-info";
+  const kickoff = document.createElement("div");
+  kickoff.className = "meta-row";
+  const date = dateValue(match);
+  kickoff.textContent = date ? formatDate(date, { dateStyle: "medium", timeStyle: "short" }) : "Fecha a confirmar";
+  const venue = document.createElement("div");
+  venue.className = "meta-row";
+  venue.textContent = [match.cancha, match.estadio].filter(Boolean).join(" · ") || "Cancha a confirmar";
+  info.append(kickoff, venue);
+
+  const actions = document.createElement("div");
+  actions.className = "match-actions";
+  const buy = document.createElement("a");
+  buy.href = "productos.html?filter=entradas";
+  buy.className = "btn-primary match-btn";
+  buy.textContent = "Ver entradas";
+  actions.append(buy);
+  card.append(teams, info, actions);
+  return card;
+}
+
+function renderMatches() {
+  matchList.replaceChildren(...matches.map(matchCard));
+  setStatus(matches.length ? "" : "No hay partidos programados por el momento.");
+}
+
+function createDayCell(day, otherMonth = false, isToday = false, dayMatches = []) {
+  const cell = document.createElement("div");
+  cell.className = `cal-day${otherMonth ? " cal-day--other" : ""}${isToday ? " cal-day--today" : ""}`;
+  const number = document.createElement("div");
+  number.className = "day-num";
+  number.textContent = day;
+  cell.append(number);
+  for (const match of dayMatches.slice(0, 2)) {
+    const event = document.createElement("div");
+    event.className = "cal-event";
+    const date = dateValue(match);
+    const time = date ? formatDate(date, { hour: "2-digit", minute: "2-digit" }) : "";
+    event.textContent = `${match.equipo_local?.nombre || "Por confirmar"} vs ${match.equipo_visitante?.nombre || "Por confirmar"}${time ? ` ${time}` : ""}`;
+    cell.append(event);
+  }
+  if (dayMatches.length > 2) {
+    const more = document.createElement("div");
+    more.className = "cal-event cal-event--more";
+    more.textContent = `+${dayMatches.length - 2} partidos`;
+    cell.append(more);
+  }
+  return cell;
+}
+
+function renderCalendar() {
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  monthLabel.textContent = `${monthNames[month]} ${year}`;
+  const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const daysInPrev = new Date(year, month, 0).getDate();
-
-  /* Ajuste: lunes como primer día (lun=0, dom=6) */
   const offset = firstDay === 0 ? 6 : firstDay - 1;
-
-  const grid = document.getElementById('cal-grid');
-  /* Conserva los encabezados (primeros 7 hijos) */
-  while (grid.children.length > 7) grid.removeChild(grid.lastChild);
-
+  const headers = [...calendar.children].slice(0, 7);
+  calendar.replaceChildren(...headers);
+  const matchesByDay = new Map();
+  for (const match of matches) {
+    const key = matchDateKey(match);
+    if (key) matchesByDay.set(key, [...(matchesByDay.get(key) || []), match]);
+  }
   const today = new Date();
-
-  /* Días del mes anterior */
-  for (let i = offset - 1; i >= 0; i--) {
-    grid.append(createDayCell(daysInPrev - i, true, false));
+  for (let i = offset - 1; i >= 0; i--) calendar.append(createDayCell(daysInPrev - i, true));
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day);
+    const key = dateKey(date);
+    const isToday = key === dateKey(today);
+    calendar.append(createDayCell(day, false, isToday, matchesByDay.get(key) || []));
   }
+  const cells = calendar.children.length - headers.length;
+  const remainder = (7 - (cells % 7)) % 7;
+  for (let day = 1; day <= remainder; day++) calendar.append(createDayCell(day, true));
+}
 
-  /* Días del mes actual */
-  for (let d = 1; d <= daysInMonth; d++) {
-    const isToday = year === today.getFullYear() && month === today.getMonth() && d === today.getDate();
-    grid.append(createDayCell(d, false, isToday));
-  }
-
-  /* Días del mes siguiente para completar la última semana */
-  const total = grid.children.length - 7;
-  const remainder = 7 - (total % 7);
-  if (remainder < 7) {
-    for (let d = 1; d <= remainder; d++) {
-      grid.append(createDayCell(d, true, false));
+async function loadMatches() {
+  setStatus("Cargando partidos…");
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 8000);
+  try {
+    const { data, error } = await supabase
+      .from("partidos")
+      .select("id,fecha_hora,cancha,estadio,fase,equipo_local:equipos!partidos_equipo_local_id_fkey(nombre),equipo_visitante:equipos!partidos_equipo_visitante_id_fkey(nombre)")
+      .eq("estado", "programado")
+      .order("fecha_hora", { ascending: true })
+      .abortSignal(controller.signal);
+    if (error) throw error;
+    matches = data || [];
+    const first = matches.find((match) => dateValue(match));
+    if (first) {
+      const date = dateValue(first);
+      currentDate = new Date(date.getFullYear(), date.getMonth(), 1);
     }
+    renderMatches();
+    renderCalendar();
+  } catch {
+    matches = [];
+    renderCalendar();
+    setStatus("No se pudieron cargar los partidos. Revisá tu conexión e intentá nuevamente.", "error");
+  } finally {
+    window.clearTimeout(timeout);
   }
 }
 
-/* ─── Crea una celda de día ─── */
-function createDayCell(day, other, isToday) {
-  const div = document.createElement('div');
-  div.className = `cal-day${other ? ' cal-day--other' : ''}${isToday ? ' cal-day--today' : ''}`;
-
-  const num = document.createElement('div');
-  num.className = 'day-num';
-  num.textContent = day;
-  div.append(num);
-
-  /* Eventos demo (solo días del mes actual con datos de ejemplo) */
-  if (!other && (day === 5 || day === 12)) {
-    const ev = document.createElement('div');
-    ev.className = 'cal-event';
-    ev.textContent = day === 5 ? 'LR vs FC 20:30' : 'AD vs RB 18:00';
-    div.append(ev);
-  }
-  if (!other && day === 15) {
-    const ev = document.createElement('div');
-    ev.className = 'cal-event';
-    ev.textContent = 'LR vs FC 20:30';
-    div.append(ev);
-  }
-  if (!other && day === 19) {
-    const ev = document.createElement('div');
-    ev.className = 'cal-event';
-    ev.textContent = 'AD vs UN 18:00';
-    div.append(ev);
-  }
-  if (!other && day === 26) {
-    const ev = document.createElement('div');
-    ev.className = 'cal-event';
-    ev.textContent = 'FC vs DC 20:30';
-    div.append(ev);
-  }
-
-  return div;
-}
-
-/* ─── Nav del calendario ─── */
-document.getElementById('cal-prev').addEventListener('click', () => {
+document.getElementById("cal-prev").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() - 1);
-  renderCalendar(currentDate);
+  renderCalendar();
 });
-document.getElementById('cal-next').addEventListener('click', () => {
+document.getElementById("cal-next").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() + 1);
-  renderCalendar(currentDate);
+  renderCalendar();
 });
+document.getElementById("carousel-prev").addEventListener("click", () => matchList.scrollBy({ left: -320, behavior: "smooth" }));
+document.getElementById("carousel-next").addEventListener("click", () => matchList.scrollBy({ left: 320, behavior: "smooth" }));
 
-/* ─── Nav de carrusel (desplaza scroll) ─── */
-document.getElementById('carousel-prev').addEventListener('click', () => {
-  document.querySelector('.carousel').scrollBy({ left: -320, behavior: 'smooth' });
-});
-document.getElementById('carousel-next').addEventListener('click', () => {
-  document.querySelector('.carousel').scrollBy({ left: 320, behavior: 'smooth' });
-});
-
-/* ─── Init ─── */
-renderCalendar(currentDate);
+loadMatches();

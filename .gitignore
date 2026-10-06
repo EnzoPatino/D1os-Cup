@@ -1,0 +1,37 @@
+# Entorno local y secretos
+.env
+.env.*
+!.env.example
+*.local
+
+# Supabase CLI: estado local (mantener migraciones, seed y assets versionados)
+supabase/.temp/
+supabase/.branches/
+
+# Dependencias y salidas generadas
+node_modules/
+dist/
+build/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuracion local de editores y agentes
+.vscode/
+.idea/
+.obsidian/
+.codex/
+.agents/
+skills-lock.json
+AGENTS.local.md
+AGENTS.override.md
+CLAUDE.local.md
+GEMINI.local.md
+
+# Temporales y logs
+*.swp
+*.tmp
+*.log
+npm-debug.log*

@@ -13,6 +13,9 @@ node_modules/
 dist/
 build/
 
+# Entregables académicos para uso interno del equipo; no publicar en GitHub
+/documentacion_entrega/
+
 # Archivos del sistema
 .DS_Store
 Thumbs.db

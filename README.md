@@ -141,6 +141,18 @@ npx serve .
 
 Luego visitar `http://localhost:8000`.
 
+## Deploy en Vercel
+
+El proyecto se despliega como sitio estático multipágina, sin paso de compilación. Para conectarlo:
+
+1. Importar el repositorio `EnzoPatino/D1os-Cup` en Vercel y mantener la rama `main`.
+2. La configuración de Vercel publica la raíz del repositorio y conserva las rutas relativas existentes (`HTML/`, `CSS/`, `JS/`, `assets/`).
+3. La URL y la clave publicable de Supabase ya están configuradas en `JS/supabaseClient.js`. La clave publicable puede exponerse en el navegador; nunca usar una `service_role`.
+4. Hacer el deploy. Cada push a `main` generará un deploy de producción y los pull requests tendrán previews.
+5. En Supabase, agregar el dominio de producción y los dominios Preview que se usarán a **Authentication → URL Configuration → Redirect URLs**. Definir como **Site URL** el dominio de producción. Esto permite que los enlaces de recuperación vuelvan a `HTML/restablecer.html`.
+
+Para ejecutar localmente, correr `npm run dev` o `python3 -m http.server 8000` y visitar `http://localhost:8000`. No hace falta instalar dependencias.
+
 ---
 
 ## Mapa de navegación

@@ -8,13 +8,17 @@ form?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!form.reportValidity()) return;
 
-  const nombre_usuario = document.getElementById("username").value.trim();
+  const nombre_usuario = document.getElementById("username").value.trim().toLowerCase();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
   const confirmation = document.getElementById("confirmPassword").value;
 
   if (!nombre_usuario) {
     showAuthMessage(message, "Ingresá tu nombre de usuario.", "error");
+    return;
+  }
+  if (!/^[a-z0-9._-]{3,30}$/.test(nombre_usuario)) {
+    showAuthMessage(message, "El nombre debe tener de 3 a 30 caracteres: letras sin acento, números, punto, guion o guion bajo.", "error");
     return;
   }
   if (password.length < 8) {

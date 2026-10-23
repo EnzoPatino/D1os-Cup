@@ -14,14 +14,35 @@ form?.addEventListener("submit", async (event) => {
   submit.textContent = "Ingresando…";
   showAuthMessage(message, "");
 
-  const email = document.getElementById("email").value.trim();
+  const identity = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
   try {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    let error;
+    if (identity.includes("@")) {
+      ({ error } = await supabase.auth.signInWithPassword({ email: identity, password }));
+    } else {
+      const response = await fetch("/api/username-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: identity, password }),
+      });
+      if (!response.ok && response.status !== 401) {
+        throw new Error("Username login service unavailable");
+      }
+      const session = response.ok ? await response.json() : null;
+      if (!session?.access_token || !session?.refresh_token) {
+        error = new Error("Invalid login credentials");
+      } else {
+        ({ error } = await supabase.auth.setSession({
+          access_token: session.access_token,
+          refresh_token: session.refresh_token,
+        }));
+      }
+    }
     if (error) {
       const detail = error.message === "Invalid login credentials"
-        ? "El correo o la contraseña no son correctos."
+        ? "El correo, nombre de usuario o la contraseña no son correctos."
         : "No se pudo iniciar sesión. Revisá tus datos e intentá nuevamente.";
       showAuthMessage(message, detail, "error");
       return;

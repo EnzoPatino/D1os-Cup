@@ -41,6 +41,22 @@ La URL del proyecto y la clave publicable se configuran en `JS/supabaseClient.js
 
 Las migraciones y el seed de la base están en `supabase/`. Para configurar los enlaces de autenticación, agregar los dominios de producción y preview en **Authentication → URL Configuration → Redirect URLs**.
 
+### Inicio con nombre de usuario
+
+El inicio de sesión por nombre de usuario usa la función `api/username-login.js`; el correo sigue autenticándose directamente con Supabase. Configurá estas variables en **Vercel → Settings → Environment Variables** para producción y previews:
+
+| Variable | Valor |
+| --- | --- |
+| `SUPABASE_URL` | URL del proyecto Supabase |
+| `SUPABASE_PUBLISHABLE_KEY` | Clave publicable de Supabase |
+| `SUPABASE_SECRET_KEY` | Clave `sb_secret_…` de Supabase. También acepta la clave heredada `SUPABASE_SERVICE_ROLE_KEY`. |
+
+La clave de servidor solo se usa dentro de la función de Vercel. No agregarla al código del navegador ni al repositorio. Aplicar primero la migración `login_por_nombre_usuario` para normalizar y hacer únicos los nombres de usuario.
+
+### Cuenta administradora
+
+Creá y confirmá la cuenta desde el registro normal del sitio. Después, en Supabase SQL Editor, reemplazá el correo de ejemplo en [`supabase/operations/promover_admin.sql`](supabase/operations/promover_admin.sql) por el correo de esa cuenta y ejecutá el script. El rol y las políticas RLS existentes habilitan las operaciones administrativas permitidas por la base de datos.
+
 ## Documentación
 
 - [Guía de usuario](docs/GUIA_USUARIO.md)

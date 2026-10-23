@@ -123,11 +123,7 @@
   }
 
   .header .nav-auth {
-    position: fixed;
-    top: 102px;
-    right: 12px;
-    left: 12px;
-    justify-content: center;
+    display: none;
   }
 
   .header .nav-auth .auth-user-name {
@@ -136,6 +132,7 @@
 
   .results-topbar {
     margin: -20px 0 24px;
+    flex-wrap: wrap;
   }
 
   .site-nav .nav-auth {

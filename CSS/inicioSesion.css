@@ -1,9 +1,12 @@
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #0b0b0b 0%, #1a1a1a 100%);
   color: #fff;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,6 +47,8 @@ body {
 
 /* Caja de login */
 .login-container {
+  width: 100%;
+  max-width: 420px;
   text-align: center;
 }
 
@@ -51,8 +56,8 @@ body {
   background-color: #121212;
   border: 1px solid #d4af37;
   border-radius: 12px;
-  padding: 40px;
-  width: 320px;
+  padding: clamp(24px, 7vw, 40px);
+  width: min(420px, 100%);
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
@@ -114,4 +119,26 @@ input::placeholder {
 .btn-volver:hover {
   background-color: #d4af37;
   color: #000;
+}
+
+@media (max-width: 640px) {
+  body {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 96px 16px 24px;
+  }
+
+  .header {
+    top: 12px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .logo {
+    width: 64px;
+    height: 56px;
+  }
+
+  .logo-text h1 { font-size: 1.45rem; }
+  .logo-text p { font-size: .82rem; }
 }

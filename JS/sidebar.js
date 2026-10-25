@@ -20,6 +20,8 @@ function initSidebar() {
     const shouldOpen = force !== undefined ? force : !sidebar.classList.contains('active');
     sidebar.classList.toggle('active', shouldOpen);
     if (overlay) overlay.classList.toggle('active', shouldOpen);
+    document.body.classList.toggle('sidebar-open', shouldOpen);
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', String(shouldOpen));
   };
 
   if (toggleBtn) {
@@ -32,6 +34,10 @@ function initSidebar() {
   if (overlay) {
     overlay.addEventListener('click', () => toggle(false));
   }
+
+  sidebar.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => toggle(false));
+  });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') toggle(false);

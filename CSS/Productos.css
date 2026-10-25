@@ -665,6 +665,10 @@ body {
   pointer-events: all;
 }
 
+@media (max-width: 900px) {
+  body.sidebar-open { overflow: hidden; }
+}
+
 /* Shopping Cart Drawer */
 .cart-overlay {
   position: fixed;

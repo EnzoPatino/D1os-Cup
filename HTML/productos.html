@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../CSS/Productos.css" />
     <link rel="stylesheet" href="../CSS/auth.css" />
     <link rel="stylesheet" href="../CSS/tienda.css" />
+    <link rel="stylesheet" href="../CSS/scroll-animations.css" />
   </head>
   <body>
     <div class="app-container">
@@ -32,7 +33,7 @@
 
       <main class="main-content">
         <header class="topbar">
-          <div class="topbar-left"><button class="action-btn mobile-toggle" id="mobile-menu-toggle" aria-label="Abrir menú">☰</button><h1 class="page-title">Productos</h1></div>
+          <div class="topbar-left"><button class="action-btn mobile-toggle" id="mobile-menu-toggle" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false">☰</button><h1 class="page-title">Productos</h1></div>
           <div class="topbar-actions"><button class="action-btn" id="cart-toggle-btn" aria-label="Abrir carrito">Carrito <span class="badge" id="cart-count-badge" hidden>0</span></button><div class="nav-auth product-auth-nav" data-auth-nav aria-label="Sesión de usuario"></div></div>
         </header>
 
@@ -96,5 +97,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="../JS/productos.js"></script>
     <script type="module" src="../JS/auth.js"></script>
+    <script src="../JS/scroll-animations.js" defer></script>
   </body>
 </html>

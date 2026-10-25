@@ -215,6 +215,10 @@ body:has(.app-container) {
   pointer-events: all;
 }
 
+@media (max-width: 900px) {
+  body.sidebar-open { overflow: hidden; }
+}
+
 /* Main Content Area */
 .main-content {
   margin-left: var(--sidebar-width);

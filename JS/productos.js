@@ -381,16 +381,20 @@ document.getElementById("modal-buy-now-btn").addEventListener("click", () => {
 });
 document.getElementById("checkout-btn").addEventListener("click", checkout);
 document.getElementById("close-purchase-btn").addEventListener("click", () => { purchaseOverlay.hidden = true; });
-document.getElementById("mobile-menu-toggle").addEventListener("click", () => {
-  document.getElementById("sidebar").classList.toggle("active");
-  document.getElementById("sidebar-overlay").classList.toggle("active");
-});
-document.getElementById("sidebar-overlay").addEventListener("click", () => {
-  document.getElementById("sidebar").classList.remove("active");
-  document.getElementById("sidebar-overlay").classList.remove("active");
-});
+const sidebar = document.getElementById("sidebar");
+const sidebarOverlay = document.getElementById("sidebar-overlay");
+const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+const setSidebarOpen = (open) => {
+  sidebar.classList.toggle("active", open);
+  sidebarOverlay.classList.toggle("active", open);
+  document.body.classList.toggle("sidebar-open", open);
+  mobileMenuToggle.setAttribute("aria-expanded", String(open));
+};
+mobileMenuToggle.addEventListener("click", () => setSidebarOpen(!sidebar.classList.contains("active")));
+sidebarOverlay.addEventListener("click", () => setSidebarOpen(false));
+sidebar.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setSidebarOpen(false)));
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") { closeCart(); closeDetails(); purchaseOverlay.hidden = true; }
+  if (event.key === "Escape") { closeCart(); closeDetails(); purchaseOverlay.hidden = true; setSidebarOpen(false); }
 });
 
 loadProducts();

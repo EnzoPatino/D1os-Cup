@@ -1,65 +1,48 @@
 # D10S Cup
 
-Plataforma web para organizar torneos de fútbol. Incluye tienda de entradas e indumentaria, gestión de torneos y equipos, fixture, resultados y autenticación.
+Sitio web para consultar torneos, partidos, resultados y la tienda de D10S Cup.
 
-## Sitio
+**Sitio publicado:** [d1os-cup.vercel.app](https://d1os-cup.vercel.app/)
 
-[Abrir D10S Cup](https://d1os-cup.vercel.app/)
+## Por dónde empezar
 
-## Tecnologías
-
-- HTML, CSS y JavaScript nativo
-- Supabase para autenticación, base de datos y operaciones de tienda
-- Vercel para el deploy estático
+- [Índice de documentación](docs/README.md)
+- [Manual de usuario](docs/manual/guia_usuario.md)
+- [Presupuesto vigente](docs/presupuesto/presupuesto.md) · [PDF](docs/presupuesto/presupuesto.pdf)
+- [Notas técnicas de Supabase](docs/tecnica/supabase.md)
+- [Plan de pruebas](docs/entrega/plan_de_pruebas.md)
+- [Guion de exposición y demo](docs/entrega/exposicion_y_demo.md)
 
 ## Desarrollo local
 
-No requiere instalar dependencias. Desde la raíz del proyecto, ejecutar:
+No requiere instalar dependencias. Desde la raíz del proyecto, ejecutá:
 
 ```bash
 npm run dev
 ```
 
-Luego abrir <http://localhost:8000>.
+Abrí <http://localhost:8000>.
 
-## Estructura
+## Estructura del proyecto
 
 ```text
 CSS/                 Estilos
 HTML/                Páginas del sitio
 JS/                  Lógica del cliente e integración con Supabase
-assets/              Imágenes del sitio
-docs/                Guía de usuario y notas técnicas
+api/                 Funciones de Vercel para autenticación por usuario
+assets/              Imágenes utilizadas por el sitio
+docs/                Manual, presupuesto, entregas y notas técnicas
 supabase/            Migraciones y datos iniciales de la base
-index.html           Página principal
-vercel.json          Configuración del deploy
+index.html           Portada
+vercel.json          Configuración de Vercel
 ```
 
-## Supabase
+## Supabase y publicación
 
-La URL del proyecto y la clave publicable se configuran en `JS/supabaseClient.js`. La clave publicable está diseñada para usarse en el navegador; los permisos de acceso deben protegerse con políticas RLS. Nunca incluir una clave `service_role` en el frontend.
+La URL del proyecto y la clave publicable están en `JS/supabaseClient.js`. Esa clave se usa desde el navegador; nunca incluyas una clave secreta o `service_role` en archivos públicos.
 
-Las migraciones y el seed de la base están en `supabase/`. Para configurar los enlaces de autenticación, agregar los dominios de producción y preview en **Authentication → URL Configuration → Redirect URLs**.
+El inicio de sesión admite correo y nombre de usuario. Para el nombre, el sitio consulta la función SQL `email_para_nombre_usuario` y después autentica con Supabase Auth. La función está definida en `supabase/migrations/20261025120000_login_por_nombre_rpc.sql`; aplicá las migraciones de `supabase/migrations/` en orden en el proyecto Supabase antes de publicar cambios de base de datos. El acceso por nombre no necesita una clave secreta de servidor en Vercel.
 
-### Inicio con nombre de usuario
+Las políticas RLS limitan las operaciones sobre la base. Para promover una cuenta existente, revisá `supabase/operations/promover_admin.sql` y ejecutalo desde SQL Editor con el correo correcto. El rol concedido depende de las políticas y operaciones implementadas; el índice de documentación explica el alcance actual.
 
-El inicio de sesión por nombre de usuario usa la función `api/username-login.js`; el correo sigue autenticándose directamente con Supabase. Configurá estas variables en **Vercel → Settings → Environment Variables** para producción y previews:
-
-| Variable | Valor |
-| --- | --- |
-| `SUPABASE_URL` | URL del proyecto Supabase |
-| `SUPABASE_PUBLISHABLE_KEY` | Clave publicable de Supabase |
-| `SUPABASE_SECRET_KEY` | Clave `sb_secret_…` de Supabase. También acepta la clave heredada `SUPABASE_SERVICE_ROLE_KEY`. |
-
-La clave de servidor solo se usa dentro de la función de Vercel. No agregarla al código del navegador ni al repositorio. Aplicar primero la migración `login_por_nombre_usuario` para normalizar y hacer únicos los nombres de usuario.
-
-### Cuenta administradora
-
-Creá y confirmá la cuenta desde el registro normal del sitio. Después, en Supabase SQL Editor, reemplazá el correo de ejemplo en [`supabase/operations/promover_admin.sql`](supabase/operations/promover_admin.sql) por el correo de esa cuenta y ejecutá el script. El rol y las políticas RLS existentes habilitan las operaciones administrativas permitidas por la base de datos.
-
-## Documentación
-
-- [Guía de usuario](docs/GUIA_USUARIO.md)
-- [Notas de integración con Supabase](docs/CAMBIOS_SUPABASE.md)
-
-Cada push a `main` genera un nuevo deploy en Vercel.
+Cada push a `main` inicia el deploy configurado en Vercel.

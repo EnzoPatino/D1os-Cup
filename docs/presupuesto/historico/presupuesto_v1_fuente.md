@@ -1,22 +1,22 @@
 # Presupuesto de Desarrollo del Sistema — D10S Cup
 **Plataforma de Organización Deportiva y Gestión de Torneos de Fútbol**
 
-* **Proyecto:** D10S Cup  
-* **Cátedra:** Taller de Construcción de Software — Año 2026  
-* **Profesor:** Alexis Martínez  
-* **Integrantes del Equipo de Desarrollo:**  
-  * Huechepan Santiago  
-  * Marteniuk Ignacio  
-  * Namuncura Joaquín  
-  * Enzo Patiño  
-* **Fecha de Emisión:** Octubre 2026  
+* **Proyecto:** D10S Cup
+* **Cátedra:** Taller de Construcción de Software — Año 2026
+* **Profesor:** Alexis Martínez
+* **Integrantes del Equipo de Desarrollo:**
+  * Huechepan Santiago
+  * Marteniuk Ignacio
+  * Namuncura Joaquín
+  * Enzo Patiño
+* **Fecha de Emisión:** Octubre 2026
 * **Versión:** 1.0 (Editable / Actualizable)
 
 ---
 
 ## 1. Introducción y Metodología de Estimación
 
-El presente documento detalla la estimación económica y el presupuesto integral para el desarrollo de la plataforma web **D10S Cup**. 
+El presente documento detalla la estimación económica y el presupuesto integral para el desarrollo de la plataforma web **D10S Cup**.
 
 El cálculo se rige bajo la metodología estandarizada definida en el proyecto, la cual vincula el costo de vida mensual promedio del desarrollador, el valor horario con margen de rentabilidad, la descomposición de tareas técnicas (modelado de base de datos, CRUDs, frontend, e-commerce y pruebas) y la consolidación entre los integrantes del equipo.
 
@@ -105,10 +105,10 @@ Donde:
 * **$1.20$**: Coeficiente de margen de ganancia del 20%.
 
 ### Cálculo Aplicado
-1. Costo base por hora:  
+1. Costo base por hora:
    $$\frac{C_M}{160} = \frac{\$ 640.000,00}{160} = \$ 4.000,00\text{ ARS/hora}$$
 
-2. Aplicación de ganancia (+20%):  
+2. Aplicación de ganancia (+20%):
    $$V_H = \$ 4.000,00 \times 1.20 = \mathbf{\$ 4.800,00\text{ ARS/hora}}$$
 
 ---
@@ -178,15 +178,15 @@ Para la puesta en marcha en la nube de la plataforma web con base de datos en l�
 
 ## 8. Resumen Ejecutivo del Presupuesto
 
-* **Total Horas de Ingeniería de Software:** 340 horas hombre.  
-* **Valor Hora Aplicado:** $ 4.800,00 ARS.  
-* **Costo Total de Mano de Obra y Desarrollo:** **$ 1.632.000,00 ARS**  
-* **Tiempo Estimado de Entrega:** 8 a 10 semanas (con dedicación compartida del equipo).  
-* **Condiciones de Pago Sugeridas:**  
-  * 30% al inicio del proyecto (Aprobación de relevamiento y modelado de Base de Datos).  
-  * 30% a la entrega del Módulo de Torneos, Partidos y Resultados.  
+* **Total Horas de Ingeniería de Software:** 340 horas hombre.
+* **Valor Hora Aplicado:** $ 4.800,00 ARS.
+* **Costo Total de Mano de Obra y Desarrollo:** **$ 1.632.000,00 ARS**
+* **Tiempo Estimado de Entrega:** 8 a 10 semanas (con dedicación compartida del equipo).
+* **Condiciones de Pago Sugeridas:**
+  * 30% al inicio del proyecto (Aprobación de relevamiento y modelado de Base de Datos).
+  * 30% a la entrega del Módulo de Torneos, Partidos y Resultados.
   * 40% a la entrega final, pruebas integradas y despliegue del sistema completo.
 
 ---
 
-> **Guía de actualización:** Si los valores de gastos mensuales ($A, C, T, R, S$) o las horas por módulo varían durante el ciclo de vida del proyecto, únicamente se debe reemplazar el valor en la tabla del **Paso 1** y re-calcular el **Paso 2**, actualizándose automáticamente las cifras finales del presupuesto.
+> 📌 **Guía de Actualización:** Si los valores de gastos mensuales ($A, C, T, R, S$) o las horas por módulo varían durante el ciclo de vida del proyecto, únicamente se debe reemplazar el valor en la tabla del **Paso 1** y re-calcular el **Paso 2**, actualizándose automáticamente las cifras finales del presupuesto.

@@ -1,0 +1,435 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 5665 >>
+stream
+0.07 0.18 0.34 rg BT /F2 22 Tf 52 785 Td (D10S Cup - Plan de pruebas funcionales) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 751 Td (Versión 1.0 | Taller de Construcción de Software | 2026) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 729 Td (1. Objetivo y alcance) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 707 Td (Definir una ejecución repetible de pruebas funcionales y de aceptación para las páginas y) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 693 Td (flujos disponibles: navegación, Auth, torneos, fixture, resultados, tienda/carrito, pedidos) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 679 Td (propios, contacto, permisos y persistencia. No reemplaza una auditoría de seguridad, pruebas de) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 665 Td (carga ni pruebas de cobro real.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 643 Td (2. Entornos y datos) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 621 Td (• Entorno recomendado: Preview o proyecto Supabase de demostración separado de producción.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 608 Td (• Navegador actualizado, conexión estable y consola de desarrollador disponible.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 595 Td (• Cuentas: usuario nuevo de prueba, usuario común y cuenta administradora controlada.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 582 Td (• Datos: un torneo de prueba, encuentros programados/jugados, grupos y posiciones, productos con) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 569 Td (una variante disponible y otra sin stock.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 556 Td (• Registrar fecha, navegador, build/commit, usuario de prueba, resultado, evidencia y defecto.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 543 Td (• Antes de un checkout, confirmar entorno, producto y stock. El checkout cambia datos) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 530 Td (persistentes.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 509 Td (3. Severidad) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 487 Td (Bloqueante: impide demo segura o acceso esencial. Alta: flujo principal incorrecto o exposición) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 473 Td (de datos. Media: función secundaria no cumple. Baja: defecto visual/copy sin impedir uso.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 451 Td (4. Casos de prueba) Tj ET
+0.90 0.93 0.96 rg 52 407.0 491 24.0 re f
+BT /F2 6.5 Tf 55.0 419.0 Td (ID) Tj ET
+BT /F2 6.5 Tf 115.0 419.0 Td (Flujo y) Tj ET
+BT /F2 6.5 Tf 115.0 411.0 Td (pasos) Tj ET
+BT /F2 6.5 Tf 165.0 419.0 Td (Resultado) Tj ET
+BT /F2 6.5 Tf 165.0 411.0 Td (esperado) Tj ET
+BT /F2 6.5 Tf 237.0 419.0 Td (Tipo / impacto) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 311.0 491 96.0 re S
+BT /F1 6.5 Tf 55.0 395.0 Td (NAV-01) Tj ET
+BT /F1 6.5 Tf 115.0 395.0 Td (Abrir) Tj ET
+BT /F1 6.5 Tf 115.0 387.0 Td (portada;) Tj ET
+BT /F1 6.5 Tf 115.0 379.0 Td (seguir) Tj ET
+BT /F1 6.5 Tf 115.0 371.0 Td (Productos,) Tj ET
+BT /F1 6.5 Tf 115.0 363.0 Td (Torneos,) Tj ET
+BT /F1 6.5 Tf 115.0 355.0 Td (Partidos,) Tj ET
+BT /F1 6.5 Tf 115.0 347.0 Td (Resultados) Tj ET
+BT /F1 6.5 Tf 115.0 339.0 Td (; usar) Tj ET
+BT /F1 6.5 Tf 115.0 331.0 Td (volver e) Tj ET
+BT /F1 6.5 Tf 115.0 323.0 Td (inicio.) Tj ET
+BT /F1 6.5 Tf 165.0 395.0 Td (Cada destino) Tj ET
+BT /F1 6.5 Tf 165.0 387.0 Td (carga con) Tj ET
+BT /F1 6.5 Tf 165.0 379.0 Td (estilos/scripts) Tj ET
+BT /F1 6.5 Tf 165.0 371.0 Td (y sin 404 de) Tj ET
+BT /F1 6.5 Tf 165.0 363.0 Td (recursos.) Tj ET
+BT /F1 6.5 Tf 237.0 395.0 Td (Manual, alta) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 251.0 491 60.0 re S
+BT /F1 6.5 Tf 55.0 299.0 Td (NAV-02) Tj ET
+BT /F1 6.5 Tf 115.0 299.0 Td (Repetir) Tj ET
+BT /F1 6.5 Tf 115.0 291.0 Td (navegación) Tj ET
+BT /F1 6.5 Tf 115.0 283.0 Td (en ancho) Tj ET
+BT /F1 6.5 Tf 115.0 275.0 Td (móvil; abr) Tj ET
+BT /F1 6.5 Tf 115.0 267.0 Td (ir/cerrar) Tj ET
+BT /F1 6.5 Tf 115.0 259.0 Td (menú.) Tj ET
+BT /F1 6.5 Tf 165.0 299.0 Td (Controles) Tj ET
+BT /F1 6.5 Tf 165.0 291.0 Td (accesibles y) Tj ET
+BT /F1 6.5 Tf 165.0 283.0 Td (contenido sin) Tj ET
+BT /F1 6.5 Tf 165.0 275.0 Td (desbordamiento) Tj ET
+BT /F1 6.5 Tf 165.0 267.0 Td (crítico.) Tj ET
+BT /F1 6.5 Tf 237.0 299.0 Td (Manual, media) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 164.0 491 87.0 re S
+BT /F1 6.5 Tf 55.0 239.0 Td (AUTH-01) Tj ET
+BT /F1 6.5 Tf 115.0 239.0 Td (Registrar) Tj ET
+BT /F1 6.5 Tf 115.0 231.0 Td (correo de) Tj ET
+BT /F1 6.5 Tf 115.0 223.0 Td (prueba con) Tj ET
+BT /F1 6.5 Tf 115.0 215.0 Td (contraseña) Tj ET
+BT /F1 6.5 Tf 115.0 207.0 Td (válida;) Tj ET
+BT /F1 6.5 Tf 115.0 199.0 Td (completar) Tj ET
+BT /F1 6.5 Tf 115.0 191.0 Td (confirmaci) Tj ET
+BT /F1 6.5 Tf 115.0 183.0 Td (ón si se) Tj ET
+BT /F1 6.5 Tf 115.0 175.0 Td (solicita.) Tj ET
+BT /F1 6.5 Tf 165.0 239.0 Td (Mensaje de) Tj ET
+BT /F1 6.5 Tf 165.0 231.0 Td (alta; cuenta) Tj ET
+BT /F1 6.5 Tf 165.0 223.0 Td (creada según) Tj ET
+BT /F1 6.5 Tf 165.0 215.0 Td (configuración) Tj ET
+BT /F1 6.5 Tf 165.0 207.0 Td (Auth.) Tj ET
+BT /F1 6.5 Tf 237.0 239.0 Td (Integración, alta) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 95.0 491 69.0 re S
+BT /F1 6.5 Tf 55.0 152.0 Td (AUTH-02) Tj ET
+BT /F1 6.5 Tf 115.0 152.0 Td (Iniciar) Tj ET
+BT /F1 6.5 Tf 115.0 144.0 Td (sesión con) Tj ET
+BT /F1 6.5 Tf 115.0 136.0 Td (cuenta de) Tj ET
+BT /F1 6.5 Tf 115.0 128.0 Td (prueba y) Tj ET
+BT /F1 6.5 Tf 115.0 120.0 Td (luego) Tj ET
+BT /F1 6.5 Tf 115.0 112.0 Td (cerrar) Tj ET
+BT /F1 6.5 Tf 115.0 104.0 Td (sesión.) Tj ET
+BT /F1 6.5 Tf 165.0 152.0 Td (Sesión) Tj ET
+BT /F1 6.5 Tf 165.0 144.0 Td (reflejada en) Tj ET
+BT /F1 6.5 Tf 165.0 136.0 Td (interfaz;) Tj ET
+BT /F1 6.5 Tf 165.0 128.0 Td (cierre termina) Tj ET
+BT /F1 6.5 Tf 165.0 120.0 Td (la sesión.) Tj ET
+BT /F1 6.5 Tf 237.0 152.0 Td (Integración, alta) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 1) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 8044 >>
+stream
+0.85 0.87 0.90 RG 0.4 w 52 732.0 491 60.0 re S
+BT /F1 6.5 Tf 55.0 780.0 Td (AUTH-03) Tj ET
+BT /F1 6.5 Tf 115.0 780.0 Td (Intentar) Tj ET
+BT /F1 6.5 Tf 115.0 772.0 Td (login con) Tj ET
+BT /F1 6.5 Tf 115.0 764.0 Td (contraseña) Tj ET
+BT /F1 6.5 Tf 115.0 756.0 Td (incorrecta) Tj ET
+BT /F1 6.5 Tf 115.0 748.0 Td (.) Tj ET
+BT /F1 6.5 Tf 165.0 780.0 Td (Error claro; no) Tj ET
+BT /F1 6.5 Tf 165.0 772.0 Td (se inicia) Tj ET
+BT /F1 6.5 Tf 165.0 764.0 Td (sesión ni se) Tj ET
+BT /F1 6.5 Tf 165.0 756.0 Td (revela) Tj ET
+BT /F1 6.5 Tf 165.0 748.0 Td (información) Tj ET
+BT /F1 6.5 Tf 165.0 740.0 Td (sensible.) Tj ET
+BT /F1 6.5 Tf 237.0 780.0 Td (Negativa, media) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 663.0 491 69.0 re S
+BT /F1 6.5 Tf 55.0 720.0 Td (AUTH-04) Tj ET
+BT /F1 6.5 Tf 115.0 720.0 Td (Solicitar) Tj ET
+BT /F1 6.5 Tf 115.0 712.0 Td (restableci) Tj ET
+BT /F1 6.5 Tf 115.0 704.0 Td (miento y) Tj ET
+BT /F1 6.5 Tf 115.0 696.0 Td (seguir cor) Tj ET
+BT /F1 6.5 Tf 115.0 688.0 Td (reo/enlace) Tj ET
+BT /F1 6.5 Tf 115.0 680.0 Td (con URL) Tj ET
+BT /F1 6.5 Tf 115.0 672.0 Td (permitida.) Tj ET
+BT /F1 6.5 Tf 165.0 720.0 Td (Página permite) Tj ET
+BT /F1 6.5 Tf 165.0 712.0 Td (actualizar) Tj ET
+BT /F1 6.5 Tf 165.0 704.0 Td (contraseña) Tj ET
+BT /F1 6.5 Tf 165.0 696.0 Td (mientras el) Tj ET
+BT /F1 6.5 Tf 165.0 688.0 Td (enlace sea) Tj ET
+BT /F1 6.5 Tf 165.0 680.0 Td (válido.) Tj ET
+BT /F1 6.5 Tf 237.0 720.0 Td (Integración, alta) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 603.0 491 60.0 re S
+BT /F1 6.5 Tf 55.0 651.0 Td (TOR-01) Tj ET
+BT /F1 6.5 Tf 115.0 651.0 Td (Buscar) Tj ET
+BT /F1 6.5 Tf 115.0 643.0 Td (torneo por) Tj ET
+BT /F1 6.5 Tf 115.0 635.0 Td (nombre y) Tj ET
+BT /F1 6.5 Tf 115.0 627.0 Td (filtrar) Tj ET
+BT /F1 6.5 Tf 115.0 619.0 Td (por) Tj ET
+BT /F1 6.5 Tf 115.0 611.0 Td (modalidad.) Tj ET
+BT /F1 6.5 Tf 165.0 651.0 Td (Resultados) Tj ET
+BT /F1 6.5 Tf 165.0 643.0 Td (coinciden con) Tj ET
+BT /F1 6.5 Tf 165.0 635.0 Td (los criterios;) Tj ET
+BT /F1 6.5 Tf 165.0 627.0 Td (vacío se) Tj ET
+BT /F1 6.5 Tf 165.0 619.0 Td (comunica) Tj ET
+BT /F1 6.5 Tf 165.0 611.0 Td (correctamente.) Tj ET
+BT /F1 6.5 Tf 237.0 651.0 Td (Funcional, media) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 498.0 491 105.0 re S
+BT /F1 6.5 Tf 55.0 591.0 Td (TOR-02) Tj ET
+BT /F1 6.5 Tf 115.0 591.0 Td (Como) Tj ET
+BT /F1 6.5 Tf 115.0 583.0 Td (usuario) Tj ET
+BT /F1 6.5 Tf 115.0 575.0 Td (común,) Tj ET
+BT /F1 6.5 Tf 115.0 567.0 Td (intentar) Tj ET
+BT /F1 6.5 Tf 115.0 559.0 Td (alta; como) Tj ET
+BT /F1 6.5 Tf 115.0 551.0 Td (admin,) Tj ET
+BT /F1 6.5 Tf 115.0 543.0 Td (crear) Tj ET
+BT /F1 6.5 Tf 115.0 535.0 Td (torneo de) Tj ET
+BT /F1 6.5 Tf 115.0 527.0 Td (prueba con) Tj ET
+BT /F1 6.5 Tf 115.0 519.0 Td (datos) Tj ET
+BT /F1 6.5 Tf 115.0 511.0 Td (válidos.) Tj ET
+BT /F1 6.5 Tf 165.0 591.0 Td (Usuario común) Tj ET
+BT /F1 6.5 Tf 165.0 583.0 Td (rechazado por) Tj ET
+BT /F1 6.5 Tf 165.0 575.0 Td (autorización;) Tj ET
+BT /F1 6.5 Tf 165.0 567.0 Td (admin crea) Tj ET
+BT /F1 6.5 Tf 165.0 559.0 Td (registro y) Tj ET
+BT /F1 6.5 Tf 165.0 551.0 Td (aparece en) Tj ET
+BT /F1 6.5 Tf 165.0 543.0 Td (listado.) Tj ET
+BT /F1 6.5 Tf 237.0 591.0 Td (Permisos/DB, alta; limpiar datos luego) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 420.0 491 78.0 re S
+BT /F1 6.5 Tf 55.0 486.0 Td (FIX-01) Tj ET
+BT /F1 6.5 Tf 115.0 486.0 Td (Abrir) Tj ET
+BT /F1 6.5 Tf 115.0 478.0 Td (Partidos;) Tj ET
+BT /F1 6.5 Tf 115.0 470.0 Td (recorrer) Tj ET
+BT /F1 6.5 Tf 115.0 462.0 Td (carrusel;) Tj ET
+BT /F1 6.5 Tf 115.0 454.0 Td (cambiar) Tj ET
+BT /F1 6.5 Tf 115.0 446.0 Td (mes/día) Tj ET
+BT /F1 6.5 Tf 115.0 438.0 Td (con) Tj ET
+BT /F1 6.5 Tf 115.0 430.0 Td (partido.) Tj ET
+BT /F1 6.5 Tf 165.0 486.0 Td (Se muestran) Tj ET
+BT /F1 6.5 Tf 165.0 478.0 Td (solo encuentros) Tj ET
+BT /F1 6.5 Tf 165.0 470.0 Td (cargados y sus) Tj ET
+BT /F1 6.5 Tf 165.0 462.0 Td (datos) Tj ET
+BT /F1 6.5 Tf 165.0 454.0 Td (correctos.) Tj ET
+BT /F1 6.5 Tf 237.0 486.0 Td (Integración, media) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 342.0 491 78.0 re S
+BT /F1 6.5 Tf 55.0 408.0 Td (RES-01) Tj ET
+BT /F1 6.5 Tf 115.0 408.0 Td (Abrir) Tj ET
+BT /F1 6.5 Tf 115.0 400.0 Td (grupos y e) Tj ET
+BT /F1 6.5 Tf 115.0 392.0 Td (liminatori) Tj ET
+BT /F1 6.5 Tf 115.0 384.0 Td (as;) Tj ET
+BT /F1 6.5 Tf 115.0 376.0 Td (contrastar) Tj ET
+BT /F1 6.5 Tf 115.0 368.0 Td (tabla con) Tj ET
+BT /F1 6.5 Tf 115.0 360.0 Td (partidos) Tj ET
+BT /F1 6.5 Tf 115.0 352.0 Td (jugados.) Tj ET
+BT /F1 6.5 Tf 165.0 408.0 Td (PJ, G/E/P,) Tj ET
+BT /F1 6.5 Tf 165.0 400.0 Td (GF/GC,) Tj ET
+BT /F1 6.5 Tf 165.0 392.0 Td (diferencia y) Tj ET
+BT /F1 6.5 Tf 165.0 384.0 Td (puntos son) Tj ET
+BT /F1 6.5 Tf 165.0 376.0 Td (consistentes;) Tj ET
+BT /F1 6.5 Tf 165.0 368.0 Td (faltantes se) Tj ET
+BT /F1 6.5 Tf 165.0 360.0 Td (representan sin) Tj ET
+BT /F1 6.5 Tf 165.0 352.0 Td (romper página.) Tj ET
+BT /F1 6.5 Tf 237.0 408.0 Td (Integración, alta) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 273.0 491 69.0 re S
+BT /F1 6.5 Tf 55.0 330.0 Td (SHOP-01) Tj ET
+BT /F1 6.5 Tf 115.0 330.0 Td (Buscar y) Tj ET
+BT /F1 6.5 Tf 115.0 322.0 Td (filtrar) Tj ET
+BT /F1 6.5 Tf 115.0 314.0 Td (productos;) Tj ET
+BT /F1 6.5 Tf 115.0 306.0 Td (abrir) Tj ET
+BT /F1 6.5 Tf 115.0 298.0 Td (detalle;) Tj ET
+BT /F1 6.5 Tf 115.0 290.0 Td (elegir) Tj ET
+BT /F1 6.5 Tf 115.0 282.0 Td (variante.) Tj ET
+BT /F1 6.5 Tf 165.0 330.0 Td (Catálogo) Tj ET
+BT /F1 6.5 Tf 165.0 322.0 Td (muestra) Tj ET
+BT /F1 6.5 Tf 165.0 314.0 Td (activos;) Tj ET
+BT /F1 6.5 Tf 165.0 306.0 Td (variante,) Tj ET
+BT /F1 6.5 Tf 165.0 298.0 Td (precio y) Tj ET
+BT /F1 6.5 Tf 165.0 290.0 Td (disponibilidad) Tj ET
+BT /F1 6.5 Tf 165.0 282.0 Td (correctos.) Tj ET
+BT /F1 6.5 Tf 237.0 330.0 Td (Funcional, alta) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 204.0 491 69.0 re S
+BT /F1 6.5 Tf 55.0 261.0 Td (SHOP-02) Tj ET
+BT /F1 6.5 Tf 115.0 261.0 Td (Agregar) Tj ET
+BT /F1 6.5 Tf 115.0 253.0 Td (producto d) Tj ET
+BT /F1 6.5 Tf 115.0 245.0 Td (isponible,) Tj ET
+BT /F1 6.5 Tf 115.0 237.0 Td (modificar) Tj ET
+BT /F1 6.5 Tf 115.0 229.0 Td (cantidad y) Tj ET
+BT /F1 6.5 Tf 115.0 221.0 Td (quitar) Tj ET
+BT /F1 6.5 Tf 115.0 213.0 Td (ítem.) Tj ET
+BT /F1 6.5 Tf 165.0 261.0 Td (Carrito y) Tj ET
+BT /F1 6.5 Tf 165.0 253.0 Td (subtotales se) Tj ET
+BT /F1 6.5 Tf 165.0 245.0 Td (actualizan) Tj ET
+BT /F1 6.5 Tf 165.0 237.0 Td (correctamente.) Tj ET
+BT /F1 6.5 Tf 237.0 261.0 Td (Funcional, media) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 126.0 491 78.0 re S
+BT /F1 6.5 Tf 55.0 192.0 Td (SHOP-03) Tj ET
+BT /F1 6.5 Tf 115.0 192.0 Td (Con cuenta) Tj ET
+BT /F1 6.5 Tf 115.0 184.0 Td (autenticad) Tj ET
+BT /F1 6.5 Tf 115.0 176.0 Td (a,) Tj ET
+BT /F1 6.5 Tf 115.0 168.0 Td (completar) Tj ET
+BT /F1 6.5 Tf 115.0 160.0 Td (checkout) Tj ET
+BT /F1 6.5 Tf 115.0 152.0 Td (solo en) Tj ET
+BT /F1 6.5 Tf 115.0 144.0 Td (entorno) Tj ET
+BT /F1 6.5 Tf 115.0 136.0 Td (demo.) Tj ET
+BT /F1 6.5 Tf 165.0 192.0 Td (Stock se) Tj ET
+BT /F1 6.5 Tf 165.0 184.0 Td (reserva, pedido) Tj ET
+BT /F1 6.5 Tf 165.0 176.0 Td (se confirma) Tj ET
+BT /F1 6.5 Tf 165.0 168.0 Td (como simulado y) Tj ET
+BT /F1 6.5 Tf 165.0 160.0 Td (ticket QR) Tj ET
+BT /F1 6.5 Tf 165.0 152.0 Td (aparece si) Tj ET
+BT /F1 6.5 Tf 165.0 144.0 Td (incluye) Tj ET
+BT /F1 6.5 Tf 165.0 136.0 Td (entrada.) Tj ET
+BT /F1 6.5 Tf 237.0 192.0 Td (Escritura/DB, alta; requiere aprobación del responsable de demo) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 57.0 491 69.0 re S
+BT /F1 6.5 Tf 55.0 114.0 Td (SHOP-04) Tj ET
+BT /F1 6.5 Tf 115.0 114.0 Td (Repetir) Tj ET
+BT /F1 6.5 Tf 115.0 106.0 Td (con stock) Tj ET
+BT /F1 6.5 Tf 115.0 98.0 Td (insuficien) Tj ET
+BT /F1 6.5 Tf 115.0 90.0 Td (te o) Tj ET
+BT /F1 6.5 Tf 115.0 82.0 Td (usuario) Tj ET
+BT /F1 6.5 Tf 115.0 74.0 Td (sin) Tj ET
+BT /F1 6.5 Tf 115.0 66.0 Td (sesión.) Tj ET
+BT /F1 6.5 Tf 165.0 114.0 Td (Operación se) Tj ET
+BT /F1 6.5 Tf 165.0 106.0 Td (rechaza con) Tj ET
+BT /F1 6.5 Tf 165.0 98.0 Td (mensaje; no) Tj ET
+BT /F1 6.5 Tf 165.0 90.0 Td (queda pedido) Tj ET
+BT /F1 6.5 Tf 165.0 82.0 Td (pagado/ticket) Tj ET
+BT /F1 6.5 Tf 165.0 74.0 Td (indebido.) Tj ET
+BT /F1 6.5 Tf 237.0 114.0 Td (Negativa, alta; entorno demo) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 6382 >>
+stream
+0.85 0.87 0.90 RG 0.4 w 52 723.0 491 69.0 re S
+BT /F1 6.5 Tf 55.0 780.0 Td (SHOP-05) Tj ET
+BT /F1 6.5 Tf 115.0 780.0 Td (Abrir Mis) Tj ET
+BT /F1 6.5 Tf 115.0 772.0 Td (compras) Tj ET
+BT /F1 6.5 Tf 115.0 764.0 Td (con el) Tj ET
+BT /F1 6.5 Tf 115.0 756.0 Td (dueño y) Tj ET
+BT /F1 6.5 Tf 115.0 748.0 Td (después) Tj ET
+BT /F1 6.5 Tf 115.0 740.0 Td (con otra) Tj ET
+BT /F1 6.5 Tf 115.0 732.0 Td (cuenta.) Tj ET
+BT /F1 6.5 Tf 165.0 780.0 Td (Dueño ve el) Tj ET
+BT /F1 6.5 Tf 165.0 772.0 Td (pedido; segunda) Tj ET
+BT /F1 6.5 Tf 165.0 764.0 Td (cuenta no puede) Tj ET
+BT /F1 6.5 Tf 165.0 756.0 Td (consultar los) Tj ET
+BT /F1 6.5 Tf 165.0 748.0 Td (datos ajenos.) Tj ET
+BT /F1 6.5 Tf 237.0 780.0 Td (Aislamiento/RLS, bloqueante) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 654.0 491 69.0 re S
+BT /F1 6.5 Tf 55.0 711.0 Td (CONTACT-01) Tj ET
+BT /F1 6.5 Tf 115.0 711.0 Td (Enviar) Tj ET
+BT /F1 6.5 Tf 115.0 703.0 Td (formulario) Tj ET
+BT /F1 6.5 Tf 115.0 695.0 Td (válido y) Tj ET
+BT /F1 6.5 Tf 115.0 687.0 Td (luego invá) Tj ET
+BT /F1 6.5 Tf 115.0 679.0 Td (lido/incom) Tj ET
+BT /F1 6.5 Tf 115.0 671.0 Td (pleto.) Tj ET
+BT /F1 6.5 Tf 165.0 711.0 Td (Válido da) Tj ET
+BT /F1 6.5 Tf 165.0 703.0 Td (confirmación y) Tj ET
+BT /F1 6.5 Tf 165.0 695.0 Td (persiste;) Tj ET
+BT /F1 6.5 Tf 165.0 687.0 Td (inválido no) Tj ET
+BT /F1 6.5 Tf 165.0 679.0 Td (genera mensaje) Tj ET
+BT /F1 6.5 Tf 165.0 671.0 Td (y muestra) Tj ET
+BT /F1 6.5 Tf 165.0 663.0 Td (validación.) Tj ET
+BT /F1 6.5 Tf 237.0 711.0 Td (Integración, media) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 540.0 491 114.0 re S
+BT /F1 6.5 Tf 55.0 642.0 Td (SEC-01) Tj ET
+BT /F1 6.5 Tf 115.0 642.0 Td (Como) Tj ET
+BT /F1 6.5 Tf 115.0 634.0 Td (usuario) Tj ET
+BT /F1 6.5 Tf 115.0 626.0 Td (común,) Tj ET
+BT /F1 6.5 Tf 115.0 618.0 Td (intentar) Tj ET
+BT /F1 6.5 Tf 115.0 610.0 Td (manipular) Tj ET
+BT /F1 6.5 Tf 115.0 602.0 Td (interfaz) Tj ET
+BT /F1 6.5 Tf 115.0 594.0 Td (para) Tj ET
+BT /F1 6.5 Tf 115.0 586.0 Td (mostrar) Tj ET
+BT /F1 6.5 Tf 115.0 578.0 Td (acción) Tj ET
+BT /F1 6.5 Tf 115.0 570.0 Td (admin y) Tj ET
+BT /F1 6.5 Tf 115.0 562.0 Td (enviar) Tj ET
+BT /F1 6.5 Tf 115.0 554.0 Td (operación.) Tj ET
+BT /F1 6.5 Tf 165.0 642.0 Td (La base/RLS) Tj ET
+BT /F1 6.5 Tf 165.0 634.0 Td (rechaza la) Tj ET
+BT /F1 6.5 Tf 165.0 626.0 Td (operación,) Tj ET
+BT /F1 6.5 Tf 165.0 618.0 Td (aunque se) Tj ET
+BT /F1 6.5 Tf 165.0 610.0 Td (altere la UI.) Tj ET
+BT /F1 6.5 Tf 237.0 642.0 Td (Permisos, bloqueante) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 444.0 491 96.0 re S
+BT /F1 6.5 Tf 55.0 528.0 Td (SEC-02) Tj ET
+BT /F1 6.5 Tf 115.0 528.0 Td (Revisar fr) Tj ET
+BT /F1 6.5 Tf 115.0 520.0 Td (ontend/red) Tj ET
+BT /F1 6.5 Tf 115.0 512.0 Td (: no deben) Tj ET
+BT /F1 6.5 Tf 115.0 504.0 Td (aparecer s) Tj ET
+BT /F1 6.5 Tf 115.0 496.0 Td (ervice_rol) Tj ET
+BT /F1 6.5 Tf 115.0 488.0 Td (e,) Tj ET
+BT /F1 6.5 Tf 115.0 480.0 Td (sb_secret) Tj ET
+BT /F1 6.5 Tf 115.0 472.0 Td (ni credenc) Tj ET
+BT /F1 6.5 Tf 115.0 464.0 Td (iales) Tj ET
+BT /F1 6.5 Tf 115.0 456.0 Td (privadas.) Tj ET
+BT /F1 6.5 Tf 165.0 528.0 Td (Solo clave) Tj ET
+BT /F1 6.5 Tf 165.0 520.0 Td (publicable en) Tj ET
+BT /F1 6.5 Tf 165.0 512.0 Td (el cliente;) Tj ET
+BT /F1 6.5 Tf 165.0 504.0 Td (ninguna clave) Tj ET
+BT /F1 6.5 Tf 165.0 496.0 Td (privada) Tj ET
+BT /F1 6.5 Tf 165.0 488.0 Td (filtrada.) Tj ET
+BT /F1 6.5 Tf 237.0 528.0 Td (Seguridad, bloqueante) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 366.0 491 78.0 re S
+BT /F1 6.5 Tf 55.0 432.0 Td (ERR-01) Tj ET
+BT /F1 6.5 Tf 115.0 432.0 Td (Simular) Tj ET
+BT /F1 6.5 Tf 115.0 424.0 Td (pérdida de) Tj ET
+BT /F1 6.5 Tf 115.0 416.0 Td (red o) Tj ET
+BT /F1 6.5 Tf 115.0 408.0 Td (consultar) Tj ET
+BT /F1 6.5 Tf 115.0 400.0 Td (con) Tj ET
+BT /F1 6.5 Tf 115.0 392.0 Td (backend no) Tj ET
+BT /F1 6.5 Tf 115.0 384.0 Td (disponible) Tj ET
+BT /F1 6.5 Tf 115.0 376.0 Td (.) Tj ET
+BT /F1 6.5 Tf 165.0 432.0 Td (La página) Tj ET
+BT /F1 6.5 Tf 165.0 424.0 Td (informa) Tj ET
+BT /F1 6.5 Tf 165.0 416.0 Td (estado/error) Tj ET
+BT /F1 6.5 Tf 165.0 408.0 Td (sin bloquear) Tj ET
+BT /F1 6.5 Tf 165.0 400.0 Td (toda la) Tj ET
+BT /F1 6.5 Tf 165.0 392.0 Td (navegación ni) Tj ET
+BT /F1 6.5 Tf 165.0 384.0 Td (mostrar falso) Tj ET
+BT /F1 6.5 Tf 165.0 376.0 Td (éxito.) Tj ET
+BT /F1 6.5 Tf 237.0 432.0 Td (Resiliencia, media) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 348 Td (5. Criterios de salida) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 326 Td (• 100% de casos bloqueantes y altos aprobados o con excepción documentada.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 313 Td (• Sin fuga de datos entre cuentas ni credenciales privadas en bundle.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 300 Td (• Flujos de escritura corridos únicamente sobre datos/cuentas de demo.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 287 Td (• Evidencias guardadas en el repositorio de trabajo del equipo con datos personales ocultos.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 274 Td (• Defectos pendientes con responsable, severidad y decisión de aceptación.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 253 Td (6. Registro de ejecución) Tj ET
+0.90 0.93 0.96 rg 52 200.0 491 33.0 re f
+BT /F2 6.5 Tf 55.0 221.0 Td (ID) Tj ET
+BT /F2 6.5 Tf 115.0 221.0 Td (Fecha /) Tj ET
+BT /F2 6.5 Tf 115.0 213.0 Td (entorno) Tj ET
+BT /F2 6.5 Tf 165.0 221.0 Td (Resultado \(Apro) Tj ET
+BT /F2 6.5 Tf 165.0 213.0 Td (bado/Fallido/No) Tj ET
+BT /F2 6.5 Tf 165.0 205.0 Td (ejecutado\)) Tj ET
+BT /F2 6.5 Tf 237.0 221.0 Td (Evidencia / incidencia) Tj ET
+BT /F2 6.5 Tf 391.5 221.0 Td (Responsable) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 158.0 491 42.0 re S
+BT /F1 6.5 Tf 55.0 188.0 Td (Completar) Tj ET
+BT /F1 6.5 Tf 55.0 180.0 Td (durante la) Tj ET
+BT /F1 6.5 Tf 55.0 172.0 Td (sesión de) Tj ET
+BT /F1 6.5 Tf 55.0 164.0 Td (prueba) Tj ET
+BT /F1 6.5 Tf 115.0 188.0 Td () Tj ET
+BT /F1 6.5 Tf 165.0 188.0 Td () Tj ET
+BT /F1 6.5 Tf 237.0 188.0 Td () Tj ET
+BT /F1 6.5 Tf 391.5 188.0 Td () Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 140 Td (7. Límites) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 118 Td (La confirmación de pago simulada no verifica una transacción externa. El QR no se validó con) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 104 Td (lector. Las pruebas destructivas o con impacto de stock quedan fuera de producción. Este plan) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 90 Td (no afirma que los casos estén ejecutados; es la guía para la sesión de QA y defensa.) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 3) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000134 00000 n 
+0000000231 00000 n 
+0000000333 00000 n 
+0000006050 00000 n 
+0000006186 00000 n 
+0000014282 00000 n 
+0000014418 00000 n 
+0000020852 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+20989
+%%EOF

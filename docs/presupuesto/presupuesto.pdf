@@ -1,0 +1,169 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 6963 >>
+stream
+0.07 0.18 0.34 rg BT /F2 22 Tf 52 785 Td (D10S Cup - Presupuesto estimado de) Tj ET
+0.07 0.18 0.34 rg BT /F2 22 Tf 52 756 Td (desarrollo) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 722 Td (Taller de Construcción de Software | 2026 | Versión 2.0   Equipo: Santiago Huechepan | Ignacio) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 708 Td (Marteniuk | Joaquín Namuncura | Enzo Patiño) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 58 694 Td (• Documento académico de estimación. Los importes en ARS se conservan del ejemplo del proyecto) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 58 680 Td (y no constituyen cotización comercial ni precios de mercado actualizados. El presupuesto) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 58 666 Td (describe el alcance originalmente estimado; la columna de observaciones identifica módulos) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 58 652 Td (implementados parcialmente o pendientes.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 630 Td (1. Criterio de cálculo) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 608 Td (Se conserva el método de referencia: costo mensual de vida \(CM\), dividido por 160 horas y) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 594 Td (multiplicado por un factor de 1,20.) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 580 Td (CM = A + C + T + R + S = ARS 640.000   Valor hora = \(640.000 / 160\) x 1,20 = ARS 4.800/h) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 566 Td (Costo de tarea = horas estimadas x ARS 4.800) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 552 Td (Los componentes usados son alquiler/expensas 300.000; alimentación 200.000; transporte 45.000;) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 538 Td (ropa 35.000; servicios 60.000 ARS mensuales. Son supuestos de referencia heredados del material) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 524 Td (base y requieren actualización antes de cualquier uso comercial.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 502 Td (2. Desglose estimado) Tj ET
+0.90 0.93 0.96 rg 52 467.0 491 15.0 re f
+BT /F2 6.5 Tf 55.0 470.0 Td (Módulo) Tj ET
+BT /F2 6.5 Tf 115.0 470.0 Td (Horas) Tj ET
+BT /F2 6.5 Tf 165.0 470.0 Td (Costo \(ARS\)) Tj ET
+BT /F2 6.5 Tf 237.0 470.0 Td (Estado frente al sistema actual) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 434.0 491 33.0 re S
+BT /F1 6.5 Tf 55.0 455.0 Td (M1. Modelado) Tj ET
+BT /F1 6.5 Tf 55.0 447.0 Td (y base de) Tj ET
+BT /F1 6.5 Tf 55.0 439.0 Td (datos) Tj ET
+BT /F1 6.5 Tf 115.0 455.0 Td (32) Tj ET
+BT /F1 6.5 Tf 165.0 455.0 Td (153.600) Tj ET
+BT /F1 6.5 Tf 237.0 455.0 Td (Implementado con Supabase/PostgreSQL; la propuesta original) Tj ET
+BT /F1 6.5 Tf 237.0 447.0 Td (mencionaba MySQL.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 401.0 491 33.0 re S
+BT /F1 6.5 Tf 55.0 422.0 Td (M2. Usuarios) Tj ET
+BT /F1 6.5 Tf 55.0 414.0 Td (y autenticac) Tj ET
+BT /F1 6.5 Tf 55.0 406.0 Td (ión) Tj ET
+BT /F1 6.5 Tf 115.0 422.0 Td (36) Tj ET
+BT /F1 6.5 Tf 165.0 422.0 Td (172.800) Tj ET
+BT /F1 6.5 Tf 237.0 422.0 Td (Registro, login, sesión y recuperación conectados a Supabase) Tj ET
+BT /F1 6.5 Tf 237.0 414.0 Td (Auth.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 386.0 491 15.0 re S
+BT /F1 6.5 Tf 55.0 389.0 Td (M3. Torneos) Tj ET
+BT /F1 6.5 Tf 115.0 389.0 Td (28) Tj ET
+BT /F1 6.5 Tf 165.0 389.0 Td (134.400) Tj ET
+BT /F1 6.5 Tf 237.0 389.0 Td (Consulta, filtros y alta administrativa; no CRUD completo.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 362.0 491 24.0 re S
+BT /F1 6.5 Tf 55.0 374.0 Td (M4. Equipos) Tj ET
+BT /F1 6.5 Tf 55.0 366.0 Td (y jugadores) Tj ET
+BT /F1 6.5 Tf 115.0 374.0 Td (34) Tj ET
+BT /F1 6.5 Tf 165.0 374.0 Td (163.200) Tj ET
+BT /F1 6.5 Tf 237.0 374.0 Td (Esquema y controles parciales; inscripción y gestión integral) Tj ET
+BT /F1 6.5 Tf 237.0 366.0 Td (pendientes.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 338.0 491 24.0 re S
+BT /F1 6.5 Tf 55.0 350.0 Td (M5. Partidos) Tj ET
+BT /F1 6.5 Tf 55.0 342.0 Td (y fixture) Tj ET
+BT /F1 6.5 Tf 115.0 350.0 Td (30) Tj ET
+BT /F1 6.5 Tf 165.0 350.0 Td (144.000) Tj ET
+BT /F1 6.5 Tf 237.0 350.0 Td (Consulta de partidos y calendario conectados.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 305.0 491 33.0 re S
+BT /F1 6.5 Tf 55.0 326.0 Td (M6.) Tj ET
+BT /F1 6.5 Tf 55.0 318.0 Td (Resultados y) Tj ET
+BT /F1 6.5 Tf 55.0 310.0 Td (estadísticas) Tj ET
+BT /F1 6.5 Tf 115.0 326.0 Td (42) Tj ET
+BT /F1 6.5 Tf 165.0 326.0 Td (201.600) Tj ET
+BT /F1 6.5 Tf 237.0 326.0 Td (Tablas y eliminatorias consultan datos; carga arbitral no) Tj ET
+BT /F1 6.5 Tf 237.0 318.0 Td (incluida.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 281.0 491 24.0 re S
+BT /F1 6.5 Tf 55.0 293.0 Td (M7. Tienda y) Tj ET
+BT /F1 6.5 Tf 55.0 285.0 Td (pedidos) Tj ET
+BT /F1 6.5 Tf 115.0 293.0 Td (48) Tj ET
+BT /F1 6.5 Tf 165.0 293.0 Td (230.400) Tj ET
+BT /F1 6.5 Tf 237.0 293.0 Td (Catálogo, variantes, stock, pedidos, pago simulado y QR de) Tj ET
+BT /F1 6.5 Tf 237.0 285.0 Td (entradas.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 257.0 491 24.0 re S
+BT /F1 6.5 Tf 55.0 269.0 Td (M8. Panel y) Tj ET
+BT /F1 6.5 Tf 55.0 261.0 Td (reportes) Tj ET
+BT /F1 6.5 Tf 115.0 269.0 Td (26) Tj ET
+BT /F1 6.5 Tf 165.0 269.0 Td (124.800) Tj ET
+BT /F1 6.5 Tf 237.0 269.0 Td (No implementado como dashboard/reportes.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 233.0 491 24.0 re S
+BT /F1 6.5 Tf 55.0 245.0 Td (M9. Interfaz) Tj ET
+BT /F1 6.5 Tf 55.0 237.0 Td (y responsive) Tj ET
+BT /F1 6.5 Tf 115.0 245.0 Td (40) Tj ET
+BT /F1 6.5 Tf 165.0 245.0 Td (192.000) Tj ET
+BT /F1 6.5 Tf 237.0 245.0 Td (Interfaz web HTML/CSS/JS; alcance representado en pantallas) Tj ET
+BT /F1 6.5 Tf 237.0 237.0 Td (existentes.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 200.0 491 33.0 re S
+BT /F1 6.5 Tf 55.0 221.0 Td (M10. QA,) Tj ET
+BT /F1 6.5 Tf 55.0 213.0 Td (seguridad y) Tj ET
+BT /F1 6.5 Tf 55.0 205.0 Td (despliegue) Tj ET
+BT /F1 6.5 Tf 115.0 221.0 Td (24) Tj ET
+BT /F1 6.5 Tf 165.0 221.0 Td (115.200) Tj ET
+BT /F1 6.5 Tf 237.0 221.0 Td (RLS y flujos documentados; despliegue requiere configuración) Tj ET
+BT /F1 6.5 Tf 237.0 213.0 Td (final.) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 185.0 491 15.0 re S
+BT /F1 6.5 Tf 55.0 188.0 Td (Total) Tj ET
+BT /F1 6.5 Tf 115.0 188.0 Td (340) Tj ET
+BT /F1 6.5 Tf 165.0 188.0 Td (1.632.000) Tj ET
+BT /F1 6.5 Tf 237.0 188.0 Td (Estimación del alcance completo propuesto.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 167 Td (3. Distribución de referencia) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 145 Td (La distribución original asigna 85 horas a cada integrante, equivalente a ARS 408.000 por) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 131 Td (persona y ARS 1.632.000 para el equipo. Es una distribución presupuestaria igualitaria, no una) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 117 Td (medición del aporte individual real ni una declaración de autoría exclusiva. Para la) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 103 Td (presentación, el reparto de exposición del documento 04 es una propuesta operativa y puede) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 89 Td (ajustarse al trabajo efectivamente realizado.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 67 Td (4. Costos externos no incluidos) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 1) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 2084 >>
+stream
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 790 Td (Dominio, hosting/servicios de base de datos, comisiones de pago, correo transaccional, soporte,) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 776 Td (mantenimiento y actualizaciones de infraestructura. La estimación heredada menciona como) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 762 Td (referencias ARS 15.000 anuales de dominio y ARS 18.000 mensuales de hosting; deben considerarse) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 748 Td (valores históricos/no verificados, no una cotización actual. SSL se presupuestó como gratuito.) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 734 Td (Las cuotas y límites de proveedores pueden cambiar.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 712 Td (5. Exclusiones y supuestos) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 690 Td (• El pago de la aplicación está simulado: no incluye integración ni comisiones de pasarela real.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 677 Td (• No incluye lector operativo de QR, operación arbitral en vivo ni soporte 24/7.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 664 Td (• No se fija un precio actual de Vercel/Supabase; depende de plan, uso, región y fecha.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 651 Td (• La cifra total corresponde al alcance propuesto completo, no al costo comprobado de lo ya) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 638 Td (construido.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 625 Td (• Las horas y montos deben recalcularse con el equipo y con costos vigentes antes de presentar una) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 612 Td (oferta comercial.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 591 Td (6. Resumen) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 569 Td (340 horas | ARS 4.800 por hora | ARS 1.632.000 de desarrollo estimado. El presupuesto es una) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 555 Td (base de planificación académica en pesos argentinos, con supuestos explícitos y módulos) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 541 Td (pendientes identificados.) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000000326 00000 n 
+0000007341 00000 n 
+0000007477 00000 n 
+0000009613 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+9749
+%%EOF

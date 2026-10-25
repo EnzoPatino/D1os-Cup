@@ -1,0 +1,166 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>PRESUPUESTO</title><style>
+@page { size: A4; margin: 18mm 17mm 18mm; @bottom-right { content: "D10S Cup · 2026  |  Página " counter(page); color:#667085; font-size:8pt; } }
+body { font-family: 'Liberation Sans', Arial, sans-serif; color:#202838; font-size:10pt; line-height:1.45; }
+h1 { color:#12315a; font-size:23pt; border-bottom:3px solid #d4a52c; padding-bottom:8pt; margin-top:0; }
+h2 { color:#12315a; font-size:15pt; margin-top:22pt; border-bottom:1px solid #dbe2ea; padding-bottom:4pt; }
+h3 { color:#176c82; font-size:11.5pt; margin-top:15pt; }
+p { margin:6pt 0; } ul,ol { padding-left:20pt; } li { margin:3pt 0; }
+table { width:100%; border-collapse:collapse; margin:10pt 0 14pt; font-size:8.4pt; }
+th { background:#12315a; color:white; text-align:left; } td,th { border:1px solid #c9d2dd; padding:5pt; vertical-align:top; }
+tr { page-break-inside:avoid; } blockquote { border-left:3px solid #d4a52c; margin:10pt 0; padding:5pt 10pt; background:#f7f8fa; }
+code, pre { font-family: 'Liberation Mono', monospace; } pre { white-space:pre-wrap; background:#f2f4f7; padding:8pt; }
+strong { color:#152b46; } a { color:#176c82; text-decoration:none; }
+</style></head><body><h1>Presupuesto de Desarrollo del Sistema — D10S Cup</h1>
+<p><strong>Plataforma de Organización Deportiva y Gestión de Torneos de Fútbol</strong></p>
+<p>* <strong>Proyecto:</strong> D10S Cup  </p>
+<p>* <strong>Cátedra:</strong> Taller de Construcción de Software — Año 2026  </p>
+<p>* <strong>Profesor:</strong> Alexis Martínez  </p>
+<p>* <strong>Integrantes del Equipo de Desarrollo:</strong>  </p>
+<p>  * Huechepan Santiago  </p>
+<p>  * Marteniuk Ignacio  </p>
+<p>  * Namuncura Joaquín  </p>
+<p>  * Enzo Patiño  </p>
+<p>* <strong>Fecha de Emisión:</strong> Octubre 2026  </p>
+<p>* <strong>Versión:</strong> 1.0 (Editable / Actualizable)</p>
+<p>---</p>
+<h2>1. Introducción y Metodología de Estimación</h2>
+<p>El presente documento detalla la estimación económica y el presupuesto integral para el desarrollo de la plataforma web <strong>D10S Cup</strong>. </p>
+<p>El cálculo se rige bajo la metodología estandarizada definida en el proyecto, la cual vincula el costo de vida mensual promedio del desarrollador, el valor horario con margen de rentabilidad, la descomposición de tareas técnicas (modelado de base de datos, CRUDs, frontend, e-commerce y pruebas) y la consolidación entre los integrantes del equipo.</p>
+<h3>Flujo Metodológico de Cálculo</h3>
+<pre><code>
++------------------------------------+
+|    Calcular Gastos Mensuales (C_M) |
+|    (Alquiler, Comida, Transporte,  |
+|    Ropa y Servicios)               |
++-----------------+------------------+
+                  |
+                  v
++-----------------+------------------+
+|    Calcular Valor Hora (V_H)       |
+|    V_H = (C_M / 160) * 1.20        |
++-----------------+------------------+
+                  |
+                  v
++-----------------+------------------+
+|    Listar Tareas Técnicas          |
+|    Estimar horas (BD, CRUDs, UI)   |
++-----------------+------------------+
+                  |
+                  v
++-----------------+------------------+
+|    Multiplicar Horas (C_Tarea)     |
+|    C_Tarea = H_E * V_H             |
++-----------------+------------------+
+                  |
+                  v
++-----------------+------------------+
+|    Sumar Costos Integrantes        |
+|    Consolidación del equipo        |
++-----------------+------------------+
+                  |
+                  v
++-----------------+------------------+
+|   PRESUPUESTO FINAL DEL SISTEMA    |
++------------------------------------+
+</code></pre>
+<p>---</p>
+<h2>2. Paso 1 — Costo de Vida Mensual ($C_M$)</h2>
+<p>El costo de vida mensual representa los gastos mínimos esenciales de un profesional de desarrollo para sostener su actividad mensual completa.</p>
+<h3>Fórmula Matemática</h3>
+<p>$$C_M = A + C + T + R + S$$</p>
+<p>Donde:</p>
+<p>* <strong>$C_M$</strong>: Costo mensual total estimado.</p>
+<p>* <strong>$A$</strong>: Alquiler y expensas de vivienda/oficina.</p>
+<p>* <strong>$C$</strong>: Comida y canasta alimentaria mensual.</p>
+<p>* <strong>$T$</strong>: Transporte y movilidad.</p>
+<p>* <strong>$R$</strong>: Ropa e indumentaria.</p>
+<p>* <strong>$S$</strong>: Servicios básicos e insumos tecnológicos (Electricidad, Gas, Agua, Conectividad a Internet de alta velocidad).</p>
+<h3>Tabla de Gastos Mensuales Estimados (Valores de Referencia en ARS)</h3>
+<blockquote><strong>Nota para el equipo:</strong> Estos valores reflejan una canasta de gastos base de referencia. Pueden ser ajustados según la realidad económica o requerimientos del curso.</blockquote>
+<table>
+<thead><tr><th>Variable</th><th>Concepto</th><th>Detalle / Observación</th><th>Monto Estimado (ARS)</th></tr></thead><tbody>
+<tr><td><strong>$A$</strong></td><td>Alquiler y Expensas</td><td>Vivienda / Espacio de trabajo compartido</td><td>$ 300.000,00</td></tr>
+<tr><td><strong>$C$</strong></td><td>Comida y Alimentación</td><td>Compras mensuales de supermercado y alimentos frescos</td><td>$ 200.000,00</td></tr>
+<tr><td><strong>$T$</strong></td><td>Transporte</td><td>Viáticos mensuales, transporte público o combustible</td><td>$ 45.000,00</td></tr>
+<tr><td><strong>$R$</strong></td><td>Ropa e Indumentaria</td><td>Calzado y vestimenta básica mensual prorrateada</td><td>$ 35.000,00</td></tr>
+<tr><td><strong>$S$</strong></td><td>Servicios</td><td>Internet simétrico 300 Mbps, luz, gas, agua, telefonía</td><td>$ 60.000,00</td></tr>
+<tr><td><strong>TOTAL</strong></td><td><strong>$C_M$ (Costo Mensual)</strong></td><td><strong>Suma total de gastos de subsistencia mensual</strong></td><td><strong>$ 640.000,00</strong></td></tr>
+</tbody></table>
+<p>---</p>
+<h2>3. Paso 2 — Valor de la Hora Laboral ($V_H$)</h2>
+<p>Para determinar el costo horario del desarrollador, se toma como referencia una jornada laboral estándar completa de <strong>40 horas semanales</strong> (160 horas al mes), incorporando un <strong>margen de ganancia o beneficio técnico del 20% (factor 1.20)</strong> para contemplar amortización de equipos, imprevistos y rentabilidad.</p>
+<h3>Fórmula Matemática</h3>
+<p>$$V_H = \left(\frac{C_M}{160}\right) \times 1.20$$</p>
+<p>Donde:</p>
+<p>* <strong>$V_H$</strong>: Valor por hora laboral de desarrollo.</p>
+<p>* <strong>$C_M$</strong>: Costo de vida mensual ($ 640.000,00 ARS).</p>
+<p>* <strong>$160$</strong>: Total de horas laborables mensuales ($40\text{ h/semana} \times 4\text{ semanas}$).</p>
+<p>* <strong>$1.20$</strong>: Coeficiente de margen de ganancia del 20%.</p>
+<h3>Cálculo Aplicado</h3>
+<ol>
+<li>Costo base por hora:  </li>
+</ol>
+<p>   $$\frac{C_M}{160} = \frac{\$ 640.000,00}{160} = \$ 4.000,00\text{ ARS/hora}$$</p>
+<ol>
+<li>Aplicación de ganancia (+20%):  </li>
+</ol>
+<p>   $$V_H = \$ 4.000,00 \times 1.20 = \mathbf{\$ 4.800,00\text{ ARS/hora}}$$</p>
+<p>---</p>
+<h2>4. Paso 3 — Desglose de Tareas y Estimación de Horas ($C_{\text{Tarea}}$)</h2>
+<p>El costo de cada tarea o módulo se calcula multiplicando el esfuerzo en horas estimadas ($H_E$) por el valor de la hora laboral ($V_H$).</p>
+<h3>Fórmula Matemática</h3>
+<p>$$C_{\text{Tarea}} = H_E \times V_H$$</p>
+<p>A continuación se detalla la Estructura de Desglose de Trabajo (WBS) adaptada a los requerimientos funcionales y de persistencia de <strong>D10S Cup</strong>:</p>
+<table>
+<thead><tr><th>Módulo / Tarea</th><th>Descripción Técnica</th><th>$H_E$ (Horas)</th><th>$V_H$ (ARS/h)</th><th>$C_{\text{Tarea}}$ Subtotal (ARS)</th></tr></thead><tbody>
+<tr><td><strong>M1: Modelado y Base de Datos (MySQL)</strong></td><td>Diseño de diagramas E-R y relacional. Creación de tablas (<code>usuarios</code>, <code>torneos</code>, <code>equipos</code>, <code>jugadores</code>, <code>partidos</code>, <code>resultados</code>, <code>productos</code>, <code>pedidos</code>, <code>tickets</code>). Definición de claves foráneas, índices y scripts de inicialización.</td><td>32 h</td><td>$ 4.800</td><td>$ 153.600,00</td></tr>
+<tr><td><strong>M2: CRUD de Usuarios y Autenticación</strong></td><td>Registro e Inicio de sesión para Equipos y Aficionados (<code>incioSesion.html</code>, <code>Registrarse.html</code>). Hashing seguro de contraseñas. Recuperación de contraseñas (<code>olvidastecontra.html</code>). Control de roles y sesiones (Admin, Equipos, Aficionados).</td><td>36 h</td><td>$ 4.800</td><td>$ 172.800,00</td></tr>
+<tr><td><strong>M3: CRUD de Torneos</strong></td><td>Módulo de gestión y visualización de torneos (<code>torneos.html</code>). Alta, edición y finalización de torneos. Filtros dinámicos por modalidad (Fútbol 11, Fútbol 8, Fútbol 5). Búsqueda predictiva y cupos de inscripción.</td><td>28 h</td><td>$ 4.800</td><td>$ 134.400,00</td></tr>
+<tr><td><strong>M4: CRUD de Equipos y Jugadores</strong></td><td>Inscripción formal de equipos en torneos. Carga de escudos/logos. Registro de lista de buena fe (plantel de jugadores con DNI, número y posición). Validación administrativa de inscripciones.</td><td>34 h</td><td>$ 4.800</td><td>$ 163.200,00</td></tr>
+<tr><td><strong>M5: CRUD de Partidos y Fixture</strong></td><td>Programación de calendario de partidos (<code>partidos.html</code>). Asignación de fecha, horario y cancha/estadio. Carrusel de próximos partidos y vista de calendario mensual de encuentros.</td><td>30 h</td><td>$ 4.800</td><td>$ 144.000,00</td></tr>
+<tr><td><strong>M6: Carga de Resultados y Estadísticas</strong></td><td>Módulo de resultados (<code>Resultados.html</code>). Carga arbitral de goles, tarjetas amarillas/rojas y asistencias. Cálculo automático de tablas de grupos (PJ, PG, PE, PP, GF, GC, DIF, PTS) y bracket de fase eliminatoria (cuartos, semis, final).</td><td>42 h</td><td>$ 4.800</td><td>$ 201.600,00</td></tr>
+<tr><td><strong>M7: E-commerce (Tienda de Entradas e Indumentaria)</strong></td><td>Catálogo interactivo (<code>productos.html</code>). Filtros por categorías (Entradas oficiales, Camisetas, Shorts, Gorras). Carrito de compras deslizante (offcanvas), cálculo dinámico de subtotales, stock en tiempo real y emisión de tickets con código único / QR.</td><td>48 h</td><td>$ 4.800</td><td>$ 230.400,00</td></tr>
+<tr><td><strong>M8: Panel Administrativo y Reportes</strong></td><td>Dashboard para el Administrador del torneo. Métricas de recaudación por ventas, cantidad de equipos participantes, control de usuarios y reportes exportables.</td><td>26 h</td><td>$ 4.800</td><td>$ 124.800,00</td></tr>
+<tr><td><strong>M9: Frontend, UI/UX y Responsive Design</strong></td><td>Maquetación web con HTML5 semántico, variables CSS personalizadas, diseño responsive adaptable a móviles y tablets. Componentes interactivos en JavaScript vanilla (carruseles, modales, menú hamburguesa).</td><td>40 h</td><td>$ 4.800</td><td>$ 192.000,00</td></tr>
+<tr><td><strong>M10: Pruebas (QA), Seguridad y Despliegue</strong></td><td>Pruebas de integración, validaciones de formularios, prevención de inyecciones SQL/XSS, configuración de servidor web y despliegue inicial en entorno productivo.</td><td>24 h</td><td>$ 4.800</td><td>$ 115.200,00</td></tr>
+<tr><td><strong>TOTALES</strong></td><td><strong>Esfuerzo global del proyecto de software</strong></td><td><strong>340 h</strong></td><td>—</td><td><strong>$ 1.632.000,00</strong></td></tr>
+</tbody></table>
+<p>---</p>
+<h2>5. Paso 4 — Presupuesto Total del Sistema ($P_{\text{Total}}$)</h2>
+<h3>Fórmula Matemática</h3>
+<p>$$P_{\text{Total}} = \sum C_{\text{Tareas}}$$</p>
+<p>El presupuesto total de desarrollo del software asciende a la suma de los costos de todas las tareas y módulos analizados:</p>
+<p>$$P_{\text{Desarrollo Directo}} = \mathbf{\$ 1.632.000,00\text{ ARS}}$$</p>
+<p>---</p>
+<h2>6. Consolidación y Distribución por Integrantes</h2>
+<p>El equipo de trabajo está integrado por cuatro desarrolladores. A continuación se presenta el esquema de distribución y asignación estimada de esfuerzo de trabajo:</p>
+<table>
+<thead><tr><th>Integrante</th><th>Rol Asignado</th><th>Módulos Asignados</th><th>Horas ($H_E$)</th><th>Monto Consolidado (ARS)</th></tr></thead><tbody>
+<tr><td><strong>Huechepan Santiago</strong></td><td>Backend &amp; Database Lead</td><td>M1 (Base de Datos MySQL) + M2 (Auth y Usuarios) + M10 (Seguridad/QA)</td><td>85 h</td><td>$ 408.000,00</td></tr>
+<tr><td><strong>Marteniuk Ignacio</strong></td><td>Core Competitions Dev</td><td>M3 (CRUD Torneos) + M4 (Equipos y Jugadores) + M8 (Panel Admin)</td><td>85 h</td><td>$ 408.000,00</td></tr>
+<tr><td><strong>Namuncura Joaquín</strong></td><td>Fixture &amp; Stats Specialist</td><td>M5 (Partidos y Fixture) + M6 (Resultados y Tablas/Bracket) + Soporte M9</td><td>85 h</td><td>$ 408.000,00</td></tr>
+<tr><td><strong>Enzo Patiño</strong></td><td>E-commerce &amp; Frontend Lead</td><td>M7 (Tienda y Carrito de Compras) + M9 (Frontend UI/UX y Responsive)</td><td>85 h</td><td>$ 408.000,00</td></tr>
+<tr><td><strong>TOTALES EQUIPO</strong></td><td><strong>Equipo de 4 Desarrolladores</strong></td><td><strong>Cobertura 100% de la plataforma D10S Cup</strong></td><td><strong>340 h</strong></td><td><strong>$ 1.632.000,00</strong></td></tr>
+</tbody></table>
+<p>---</p>
+<h2>7. Costos Adicionales de Infraestructura (Opcionales / Recomendados)</h2>
+<p>Para la puesta en marcha en la nube de la plataforma web con base de datos en línea, se prevén los siguientes costos fijos anuales o mensuales de infraestructura:</p>
+<table>
+<thead><tr><th>Concepto</th><th>Proveedor / Servicio</th><th>Periodicidad</th><th>Monto Estimado</th></tr></thead><tbody>
+<tr><td><strong>Dominio Web (.com.ar / .com)</strong></td><td>NIC Argentina / Proveedor oficial</td><td>Anual</td><td>$ 15.000,00 ARS</td></tr>
+<tr><td><strong>Hosting VPS / Base de Datos MySQL</strong></td><td>DonWeb / DigitalOcean / Vercel + Railway</td><td>Mensual</td><td>$ 18.000,00 ARS</td></tr>
+<tr><td><strong>Certificado de Seguridad SSL</strong></td><td>Let&#x27;s Encrypt</td><td>Anual</td><td>Gratuito ($ 0,00)</td></tr>
+<tr><td><strong>Comisión de Pasarela de Pago</strong></td><td>Mercado Pago / Checkout API</td><td>Por transacción</td><td>Variable (según ventas)</td></tr>
+</tbody></table>
+<p>---</p>
+<h2>8. Resumen Ejecutivo del Presupuesto</h2>
+<p>* <strong>Total Horas de Ingeniería de Software:</strong> 340 horas hombre.  </p>
+<p>* <strong>Valor Hora Aplicado:</strong> $ 4.800,00 ARS.  </p>
+<p>* <strong>Costo Total de Mano de Obra y Desarrollo:</strong> <strong>$ 1.632.000,00 ARS</strong>  </p>
+<p>* <strong>Tiempo Estimado de Entrega:</strong> 8 a 10 semanas (con dedicación compartida del equipo).  </p>
+<p>* <strong>Condiciones de Pago Sugeridas:</strong>  </p>
+<p>  * 30% al inicio del proyecto (Aprobación de relevamiento y modelado de Base de Datos).  </p>
+<p>  * 30% a la entrega del Módulo de Torneos, Partidos y Resultados.  </p>
+<p>  * 40% a la entrega final, pruebas integradas y despliegue del sistema completo.</p>
+<p>---</p>
+<blockquote>📌 <strong>Guía de Actualización:</strong> Si los valores de gastos mensuales ($A, C, T, R, S$) o las horas por módulo varían durante el ciclo de vida del proyecto, únicamente se debe reemplazar el valor en la tabla del <strong>Paso 1</strong> y re-calcular el <strong>Paso 2</strong>, actualizándose automáticamente las cifras finales del presupuesto.</blockquote></body></html>

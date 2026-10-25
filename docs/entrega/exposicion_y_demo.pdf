@@ -1,0 +1,239 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 4571 >>
+stream
+0.07 0.18 0.34 rg BT /F2 22 Tf 52 785 Td (D10S Cup - Exposición del sistema y) Tj ET
+0.07 0.18 0.34 rg BT /F2 22 Tf 52 756 Td (demostración en vivo) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 722 Td (Guion del equipo | Taller de Construcción de Software | 2026   Duración sugerida: 12–15 minutos) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 708 Td (de exposición + 5 minutos de preguntas. Ajustar el reparto a las tareas realmente realizadas) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 694 Td (por cada integrante.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 672 Td (1. Objetivo de la presentación) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 650 Td (Presentar el problema, objetivos y alcance; mostrar arquitectura y persistencia; recorrer) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 636 Td (funciones en funcionamiento; explicar seguridad, pruebas, presupuesto y límites; cerrar con) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 622 Td (próximos pasos. Diferenciar en todo momento lo que está implementado de lo planificado.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 600 Td (2. Roles y orden sugerido) Tj ET
+0.90 0.93 0.96 rg 52 556.0 491 24.0 re f
+BT /F2 6.5 Tf 55.0 568.0 Td (Orden /) Tj ET
+BT /F2 6.5 Tf 55.0 560.0 Td (integrante) Tj ET
+BT /F2 6.5 Tf 115.0 568.0 Td (Tiempo) Tj ET
+BT /F2 6.5 Tf 165.0 568.0 Td (Puntos a) Tj ET
+BT /F2 6.5 Tf 165.0 560.0 Td (explicar) Tj ET
+BT /F2 6.5 Tf 237.0 568.0 Td (Transición) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 388.0 491 168.0 re S
+BT /F1 6.5 Tf 55.0 544.0 Td (1. Santiago) Tj ET
+BT /F1 6.5 Tf 55.0 536.0 Td (Huechepan) Tj ET
+BT /F1 6.5 Tf 115.0 544.0 Td (2–3 min) Tj ET
+BT /F1 6.5 Tf 165.0 544.0 Td (Problema y) Tj ET
+BT /F1 6.5 Tf 165.0 536.0 Td (objetivo;) Tj ET
+BT /F1 6.5 Tf 165.0 528.0 Td (requisitos) Tj ET
+BT /F1 6.5 Tf 165.0 520.0 Td (relevantes;) Tj ET
+BT /F1 6.5 Tf 165.0 512.0 Td (arquitectura) Tj ET
+BT /F1 6.5 Tf 165.0 504.0 Td (HTML/CSS/JS + S) Tj ET
+BT /F1 6.5 Tf 165.0 496.0 Td (upabase/Postgre) Tj ET
+BT /F1 6.5 Tf 165.0 488.0 Td (SQL/Auth;) Tj ET
+BT /F1 6.5 Tf 165.0 480.0 Td (modelo, RLS y) Tj ET
+BT /F1 6.5 Tf 165.0 472.0 Td (roles. Señalar) Tj ET
+BT /F1 6.5 Tf 165.0 464.0 Td (que la) Tj ET
+BT /F1 6.5 Tf 165.0 456.0 Td (propuesta) Tj ET
+BT /F1 6.5 Tf 165.0 448.0 Td (inicial) Tj ET
+BT /F1 6.5 Tf 165.0 440.0 Td (consideraba) Tj ET
+BT /F1 6.5 Tf 165.0 432.0 Td (MySQL y la) Tj ET
+BT /F1 6.5 Tf 165.0 424.0 Td (implementación) Tj ET
+BT /F1 6.5 Tf 165.0 416.0 Td (usa Supabase/Po) Tj ET
+BT /F1 6.5 Tf 165.0 408.0 Td (stgreSQL.) Tj ET
+BT /F1 6.5 Tf 237.0 544.0 Td (“Con la base y permisos explicados, vemos la experiencia de) Tj ET
+BT /F1 6.5 Tf 237.0 536.0 Td (consulta y competencia.”) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 265.0 491 123.0 re S
+BT /F1 6.5 Tf 55.0 376.0 Td (2. Ignacio) Tj ET
+BT /F1 6.5 Tf 55.0 368.0 Td (Marteniuk) Tj ET
+BT /F1 6.5 Tf 115.0 376.0 Td (2–3 min) Tj ET
+BT /F1 6.5 Tf 165.0 376.0 Td (Portada y) Tj ET
+BT /F1 6.5 Tf 165.0 368.0 Td (navegación;) Tj ET
+BT /F1 6.5 Tf 165.0 360.0 Td (torneos, búsque) Tj ET
+BT /F1 6.5 Tf 165.0 352.0 Td (da/modalidad y) Tj ET
+BT /F1 6.5 Tf 165.0 344.0 Td (acción) Tj ET
+BT /F1 6.5 Tf 165.0 336.0 Td (administrativa;) Tj ET
+BT /F1 6.5 Tf 165.0 328.0 Td (límites de) Tj ET
+BT /F1 6.5 Tf 165.0 320.0 Td (gestión de equi) Tj ET
+BT /F1 6.5 Tf 165.0 312.0 Td (pos/inscripcion) Tj ET
+BT /F1 6.5 Tf 165.0 304.0 Td (es; explicar) Tj ET
+BT /F1 6.5 Tf 165.0 296.0 Td (cómo el rol) Tj ET
+BT /F1 6.5 Tf 165.0 288.0 Td (restringe) Tj ET
+BT /F1 6.5 Tf 165.0 280.0 Td (operaciones.) Tj ET
+BT /F1 6.5 Tf 237.0 376.0 Td (“Ahora mostramos el fixture y cómo se presentan los datos) Tj ET
+BT /F1 6.5 Tf 237.0 368.0 Td (deportivos.”) Tj ET
+0.85 0.87 0.90 RG 0.4 w 52 160.0 491 105.0 re S
+BT /F1 6.5 Tf 55.0 253.0 Td (3. Joaquín) Tj ET
+BT /F1 6.5 Tf 55.0 245.0 Td (Namuncura) Tj ET
+BT /F1 6.5 Tf 115.0 253.0 Td (2–3 min) Tj ET
+BT /F1 6.5 Tf 165.0 253.0 Td (Partidos, carru) Tj ET
+BT /F1 6.5 Tf 165.0 245.0 Td (sel/calendario;) Tj ET
+BT /F1 6.5 Tf 165.0 237.0 Td (resultados,) Tj ET
+BT /F1 6.5 Tf 165.0 229.0 Td (posiciones y) Tj ET
+BT /F1 6.5 Tf 165.0 221.0 Td (fases) Tj ET
+BT /F1 6.5 Tf 165.0 213.0 Td (eliminatorias;) Tj ET
+BT /F1 6.5 Tf 165.0 205.0 Td (origen de) Tj ET
+BT /F1 6.5 Tf 165.0 197.0 Td (datos; estados) Tj ET
+BT /F1 6.5 Tf 165.0 189.0 Td (vacíos y) Tj ET
+BT /F1 6.5 Tf 165.0 181.0 Td (limitación de) Tj ET
+BT /F1 6.5 Tf 165.0 173.0 Td (carga en vivo.) Tj ET
+BT /F1 6.5 Tf 237.0 253.0 Td (“Cerramos el recorrido funcional con tienda y compra de) Tj ET
+BT /F1 6.5 Tf 237.0 245.0 Td (demostración.”) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 1) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 5690 >>
+stream
+0.85 0.87 0.90 RG 0.4 w 52 669.0 491 123.0 re S
+BT /F1 6.5 Tf 55.0 780.0 Td (4. Enzo) Tj ET
+BT /F1 6.5 Tf 55.0 772.0 Td (Patiño) Tj ET
+BT /F1 6.5 Tf 115.0 780.0 Td (3–4 min) Tj ET
+BT /F1 6.5 Tf 165.0 780.0 Td (Tienda,) Tj ET
+BT /F1 6.5 Tf 165.0 772.0 Td (variantes y) Tj ET
+BT /F1 6.5 Tf 165.0 764.0 Td (carrito; sesión) Tj ET
+BT /F1 6.5 Tf 165.0 756.0 Td (y compras) Tj ET
+BT /F1 6.5 Tf 165.0 748.0 Td (propias;) Tj ET
+BT /F1 6.5 Tf 165.0 740.0 Td (pedido, stock y) Tj ET
+BT /F1 6.5 Tf 165.0 732.0 Td (ticket QR;) Tj ET
+BT /F1 6.5 Tf 165.0 724.0 Td (aclarar pago) Tj ET
+BT /F1 6.5 Tf 165.0 716.0 Td (simulado;) Tj ET
+BT /F1 6.5 Tf 165.0 708.0 Td (diseño) Tj ET
+BT /F1 6.5 Tf 165.0 700.0 Td (responsive,) Tj ET
+BT /F1 6.5 Tf 165.0 692.0 Td (Vercel y) Tj ET
+BT /F1 6.5 Tf 165.0 684.0 Td (próximos pasos.) Tj ET
+BT /F1 6.5 Tf 237.0 780.0 Td (“Después de la demo, resumimos pruebas, presupuesto y evolución.”) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 659 Td (El reparto es una propuesta de presentación basada en módulos y no certifica el aporte) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 645 Td (individual. El equipo debe cambiar nombres/temas si su distribución real fue otra.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 623 Td (3. Guion de apertura) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 601 Td (“D10S Cup es una plataforma web para organizar y consultar un torneo de fútbol y ofrecer una) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 587 Td (tienda asociada. El problema que buscamos atender es tener la información de competencias,) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 573 Td (fixture, resultados y productos en un solo lugar. Presentaremos las funciones conectadas y) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 559 Td (también los límites de esta versión para distinguir la demo académica de un servicio listo para) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 545 Td (operar pagos reales.”) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 523 Td (4. Demo en vivo: recorrido de 5 minutos) Tj ET
+0.08 0.36 0.43 rg BT /F2 11 Tf 52 497 Td (Preparación previa) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 482 Td (• Usar la URL de Preview o producción aprobada y comprobarla antes de exponer.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 469 Td (• Verificar red, Supabase, contenido y cuenta demo; tener preparada una segunda pestaña con) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 456 Td (portada.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 443 Td (• Confirmar que hay torneos, partidos, posiciones y productos visibles.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 430 Td (• No realizar checkout si el entorno no está identificado como demo o si no se autorizaron) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 417 Td (escrituras. Una compra altera stock y registros.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 404 Td (• No proyectar contraseñas, correo personal, claves API, SQL con credenciales ni paneles con) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 391 Td (información privada.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 378 Td (• Tener capturas locales como respaldo por caída de Internet; informar si se pasa al respaldo, sin) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 365 Td (presentarlo como vivo.) Tj ET
+0.08 0.36 0.43 rg BT /F2 11 Tf 52 348 Td (Pasos a narrar) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 333 Td (1. Inicio: explicar objetivo, navegación y acceso a secciones \(30 s\).) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 320 Td (2. Torneos: mostrar búsqueda/filtros y contenido conectado \(45 s\). Si se muestra alta, usar) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 307 Td (usuario admin y un torneo de prueba acordado; después eliminarlo según procedimiento de demo.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 294 Td (3. Partidos y resultados: mover carrusel/calendario; comparar una fila de posiciones con un) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 281 Td (resultado existente; abrir eliminatorias \(60 s\).) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 268 Td (4. Cuenta: mostrar la sesión de demo y la pantalla de login/registro sin revelar credenciales;) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 255 Td (comentar recuperación \(30 s\). Si no hay correo de prueba listo, describir sin iniciar el flujo.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 242 Td (5. Tienda: buscar producto, mostrar variante/stock y carrito. Solo si existe autorización) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 229 Td (explícita y dataset de demo, completar un pedido y enseñar el comprobante/ticket QR e historial.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 216 Td (Aclarar “pago simulado, sin transacción monetaria” \(90 s\).) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 203 Td (6. Cierre: volver a portada, destacar que los datos provienen de Supabase y resumir siguientes) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 190 Td (pasos \(30 s\).) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 169 Td (5. Puntos técnicos requeridos) Tj ET
+0.08 0.36 0.43 rg BT /F2 11 Tf 52 143 Td (Arquitectura) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 128 Td (• Frontend estático con HTML semántico, CSS y módulos JavaScript.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 115 Td (• Supabase ofrece PostgreSQL, Auth y Data API; no hay backend HTTP propio.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 102 Td (• Vercel publica el sitio estático. Las variables públicas de Supabase se configuran como) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 89 Td (variables VITE_* al compilar.) Tj ET
+0.08 0.36 0.43 rg BT /F2 11 Tf 52 72 Td (Persistencia y seguridad) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 57 Td (• Tablas relacionales para perfiles, equipos, competencias, productos, pedidos y tickets.) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Length 5082 >>
+stream
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 790 Td (• RLS limita lecturas/escrituras por rol y propiedad. Las RPC de compra validan usuario, stock y) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 777 Td (precio en la base.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 764 Td (• La clave publicable se usa en navegador; jamás debe utilizarse service_role o sb_secret en el) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 751 Td (cliente.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 738 Td (• La confirmación simulada no comprueba un pago externo; para operar comercialmente hace falta) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 725 Td (proveedor y webhook confiable.) Tj ET
+0.08 0.36 0.43 rg BT /F2 11 Tf 52 708 Td (Pruebas y calidad) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 693 Td (• Presentar el plan de pruebas: navegación, Auth, permisos, consistencia de posiciones, carrito,) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 680 Td (aislamiento de compras, contacto y manejo de errores.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 667 Td (• Informar solo resultados efectivamente ejecutados con fecha/evidencia. La existencia de un plan) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 654 Td (no significa que se ejecutó.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 641 Td (• Mostrar los casos pendientes y el proceso de registro de incidencias.) Tj ET
+0.08 0.36 0.43 rg BT /F2 11 Tf 52 624 Td (Presupuesto) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 609 Td (• 340 horas estimadas, ARS 4.800/hora y total ARS 1.632.000 bajo los supuestos heredados.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 596 Td (• Es una estimación académica de referencia, no cotización actual. Pago real, infraestructura) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 583 Td (variable y mantenimiento requieren estimación aparte.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 570 Td (• El alcance completo presupuestado incluye módulos aún pendientes; no presentarlo como) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 557 Td (funcionalidad entregada.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 536 Td (6. Limitaciones y evolución) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 514 Td (1. Integrar pasarela de pago real y confirmar con webhook firmado.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 501 Td (2. Validar tickets QR desde una interfaz de acceso.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 488 Td (3. Completar gestión de equipos, inscripciones, planteles y cupos.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 475 Td (4. Añadir administración de resultados en vivo y reportes.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 462 Td (5. Automatizar expiración de reservas y reforzar conciliación de pedidos.) Tj ET
+0.12 0.19 0.31 rg BT /F1 9.5 Tf 62 449 Td (6. Ejecutar QA integral en un entorno de staging y validar Auth/redirects del dominio final.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 428 Td (7. Preguntas probables y respuestas breves) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 406 Td (?Por qué Supabase si el documento hablaba de MySQL? La implementación evolucionó a PostgreSQL) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 392 Td (administrado con Supabase, que integra Auth y políticas RLS; se debe actualizar la) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 378 Td (documentación para reflejar esa decisión.) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 364 Td (?El pago es real? No. El sistema demuestra el flujo de pedido y ticket mediante confirmación) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 350 Td (simulada; no cobra dinero.) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 336 Td (?Qué evita que alguien se haga administrador desde el navegador? El rol no se concede desde el) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 322 Td (cliente y las operaciones se vuelven a validar en PostgreSQL con RLS.) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 308 Td (?El QR permite entrar al estadio? No en esta versión. Identifica un ticket; aún falta lector y) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 294 Td (validación de acceso.) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 280 Td (?Qué falta para producción comercial? Pago real con webhook, política operativa de) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 266 Td (tickets/stock, pruebas completas, dominio y configuración de Auth, observabilidad y soporte.) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 252 Td (?Cómo calculan las posiciones? La vista toma partidos jugados, agrega goles y resultados, y) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 238 Td (aplica 3 puntos por victoria y 1 por empate.) Tj ET
+0.07 0.18 0.34 rg BT /F2 15 Tf 52 216 Td (8. Cierre) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 194 Td (“La versión actual demuestra una experiencia integrada de consulta y comercio de prueba, con) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 180 Td (datos persistentes y control de acceso en base. Los siguientes hitos para una operación real) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 166 Td (son completar la validación funcional, integrar pagos reales de forma segura y cerrar los) Tj ET
+0.12 0.19 0.31 rg BT /F1 10 Tf 52 152 Td (módulos de administración pendientes.”) Tj ET
+0.4 0.43 0.48 rg BT /F1 8 Tf 52 30 Td (D10S Cup | 2026) Tj 465 0 Td (Pagina 3) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 9 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000134 00000 n 
+0000000231 00000 n 
+0000000333 00000 n 
+0000004956 00000 n 
+0000005092 00000 n 
+0000010834 00000 n 
+0000010970 00000 n 
+0000016104 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+16241
+%%EOF

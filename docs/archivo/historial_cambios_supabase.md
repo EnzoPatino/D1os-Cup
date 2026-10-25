@@ -1,4 +1,4 @@
-# Cambios de backend con Supabase
+# Notas técnicas de Supabase
 
 ## 1. Resumen
 
@@ -48,13 +48,13 @@ Las implementaciones privilegiadas están en el esquema `private`; las funciones
 
 ### Migraciones
 
-La tabla de historial de Supabase registra estas tres migraciones:
+El esquema y sus cambios están definidos en estos archivos de migración:
 
 1. **`20261006001436_fase1_esquema_inicial`**: crea los tipos, tablas, restricciones, índices, vista y funciones base.
 2. **`20261006012025_fase2_politicas_rls`**: activa RLS, agrega las políticas y grants para acceso público, usuarios, capitanes y administradores.
 3. **`20261006014450_fase3_capitan_opcional`**: permite que `equipos.capitan_id` sea nulo para cargar equipos de ejemplo antes de registrar capitanes.
 
-Los tres SQL están guardados en `supabase/migrations/`, junto con el seed idempotente `supabase/seed.sql`. Los archivos de Fase 1 y Fase 2 se recuperaron de los argumentos exactos enviados a `apply_migration` en esta sesión, incluidas las correcciones aplicadas; sus SHA-256 se contrastaron con esos argumentos. No se reconstruyeron de memoria ni se volvieron a aplicar. El historial remoto, las tablas, las políticas y las funciones se consultaron para comprobar el estado desplegado. La Fase 3 hace que `equipos.capitan_id` sea nullable después de la definición inicial de Fase 1.
+Los archivos están en `supabase/migrations/`, junto con el seed en `supabase/seed.sql`. Las migraciones de login por nombre agregan el campo normalizado y la función SQL usada por el cliente. Aplicá las migraciones pendientes en orden en el proyecto Supabase antes de publicar el frontend correspondiente.
 
 ## 4. Seguridad
 
@@ -79,7 +79,16 @@ WHERE email = 'TU_EMAIL';
 
 No hay un formulario de cliente que permita autoconcederse `admin`.
 
-## 5. Cambios archivo por archivo
+## 5. Autenticación y despliegue
+
+- El login por correo envía las credenciales a las funciones `api/email-login.js` y establece la sesión devuelta por Supabase Auth.
+- El login por nombre consulta `email_para_nombre_usuario` mediante RPC y luego usa `signInWithPassword` desde el cliente.
+- La función SQL debe existir en el proyecto remoto. Está definida en `supabase/migrations/20261025120000_login_por_nombre_rpc.sql`; también requiere la migración anterior que normaliza nombres de usuario.
+- No se necesita una clave `service_role` para el login por nombre actual. La clave publicable es la única que debe estar disponible en el navegador. Revisá la función de login por correo y las variables de entorno descritas en su código antes de configurar Vercel.
+- Configurá en Supabase Authentication las URL permitidas para el dominio publicado y el entorno local; los flujos de confirmación y recuperación dependen de esos valores.
+- Para asignar `admin` a una cuenta existente, revisá `supabase/operations/promover_admin.sql` y ejecutalo en SQL Editor después de verificar el correo. El acceso administrativo queda limitado a las operaciones presentes y autorizadas por RLS; no implica un panel completo.
+
+## 6. Cambios archivo por archivo
 
 ### JavaScript
 
@@ -87,7 +96,7 @@ No hay un formulario de cliente que permita autoconcederse `admin`.
 | --- | --- | --- |
 | `JS/supabaseClient.js` (nuevo) | No había cliente de base de datos. | Crea y exporta un cliente supabase-js v2 con persistencia de sesión y detección del enlace de Auth. Usa URL y clave `publishable`. |
 | `JS/auth.js` (nuevo) | La barra no reflejaba una sesión real. | Consulta Auth, escucha cambios de sesión y actualiza la barra con nombre/correo y cerrar sesión. El nombre se escribe con `textContent`; la consulta del perfil queda fuera del callback de `onAuthStateChange`. Redirige a una persona ya autenticada fuera de login/registro. |
-| `JS/inicioSesion.js` | Mostraba una alerta de acceso ficticio y redirigía a un dashboard inexistente. | Valida el formulario, llama a `signInWithPassword`, informa errores en español y vuelve al inicio al autenticar. |
+| `JS/inicioSesion.js` | El acceso no estaba conectado. | Autentica por correo mediante `api/email-login.js`; para el nombre de usuario consulta la RPC `email_para_nombre_usuario` y autentica con Supabase Auth. Informa errores en español. |
 | `JS/registrarse.js` | Simulaba el alta con una alerta. | Verifica nombre, contraseña mínima y confirmación; llama a `signUp` y pasa `nombre_usuario` en `options.data`. Si Auth exige confirmar correo, muestra esa indicación. |
 | `JS/olvidastecontra.js` (nuevo) | No había recuperación conectada. | Llama a `resetPasswordForEmail` con retorno a `HTML/restablecer.html` y muestra un mensaje que no revela si el correo existe. |
 | `JS/restablecer.js` (nuevo) | No había actualización de contraseña. | Verifica contraseña y confirmación, usa `updateUser({ password })` en la sesión de recuperación y avisa si el enlace venció. |
@@ -137,7 +146,7 @@ Los estilos modificados o añadidos mantienen el aspecto del sitio y dan present
 
 No se deben probar escrituras de compras en producción sin acordarlo: una compra de demostración cambia stock y crea pedidos, pagos y tickets reales en la base.
 
-## 7. Limitaciones conocidas y mejoras futuras
+## 8. Limitaciones conocidas y mejoras futuras
 
 - El pago es simulado, no está integrado con Mercado Pago. La RPC de confirmación no verifica una transacción externa.
 - Los pedidos pendientes no vencen automáticamente. Si alguien abandona el checkout, el stock queda reservado hasta cancelar el pedido. Una respuesta de red perdida justo al crear un pedido también puede dejar una reserva que requiere conciliación.
@@ -146,36 +155,36 @@ No se deben probar escrituras de compras en producción sin acordarlo: una compr
 - La entrega de confirmación y recuperación de correo depende de la configuración y cuotas del plan de Supabase; hay que comprobarla para el dominio final.
 - La página de resultados no tiene todavía un selector de torneo; si se cargan llaves eliminatorias para varios torneos, conviene agregar selección para no mezclarlas.
 - El historial se consultó por pedido y relaciones de PostgREST; no se probó con una cuenta de usuario real ni con una compra real durante esta revisión.
-- La revisión ejecutó chequeo sintáctico de los 13 JavaScript, `git diff --check`, lectura del esquema y funciones por MCP y cuatro consultas de lectura a la Data API (HTTP 200: 3 torneos, 16 partidos programados, 22 filas de posiciones y 8 productos). No se completó un flujo de navegador con login, correo, QR ni checkout: faltan credenciales de una cuenta de prueba y no se modificó la base de producción para simular una compra.
+- Esta guía describe la implementación y los límites conocidos. No tomar la existencia de estas instrucciones como evidencia de que se haya ejecutado un flujo completo de compra o autenticación durante una sesión de QA.
 
-## 8. Preguntas probables en la defensa
+## 9. Preguntas probables en la defensa
 
-**¿Por qué Supabase y no MySQL?**  
+**¿Por qué Supabase y no MySQL?**
 Porque el alcance pedía un backend pero el frontend debía seguir estático. Supabase brinda Postgres, Auth y API con RLS sin tener que construir y alojar un servidor propio. MySQL estaba en la propuesta inicial; se reemplazó por Postgres administrado.
 
-**¿Qué pasa si alguien cambia el JavaScript desde el navegador?**  
+**¿Qué pasa si alguien cambia el JavaScript desde el navegador?**
 Puede cambiar lo que ve o los datos locales, pero no puede concederse permisos ni escribir directamente en pedidos. Postgres aplica RLS y las RPC vuelven a validar usuario, propiedad, stock y precio.
 
-**¿Cómo se evita comprar sin pagar?**  
+**¿Cómo se evita comprar sin pagar?**
 En la demo, crear el pedido solo lo deja pendiente y reserva stock; recién `confirmar_pago_simulado` lo marca pagado y emite tickets. Como es un simulador, el propio dueño puede llamar esa RPC: no equivale a cobrar. Para producción se debe confirmar el pago con el proveedor desde un webhook confiable.
 
-**¿Por qué no hay un backend propio si se llama a Postgres?**  
+**¿Por qué no hay un backend propio si se llama a Postgres?**
 El navegador usa la API administrada de Supabase. La parte privilegiada se concentra en RLS y funciones RPC dentro de Postgres; no hace falta desplegar un servidor de aplicación separado para este alcance.
 
-**¿La clave que aparece en JavaScript es secreta?**  
-No: es la clave `publishable`, prevista para el cliente. La clave `service_role` y las claves secretas no se publican; RLS limita el acceso de la clave pública.
+**¿La clave que aparece en JavaScript es secreta?**
+No: es la clave `publishable`, prevista para el cliente. Las claves privadas no deben publicarse; RLS limita las operaciones disponibles a la clave pública.
 
-**¿Por qué calcular el total en la base?**  
+**¿Por qué calcular el total en la base?**
 Porque el navegador es modificable. La RPC toma precios actuales desde `productos`, calcula el total y descuenta stock; el cliente solo envía variantes y cantidades.
 
-**¿Cómo se protege el rol administrador?**  
+**¿Cómo se protege el rol administrador?**
 RLS consulta `perfiles.rol`; los usuarios no reciben permiso de actualizar esa columna. La promoción se hace manualmente desde SQL Editor y `crear_equipo` solo asigna el rol `equipo`.
 
-**¿Cómo se evita XSS al mostrar el nombre de un equipo o producto?**  
+**¿Cómo se evita XSS al mostrar el nombre de un equipo o producto?**
 Los valores de base se asignan con `textContent` o nodos de texto, no se interpolan en HTML.
 
-**¿El QR demuestra que se cobró la entrada?**  
+**¿El QR demuestra que se cobró la entrada?**
 No. Identifica el ticket emitido después de la confirmación simulada. La validación final del QR y la integración de cobro real son trabajo futuro.
 
-**¿Qué quedó sin comprobar?**  
-No se ejecutó el flujo completo de Auth, emails y compra con una cuenta real ni se validó visualmente cada pantalla en navegador. Sí se comprobó sintaxis, columnas/relaciones, definiciones de RPC y respuestas de lectura de la Data API.
+**¿Qué falta comprobar antes de una operación real?**
+Ejecutar los flujos con cuentas de prueba, confirmar correo y recuperación, probar compras en un entorno separado y revisar las políticas con los roles que vayan a usar la aplicación.

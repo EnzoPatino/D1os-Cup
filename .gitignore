@@ -13,16 +13,6 @@ node_modules/
 dist/
 build/
 
-# Entregables académicos para uso interno del equipo; no publicar en GitHub
-/documentacion_entrega/
-/Excalidraw/
-/PRESUPUESTO.md
-/Diagrama Presupuesto.png
-/Formulas Presupuesto.png
-/booseto de Torneos y Partidos.png
-/Manual de usuario Pet.pdf
-/Proyecto D10S (1) (3) (1).pdf
-
 # Archivos del sistema
 .DS_Store
 Thumbs.db

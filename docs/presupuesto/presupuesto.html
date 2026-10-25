@@ -1,0 +1,51 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>02 Presupuesto</title><style>
+@page { size: A4; margin: 18mm 17mm 18mm; @bottom-right { content: "D10S Cup · 2026  |  Página " counter(page); color:#667085; font-size:8pt; } }
+body { font-family: 'Liberation Sans', Arial, sans-serif; color:#202838; font-size:10pt; line-height:1.45; }
+h1 { color:#12315a; font-size:23pt; border-bottom:3px solid #d4a52c; padding-bottom:8pt; margin-top:0; }
+h2 { color:#12315a; font-size:15pt; margin-top:22pt; border-bottom:1px solid #dbe2ea; padding-bottom:4pt; }
+h3 { color:#176c82; font-size:11.5pt; margin-top:15pt; }
+p { margin:6pt 0; } ul,ol { padding-left:20pt; } li { margin:3pt 0; }
+table { width:100%; border-collapse:collapse; margin:10pt 0 14pt; font-size:8.4pt; }
+th { background:#12315a; color:white; text-align:left; } td,th { border:1px solid #c9d2dd; padding:5pt; vertical-align:top; }
+tr { page-break-inside:avoid; } blockquote { border-left:3px solid #d4a52c; margin:10pt 0; padding:5pt 10pt; background:#f7f8fa; }
+code, pre { font-family: 'Liberation Mono', monospace; } pre { white-space:pre-wrap; background:#f2f4f7; padding:8pt; }
+strong { color:#152b46; } a { color:#176c82; text-decoration:none; }
+</style></head><body><h1>D10S Cup — Presupuesto estimado de desarrollo</h1>
+<p><strong>Taller de Construcción de Software · 2026 · Versión 2.0</strong>  </p>
+<p>Equipo: Santiago Huechepan · Ignacio Marteniuk · Joaquín Namuncura · Enzo Patiño</p>
+<blockquote>Documento académico de estimación. Los importes en ARS se conservan del ejemplo del proyecto y no constituyen cotización comercial ni precios de mercado actualizados. El presupuesto describe el alcance originalmente estimado; la columna de observaciones identifica módulos implementados parcialmente o pendientes.</blockquote>
+<h2>1. Criterio de cálculo</h2>
+<p>Se conserva el método de referencia: costo mensual de vida (CM), dividido por 160 horas y multiplicado por un factor de 1,20.</p>
+<p><code>CM = A + C + T + R + S = ARS 640.000</code>  </p>
+<p><code>Valor hora = (640.000 / 160) × 1,20 = ARS 4.800/h</code>  </p>
+<p><code>Costo de tarea = horas estimadas × ARS 4.800</code></p>
+<p>Los componentes usados son alquiler/expensas 300.000; alimentación 200.000; transporte 45.000; ropa 35.000; servicios 60.000 ARS mensuales. Son supuestos de referencia heredados del material base y requieren actualización antes de cualquier uso comercial.</p>
+<h2>2. Desglose estimado</h2>
+<table>
+<thead><tr><th>Módulo</th><th>Horas</th><th>Costo (ARS)</th><th>Estado frente al sistema actual</th></tr></thead><tbody>
+<tr><td>M1. Modelado y base de datos</td><td>32</td><td>153.600</td><td>Implementado con Supabase/PostgreSQL; la propuesta original mencionaba MySQL.</td></tr>
+<tr><td>M2. Usuarios y autenticación</td><td>36</td><td>172.800</td><td>Registro, login, sesión y recuperación conectados a Supabase Auth.</td></tr>
+<tr><td>M3. Torneos</td><td>28</td><td>134.400</td><td>Consulta, filtros y alta administrativa; no CRUD completo.</td></tr>
+<tr><td>M4. Equipos y jugadores</td><td>34</td><td>163.200</td><td>Esquema y controles parciales; inscripción y gestión integral pendientes.</td></tr>
+<tr><td>M5. Partidos y fixture</td><td>30</td><td>144.000</td><td>Consulta de partidos y calendario conectados.</td></tr>
+<tr><td>M6. Resultados y estadísticas</td><td>42</td><td>201.600</td><td>Tablas y eliminatorias consultan datos; carga arbitral no incluida.</td></tr>
+<tr><td>M7. Tienda y pedidos</td><td>48</td><td>230.400</td><td>Catálogo, variantes, stock, pedidos, pago simulado y QR de entradas.</td></tr>
+<tr><td>M8. Panel y reportes</td><td>26</td><td>124.800</td><td>No implementado como dashboard/reportes.</td></tr>
+<tr><td>M9. Interfaz y responsive</td><td>40</td><td>192.000</td><td>Interfaz web HTML/CSS/JS; alcance representado en pantallas existentes.</td></tr>
+<tr><td>M10. QA, seguridad y despliegue</td><td>24</td><td>115.200</td><td>RLS y flujos documentados; despliegue requiere configuración final.</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>340</strong></td><td><strong>1.632.000</strong></td><td><strong>Estimación del alcance completo propuesto.</strong></td></tr>
+</tbody></table>
+<h2>3. Distribución de referencia</h2>
+<p>La distribución original asigna 85 horas a cada integrante, equivalente a ARS 408.000 por persona y ARS 1.632.000 para el equipo. Es una distribución presupuestaria igualitaria, no una medición del aporte individual real ni una declaración de autoría exclusiva. Para la presentación, el reparto de exposición del documento 04 es una propuesta operativa y puede ajustarse al trabajo efectivamente realizado.</p>
+<h2>4. Costos externos no incluidos</h2>
+<p>Dominio, hosting/servicios de base de datos, comisiones de pago, correo transaccional, soporte, mantenimiento y actualizaciones de infraestructura. La estimación heredada menciona como referencias ARS 15.000 anuales de dominio y ARS 18.000 mensuales de hosting; deben considerarse valores históricos/no verificados, no una cotización actual. SSL se presupuestó como gratuito. Las cuotas y límites de proveedores pueden cambiar.</p>
+<h2>5. Exclusiones y supuestos</h2>
+<ul>
+<li>El pago de la aplicación está simulado: no incluye integración ni comisiones de pasarela real.</li>
+<li>No incluye lector operativo de QR, operación arbitral en vivo ni soporte 24/7.</li>
+<li>No se fija un precio actual de Vercel/Supabase; depende de plan, uso, región y fecha.</li>
+<li>La cifra total corresponde al alcance propuesto completo, no al costo comprobado de lo ya construido.</li>
+<li>Las horas y montos deben recalcularse con el equipo y con costos vigentes antes de presentar una oferta comercial.</li>
+</ul>
+<h2>6. Resumen</h2>
+<p><strong>340 horas · ARS 4.800 por hora · ARS 1.632.000 de desarrollo estimado.</strong> El presupuesto es una base de planificación académica en pesos argentinos, con supuestos explícitos y módulos pendientes identificados.</p></body></html>

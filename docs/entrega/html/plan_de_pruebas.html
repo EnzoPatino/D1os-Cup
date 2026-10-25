@@ -1,0 +1,65 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>03 Plan de Pruebas</title><style>
+@page { size: A4; margin: 18mm 17mm 18mm; @bottom-right { content: "D10S Cup · 2026  |  Página " counter(page); color:#667085; font-size:8pt; } }
+body { font-family: 'Liberation Sans', Arial, sans-serif; color:#202838; font-size:10pt; line-height:1.45; }
+h1 { color:#12315a; font-size:23pt; border-bottom:3px solid #d4a52c; padding-bottom:8pt; margin-top:0; }
+h2 { color:#12315a; font-size:15pt; margin-top:22pt; border-bottom:1px solid #dbe2ea; padding-bottom:4pt; }
+h3 { color:#176c82; font-size:11.5pt; margin-top:15pt; }
+p { margin:6pt 0; } ul,ol { padding-left:20pt; } li { margin:3pt 0; }
+table { width:100%; border-collapse:collapse; margin:10pt 0 14pt; font-size:8.4pt; }
+th { background:#12315a; color:white; text-align:left; } td,th { border:1px solid #c9d2dd; padding:5pt; vertical-align:top; }
+tr { page-break-inside:avoid; } blockquote { border-left:3px solid #d4a52c; margin:10pt 0; padding:5pt 10pt; background:#f7f8fa; }
+code, pre { font-family: 'Liberation Mono', monospace; } pre { white-space:pre-wrap; background:#f2f4f7; padding:8pt; }
+strong { color:#152b46; } a { color:#176c82; text-decoration:none; }
+</style></head><body><h1>D10S Cup — Plan de pruebas funcionales</h1>
+<p><strong>Versión 1.0 · Taller de Construcción de Software · 2026</strong></p>
+<h2>1. Objetivo y alcance</h2>
+<p>Definir una ejecución repetible de pruebas funcionales y de aceptación para las páginas y flujos disponibles: navegación, Auth, torneos, fixture, resultados, tienda/carrito, pedidos propios, contacto, permisos y persistencia. No reemplaza una auditoría de seguridad, pruebas de carga ni pruebas de cobro real.</p>
+<h2>2. Entornos y datos</h2>
+<ul>
+<li><strong>Entorno recomendado:</strong> Preview o proyecto Supabase de demostración separado de producción.</li>
+<li>Navegador actualizado, conexión estable y consola de desarrollador disponible.</li>
+<li>Cuentas: usuario nuevo de prueba, usuario común y cuenta administradora controlada.</li>
+<li>Datos: un torneo de prueba, encuentros programados/jugados, grupos y posiciones, productos con una variante disponible y otra sin stock.</li>
+<li>Registrar fecha, navegador, build/commit, usuario de prueba, resultado, evidencia y defecto.</li>
+<li>Antes de un checkout, confirmar entorno, producto y stock. El checkout cambia datos persistentes.</li>
+</ul>
+<h2>3. Severidad</h2>
+<p><strong>Bloqueante:</strong> impide demo segura o acceso esencial. <strong>Alta:</strong> flujo principal incorrecto o exposición de datos. <strong>Media:</strong> función secundaria no cumple. <strong>Baja:</strong> defecto visual/copy sin impedir uso.</p>
+<h2>4. Casos de prueba</h2>
+<table>
+<thead><tr><th>ID</th><th>Flujo y pasos</th><th>Resultado esperado</th><th>Tipo / impacto</th></tr></thead><tbody>
+<tr><td>NAV-01</td><td>Abrir portada; seguir Productos, Torneos, Partidos, Resultados; usar volver e inicio.</td><td>Cada destino carga con estilos/scripts y sin 404 de recursos.</td><td>Manual, alta</td></tr>
+<tr><td>NAV-02</td><td>Repetir navegación en ancho móvil; abrir/cerrar menú.</td><td>Controles accesibles y contenido sin desbordamiento crítico.</td><td>Manual, media</td></tr>
+<tr><td>AUTH-01</td><td>Registrar correo de prueba con contraseña válida; completar confirmación si se solicita.</td><td>Mensaje de alta; cuenta creada según configuración Auth.</td><td>Integración, alta</td></tr>
+<tr><td>AUTH-02</td><td>Iniciar sesión con cuenta de prueba y luego cerrar sesión.</td><td>Sesión reflejada en interfaz; cierre termina la sesión.</td><td>Integración, alta</td></tr>
+<tr><td>AUTH-03</td><td>Intentar login con contraseña incorrecta.</td><td>Error claro; no se inicia sesión ni se revela información sensible.</td><td>Negativa, media</td></tr>
+<tr><td>AUTH-04</td><td>Solicitar restablecimiento y seguir correo/enlace con URL permitida.</td><td>Página permite actualizar contraseña mientras el enlace sea válido.</td><td>Integración, alta</td></tr>
+<tr><td>TOR-01</td><td>Buscar torneo por nombre y filtrar por modalidad.</td><td>Resultados coinciden con los criterios; vacío se comunica correctamente.</td><td>Funcional, media</td></tr>
+<tr><td>TOR-02</td><td>Como usuario común, intentar alta; como admin, crear torneo de prueba con datos válidos.</td><td>Usuario común rechazado por autorización; admin crea registro y aparece en listado.</td><td>Permisos/DB, alta; limpiar datos luego</td></tr>
+<tr><td>FIX-01</td><td>Abrir Partidos; recorrer carrusel; cambiar mes/día con partido.</td><td>Se muestran solo encuentros cargados y sus datos correctos.</td><td>Integración, media</td></tr>
+<tr><td>RES-01</td><td>Abrir grupos y eliminatorias; contrastar tabla con partidos jugados.</td><td>PJ, G/E/P, GF/GC, diferencia y puntos son consistentes; faltantes se representan sin romper página.</td><td>Integración, alta</td></tr>
+<tr><td>SHOP-01</td><td>Buscar y filtrar productos; abrir detalle; elegir variante.</td><td>Catálogo muestra activos; variante, precio y disponibilidad correctos.</td><td>Funcional, alta</td></tr>
+<tr><td>SHOP-02</td><td>Agregar producto disponible, modificar cantidad y quitar ítem.</td><td>Carrito y subtotales se actualizan correctamente.</td><td>Funcional, media</td></tr>
+<tr><td>SHOP-03</td><td>Con cuenta autenticada, completar checkout solo en entorno demo.</td><td>Stock se reserva, pedido se confirma como simulado y ticket QR aparece si incluye entrada.</td><td>Escritura/DB, alta; requiere aprobación del responsable de demo</td></tr>
+<tr><td>SHOP-04</td><td>Repetir con stock insuficiente o usuario sin sesión.</td><td>Operación se rechaza con mensaje; no queda pedido pagado/ticket indebido.</td><td>Negativa, alta; entorno demo</td></tr>
+<tr><td>SHOP-05</td><td>Abrir Mis compras con el dueño y después con otra cuenta.</td><td>Dueño ve el pedido; segunda cuenta no puede consultar los datos ajenos.</td><td>Aislamiento/RLS, bloqueante</td></tr>
+<tr><td>CONTACT-01</td><td>Enviar formulario válido y luego inválido/incompleto.</td><td>Válido da confirmación y persiste; inválido no genera mensaje y muestra validación.</td><td>Integración, media</td></tr>
+<tr><td>SEC-01</td><td>Como usuario común, intentar manipular interfaz para mostrar acción admin y enviar operación.</td><td>La base/RLS rechaza la operación, aunque se altere la UI.</td><td>Permisos, bloqueante</td></tr>
+<tr><td>SEC-02</td><td>Revisar frontend/red: no deben aparecer <code>service_role</code>, <code>sb_secret</code> ni credenciales privadas.</td><td>Solo clave publicable en el cliente; ninguna clave privada filtrada.</td><td>Seguridad, bloqueante</td></tr>
+<tr><td>ERR-01</td><td>Simular pérdida de red o consultar con backend no disponible.</td><td>La página informa estado/error sin bloquear toda la navegación ni mostrar falso éxito.</td><td>Resiliencia, media</td></tr>
+</tbody></table>
+<h2>5. Criterios de salida</h2>
+<ul>
+<li>100% de casos bloqueantes y altos aprobados o con excepción documentada.</li>
+<li>Sin fuga de datos entre cuentas ni credenciales privadas en bundle.</li>
+<li>Flujos de escritura corridos únicamente sobre datos/cuentas de demo.</li>
+<li>Evidencias guardadas en el repositorio de trabajo del equipo con datos personales ocultos.</li>
+<li>Defectos pendientes con responsable, severidad y decisión de aceptación.</li>
+</ul>
+<h2>6. Registro de ejecución</h2>
+<table>
+<thead><tr><th>ID</th><th>Fecha / entorno</th><th>Resultado (Aprobado/Fallido/No ejecutado)</th><th>Evidencia / incidencia</th><th>Responsable</th></tr></thead><tbody>
+<tr><td>Completar durante la sesión de prueba</td><td></td><td></td><td></td><td></td></tr>
+</tbody></table>
+<h2>7. Límites</h2>
+<p>La confirmación de pago simulada no verifica una transacción externa. El QR no se validó con lector. Las pruebas destructivas o con impacto de stock quedan fuera de producción. Este plan no afirma que los casos estén ejecutados; es la guía para la sesión de QA y defensa.</p></body></html>

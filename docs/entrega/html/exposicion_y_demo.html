@@ -1,0 +1,91 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>04 Exposicion y Demo</title><style>
+@page { size: A4; margin: 18mm 17mm 18mm; @bottom-right { content: "D10S Cup · 2026  |  Página " counter(page); color:#667085; font-size:8pt; } }
+body { font-family: 'Liberation Sans', Arial, sans-serif; color:#202838; font-size:10pt; line-height:1.45; }
+h1 { color:#12315a; font-size:23pt; border-bottom:3px solid #d4a52c; padding-bottom:8pt; margin-top:0; }
+h2 { color:#12315a; font-size:15pt; margin-top:22pt; border-bottom:1px solid #dbe2ea; padding-bottom:4pt; }
+h3 { color:#176c82; font-size:11.5pt; margin-top:15pt; }
+p { margin:6pt 0; } ul,ol { padding-left:20pt; } li { margin:3pt 0; }
+table { width:100%; border-collapse:collapse; margin:10pt 0 14pt; font-size:8.4pt; }
+th { background:#12315a; color:white; text-align:left; } td,th { border:1px solid #c9d2dd; padding:5pt; vertical-align:top; }
+tr { page-break-inside:avoid; } blockquote { border-left:3px solid #d4a52c; margin:10pt 0; padding:5pt 10pt; background:#f7f8fa; }
+code, pre { font-family: 'Liberation Mono', monospace; } pre { white-space:pre-wrap; background:#f2f4f7; padding:8pt; }
+strong { color:#152b46; } a { color:#176c82; text-decoration:none; }
+</style></head><body><h1>D10S Cup — Exposición del sistema y demostración en vivo</h1>
+<p><strong>Guion del equipo · Taller de Construcción de Software · 2026</strong>  </p>
+<p>Duración sugerida: 12–15 minutos de exposición + 5 minutos de preguntas. Ajustar el reparto a las tareas realmente realizadas por cada integrante.</p>
+<h2>1. Objetivo de la presentación</h2>
+<p>Presentar el problema, objetivos y alcance; mostrar arquitectura y persistencia; recorrer funciones en funcionamiento; explicar seguridad, pruebas, presupuesto y límites; cerrar con próximos pasos. Diferenciar en todo momento lo que está implementado de lo planificado.</p>
+<h2>2. Roles y orden sugerido</h2>
+<table>
+<thead><tr><th>Orden / integrante</th><th>Tiempo</th><th>Puntos a explicar</th><th>Transición</th></tr></thead><tbody>
+<tr><td>1. Santiago Huechepan</td><td>2–3 min</td><td>Problema y objetivo; requisitos relevantes; arquitectura HTML/CSS/JS + Supabase/PostgreSQL/Auth; modelo, RLS y roles. Señalar que la propuesta inicial consideraba MySQL y la implementación usa Supabase/PostgreSQL.</td><td>“Con la base y permisos explicados, vemos la experiencia de consulta y competencia.”</td></tr>
+<tr><td>2. Ignacio Marteniuk</td><td>2–3 min</td><td>Portada y navegación; torneos, búsqueda/modalidad y acción administrativa; límites de gestión de equipos/inscripciones; explicar cómo el rol restringe operaciones.</td><td>“Ahora mostramos el fixture y cómo se presentan los datos deportivos.”</td></tr>
+<tr><td>3. Joaquín Namuncura</td><td>2–3 min</td><td>Partidos, carrusel/calendario; resultados, posiciones y fases eliminatorias; origen de datos; estados vacíos y limitación de carga en vivo.</td><td>“Cerramos el recorrido funcional con tienda y compra de demostración.”</td></tr>
+<tr><td>4. Enzo Patiño</td><td>3–4 min</td><td>Tienda, variantes y carrito; sesión y compras propias; pedido, stock y ticket QR; aclarar pago simulado; diseño responsive, Vercel y próximos pasos.</td><td>“Después de la demo, resumimos pruebas, presupuesto y evolución.”</td></tr>
+</tbody></table>
+<p>El reparto es una propuesta de presentación basada en módulos y no certifica el aporte individual. El equipo debe cambiar nombres/temas si su distribución real fue otra.</p>
+<h2>3. Guion de apertura</h2>
+<p>“D10S Cup es una plataforma web para organizar y consultar un torneo de fútbol y ofrecer una tienda asociada. El problema que buscamos atender es tener la información de competencias, fixture, resultados y productos en un solo lugar. Presentaremos las funciones conectadas y también los límites de esta versión para distinguir la demo académica de un servicio listo para operar pagos reales.”</p>
+<h2>4. Demo en vivo: recorrido de 5 minutos</h2>
+<h3>Preparación previa</h3>
+<ul>
+<li>Usar la URL de Preview o producción aprobada y comprobarla antes de exponer.</li>
+<li>Verificar red, Supabase, contenido y cuenta demo; tener preparada una segunda pestaña con portada.</li>
+<li>Confirmar que hay torneos, partidos, posiciones y productos visibles.</li>
+<li>No realizar checkout si el entorno no está identificado como demo o si no se autorizaron escrituras. Una compra altera stock y registros.</li>
+<li>No proyectar contraseñas, correo personal, claves API, SQL con credenciales ni paneles con información privada.</li>
+<li>Tener capturas locales como respaldo por caída de Internet; informar si se pasa al respaldo, sin presentarlo como vivo.</li>
+</ul>
+<h3>Pasos a narrar</h3>
+<ol>
+<li><strong>Inicio:</strong> explicar objetivo, navegación y acceso a secciones (30 s).</li>
+<li><strong>Torneos:</strong> mostrar búsqueda/filtros y contenido conectado (45 s). Si se muestra alta, usar usuario admin y un torneo de prueba acordado; después eliminarlo según procedimiento de demo.</li>
+<li><strong>Partidos y resultados:</strong> mover carrusel/calendario; comparar una fila de posiciones con un resultado existente; abrir eliminatorias (60 s).</li>
+<li><strong>Cuenta:</strong> mostrar la sesión de demo y la pantalla de login/registro sin revelar credenciales; comentar recuperación (30 s). Si no hay correo de prueba listo, describir sin iniciar el flujo.</li>
+<li><strong>Tienda:</strong> buscar producto, mostrar variante/stock y carrito. Solo si existe autorización explícita y dataset de demo, completar un pedido y enseñar el comprobante/ticket QR e historial. Aclarar “pago simulado, sin transacción monetaria” (90 s).</li>
+<li><strong>Cierre:</strong> volver a portada, destacar que los datos provienen de Supabase y resumir siguientes pasos (30 s).</li>
+</ol>
+<h2>5. Puntos técnicos requeridos</h2>
+<h3>Arquitectura</h3>
+<ul>
+<li>Frontend estático con HTML semántico, CSS y módulos JavaScript.</li>
+<li>Supabase ofrece PostgreSQL, Auth y Data API; no hay backend HTTP propio.</li>
+<li>Vercel publica el sitio estático. Las variables públicas de Supabase se configuran como variables <code>VITE_*</code> al compilar.</li>
+</ul>
+<h3>Persistencia y seguridad</h3>
+<ul>
+<li>Tablas relacionales para perfiles, equipos, competencias, productos, pedidos y tickets.</li>
+<li>RLS limita lecturas/escrituras por rol y propiedad. Las RPC de compra validan usuario, stock y precio en la base.</li>
+<li>La clave publicable se usa en navegador; jamás debe utilizarse <code>service_role</code> o <code>sb_secret</code> en el cliente.</li>
+<li>La confirmación simulada no comprueba un pago externo; para operar comercialmente hace falta proveedor y webhook confiable.</li>
+</ul>
+<h3>Pruebas y calidad</h3>
+<ul>
+<li>Presentar el plan de pruebas: navegación, Auth, permisos, consistencia de posiciones, carrito, aislamiento de compras, contacto y manejo de errores.</li>
+<li>Informar solo resultados efectivamente ejecutados con fecha/evidencia. La existencia de un plan no significa que se ejecutó.</li>
+<li>Mostrar los casos pendientes y el proceso de registro de incidencias.</li>
+</ul>
+<h3>Presupuesto</h3>
+<ul>
+<li>340 horas estimadas, ARS 4.800/hora y total ARS 1.632.000 bajo los supuestos heredados.</li>
+<li>Es una estimación académica de referencia, no cotización actual. Pago real, infraestructura variable y mantenimiento requieren estimación aparte.</li>
+<li>El alcance completo presupuestado incluye módulos aún pendientes; no presentarlo como funcionalidad entregada.</li>
+</ul>
+<h2>6. Limitaciones y evolución</h2>
+<ol>
+<li>Integrar pasarela de pago real y confirmar con webhook firmado.</li>
+<li>Validar tickets QR desde una interfaz de acceso.</li>
+<li>Completar gestión de equipos, inscripciones, planteles y cupos.</li>
+<li>Añadir administración de resultados en vivo y reportes.</li>
+<li>Automatizar expiración de reservas y reforzar conciliación de pedidos.</li>
+<li>Ejecutar QA integral en un entorno de staging y validar Auth/redirects del dominio final.</li>
+</ol>
+<h2>7. Preguntas probables y respuestas breves</h2>
+<p><strong>¿Por qué Supabase si el documento hablaba de MySQL?</strong> La implementación evolucionó a PostgreSQL administrado con Supabase, que integra Auth y políticas RLS; se debe actualizar la documentación para reflejar esa decisión.</p>
+<p><strong>¿El pago es real?</strong> No. El sistema demuestra el flujo de pedido y ticket mediante confirmación simulada; no cobra dinero.</p>
+<p><strong>¿Qué evita que alguien se haga administrador desde el navegador?</strong> El rol no se concede desde el cliente y las operaciones se vuelven a validar en PostgreSQL con RLS.</p>
+<p><strong>¿El QR permite entrar al estadio?</strong> No en esta versión. Identifica un ticket; aún falta lector y validación de acceso.</p>
+<p><strong>¿Qué falta para producción comercial?</strong> Pago real con webhook, política operativa de tickets/stock, pruebas completas, dominio y configuración de Auth, observabilidad y soporte.</p>
+<p><strong>¿Cómo calculan las posiciones?</strong> La vista toma partidos jugados, agrega goles y resultados, y aplica 3 puntos por victoria y 1 por empate.</p>
+<h2>8. Cierre</h2>
+<p>“La versión actual demuestra una experiencia integrada de consulta y comercio de prueba, con datos persistentes y control de acceso en base. Los siguientes hitos para una operación real son completar la validación funcional, integrar pagos reales de forma segura y cerrar los módulos de administración pendientes.”</p></body></html>

@@ -38,10 +38,23 @@ form?.addEventListener("submit", async (event) => {
       ({ error } = await signInWithUsername(identity, password));
     }
     if (error) {
-      const authCode = error.code || error.message;
-      const detail = authCode === "invalid_credentials" || authCode === "Invalid login credentials"
-        ? "El correo o la contraseña no son correctos. Si acabás de registrarte, confirmá tu correo antes de ingresar."
-        : "No se pudo iniciar sesión por un problema de conexión o configuración. Intentá nuevamente más tarde.";
+      const authCode = (error.code || "").toLowerCase();
+      const authMessage = (error.message || "").toLowerCase();
+      let detail;
+
+      if (authCode === "invalid_credentials" || authMessage.includes("invalid login credentials")) {
+        detail = "El correo o la contraseña no son correctos. Si acabás de registrarte, confirmá tu correo antes de ingresar.";
+      } else if (authCode === "email_not_confirmed") {
+        detail = "Tu correo todavía no está confirmado. Revisá tu bandeja de entrada y abrí el enlace de confirmación.";
+      } else if (authCode === "user_banned") {
+        detail = "Esta cuenta está temporalmente bloqueada. Contactá al administrador.";
+      } else if (error.status === 429) {
+        detail = "Hubo demasiados intentos de inicio de sesión. Esperá un momento y probá de nuevo.";
+      } else if (error.status >= 500) {
+        detail = "El servicio de inicio de sesión está temporalmente fuera de servicio. Intentá nuevamente más tarde.";
+      } else {
+        detail = "No se pudo iniciar sesión. Revisá que el correo esté registrado y confirmado; si el problema sigue, contactá al administrador.";
+      }
       showAuthMessage(message, detail, "error");
       return;
     }

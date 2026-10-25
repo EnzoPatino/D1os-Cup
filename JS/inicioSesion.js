@@ -33,7 +33,20 @@ form?.addEventListener("submit", async (event) => {
   try {
     let error;
     if (identity.includes("@")) {
-      ({ error } = await supabase.auth.signInWithPassword({ email: identity, password }));
+      const response = await fetch("/api/email-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: identity, password }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        error = { code: result.code, status: response.status };
+      } else {
+        ({ error } = await supabase.auth.setSession({
+          access_token: result.access_token,
+          refresh_token: result.refresh_token,
+        }));
+      }
     } else {
       ({ error } = await signInWithUsername(identity, password));
     }
@@ -48,6 +61,10 @@ form?.addEventListener("submit", async (event) => {
         detail = "Tu correo todavía no está confirmado. Revisá tu bandeja de entrada y abrí el enlace de confirmación.";
       } else if (authCode === "user_banned") {
         detail = "Esta cuenta está temporalmente bloqueada. Contactá al administrador.";
+      } else if (authCode === "auth_unavailable" || authCode === "unexpected_failure") {
+        detail = "El servicio de inicio de sesión está temporalmente fuera de servicio. Intentá nuevamente más tarde.";
+      } else if (authCode === "email_address_not_authorized") {
+        detail = "El proveedor de correo no está habilitado en Supabase. Contactá al administrador.";
       } else if (error.status === 429) {
         detail = "Hubo demasiados intentos de inicio de sesión. Esperá un momento y probá de nuevo.";
       } else if (error.status >= 500) {

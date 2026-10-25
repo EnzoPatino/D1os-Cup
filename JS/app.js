@@ -2,11 +2,32 @@ import { supabase } from "./supabaseClient.js";
 
 const toggle = document.getElementById("nav-toggle");
 const menu = document.getElementById("nav-menu");
-toggle?.addEventListener("click", () => {
-  const open = menu.classList.toggle("active");
+const setMenuOpen = (open) => {
+  if (!toggle || !menu) return;
+  menu.classList.toggle("active", open);
   toggle.classList.toggle("active", open);
   toggle.setAttribute("aria-expanded", String(open));
+};
+toggle?.addEventListener("click", () => setMenuOpen(!menu.classList.contains("active")));
+menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenuOpen(false)));
+document.addEventListener("click", (event) => {
+  if (menu?.classList.contains("active") && !menu.contains(event.target) && !toggle?.contains(event.target)) {
+    setMenuOpen(false);
+  }
 });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") setMenuOpen(false);
+});
+
+const navbar = document.querySelector(".navbar");
+let scrollFrame = 0;
+window.addEventListener("scroll", () => {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(() => {
+    navbar?.classList.toggle("page-scrolled", window.scrollY > 12);
+    scrollFrame = 0;
+  });
+}, { passive: true });
 
 const form = document.getElementById("contact-form");
 const message = document.getElementById("contact-status");

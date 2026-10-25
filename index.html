@@ -14,6 +14,7 @@
     <!-- CSS externo -->
     <link rel="stylesheet" href="CSS/style.css" />
     <link rel="stylesheet" href="CSS/auth.css" />
+    <link rel="stylesheet" href="CSS/home-header-profile.css" />
     <link rel="stylesheet" href="CSS/scroll-animations.css" />
 
     <!-- System fonts en CSS (sin Google Fonts ni @import) -->
@@ -29,15 +30,21 @@
             alt="D10S Cup Logo"
             class="nav-logo-img"
           />
-          <span class="nav-logo-text">D10S <span class="gold">CUP</span></span>
+          <span class="nav-logo-copy">
+            <span class="nav-logo-text">D10S <span class="gold">CUP</span></span>
+            <span class="nav-logo-caption">TORNEO DE FÚTBOL</span>
+          </span>
         </a>
 
         <!-- Menú de navegación -->
         <nav class="nav-menu" id="nav-menu" aria-label="Menú principal">
           <ul class="nav-list">
             <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-            <li><a href="HTML/productos.html" class="nav-link">Productos</a></li>
-            <li><a href="#contactos" class="nav-link">Contactos</a></li>
+            <li><a href="HTML/torneos.html" class="nav-link">Torneos</a></li>
+            <li><a href="HTML/partidos.html" class="nav-link">Partidos</a></li>
+            <li><a href="HTML/Resultados.html" class="nav-link">Resultados</a></li>
+            <li><a href="HTML/productos.html" class="nav-link">Tienda</a></li>
+            <li><a href="#contactos" class="nav-link">Contacto</a></li>
           </ul>
           <div class="nav-auth" data-auth-nav aria-label="Sesión de usuario">
             <a href="HTML/incioSesion.html" class="d10s-btn d10s-btn--outline d10s-btn--sm"
@@ -50,7 +57,7 @@
         </nav>
 
         <!-- Hamburguesa responsive -->
-        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-controls="nav-menu" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>

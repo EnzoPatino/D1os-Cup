@@ -189,4 +189,4 @@ Para la puesta en marcha en la nube de la plataforma web con base de datos en l�
 
 ---
 
-> 📌 **Guía de Actualización:** Si los valores de gastos mensuales ($A, C, T, R, S$) o las horas por módulo varían durante el ciclo de vida del proyecto, únicamente se debe reemplazar el valor en la tabla del **Paso 1** y re-calcular el **Paso 2**, actualizándose automáticamente las cifras finales del presupuesto.
+> **Guía de actualización:** Si los valores de gastos mensuales ($A, C, T, R, S$) o las horas por módulo varían durante el ciclo de vida del proyecto, únicamente se debe reemplazar el valor en la tabla del **Paso 1** y re-calcular el **Paso 2**, actualizándose automáticamente las cifras finales del presupuesto.

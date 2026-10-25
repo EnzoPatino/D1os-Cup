@@ -117,6 +117,7 @@ function paintSignedIn(container, user) {
     closeProfileMenus();
     menu.hidden = !open;
     trigger.setAttribute("aria-expanded", String(open));
+    container.closest(".topbar")?.classList.toggle("profile-menu-open", open);
   });
   menu.addEventListener("click", (event) => event.stopPropagation());
 
@@ -134,6 +135,7 @@ function closeProfileMenus() {
   document.querySelectorAll(".auth-profile-menu:not([hidden])").forEach((menu) => {
     menu.hidden = true;
     menu.parentElement?.querySelector(".auth-profile-trigger")?.setAttribute("aria-expanded", "false");
+    menu.closest(".topbar")?.classList.remove("profile-menu-open");
   });
 }
 

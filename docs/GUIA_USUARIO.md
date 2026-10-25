@@ -77,9 +77,6 @@ Permite ingresar al sistema a usuarios previamente registrados.
 4. Si aún no recuerda su clave, puede acceder mediante el enlace **"¿Olvidaste tu contraseña?"**.
 5. Si desea regresar a la portada, haga clic en el botón **"Volver"**.
 
-> 📷 **[Captura de pantalla: Pantalla de Inicio de Sesión]**  
-> *(Espacio para insertar imagen del formulario de inicio de sesión: `HTML/incioSesion.html`)*
-
 ---
 
 ### 3.2. Crear Cuenta / Registrarse (`Registrarse.html`)
@@ -91,9 +88,6 @@ Si el usuario no cuenta con una cuenta creada, puede registrarse de manera rápi
 5. Haga clic en el botón **"Registrarse"** para confirmar el alta.
 6. Cuenta con accesos directos para **"Volver a iniciar sesión"** o **"Ir al inicio"**.
 
-> 📷 **[Captura de pantalla: Pantalla de Registro de Cuenta]**  
-> *(Espacio para insertar imagen de registro: `HTML/Registrarse.html`)*
-
 ---
 
 ### 3.3. Recuperación de Contraseña (`olvidastecontra.html`)
@@ -101,9 +95,6 @@ En caso de extravío u olvido de la clave de acceso:
 1. Introduzca su correo electrónico vinculado a su cuenta.
 2. Presione el botón **"Ingresar"** (solicitar restablecimiento).
 3. El sistema verificará la casilla y enviará las instrucciones para redefinir una nueva contraseña de forma segura.
-
-> 📷 **[Captura de pantalla: Recuperación de Contraseña]**  
-> *(Espacio para insertar imagen de recuperación: `HTML/olvidastecontra.html`)*
 
 ---
 
@@ -127,9 +118,6 @@ Es la página de bienvenida y presentación general de **D10S Cup**, pensada par
   * Formulario directo para consultas: Nombre completo, Correo electrónico, Teléfono y Mensaje.
   * Enlaces a canales oficiales de comunicación (Instagram, Twitter, YouTube).
 
-> 📷 **[Captura de pantalla: Portada Principal / Landing Page]**  
-> *(Espacio para insertar imagen de portada: `index.html`)*
-
 ---
 
 ## 5. Módulo de Torneos (`torneos.html`)
@@ -148,9 +136,6 @@ Este módulo permite explorar todas las competiciones deportivas gestionadas baj
 * **Fichas Informativas de Torneos:**
   * Cada tarjeta expone el nombre, badge de estado (*Inscripciones Abiertas*, *En Curso*, *Finalizado*), fecha de inicio, cantidad de equipos inscriptos y premio para el campeón.
 
-> 📷 **[Captura de pantalla: Listado y Filtros de Torneos]**  
-> *(Espacio para insertar imagen de torneos: `HTML/torneos.html`)*
-
 ---
 
 ## 6. Módulo de Partidos y Fixture (`partidos.html`)
@@ -168,9 +153,6 @@ Permite tanto a los equipos como a los aficionados conocer el cronograma de los 
 ### 6.2. Calendario Mensual del Fixture
 * Calendario mensual dinámico donde los días con partidos programados se destacan con indicadores visuales.
 * Al hacer clic sobre una fecha programada, se despliegan los detalles de los cruces de ese día.
-
-> 📷 **[Captura de pantalla: Carrusel de Partidos y Calendario de Fixture]**  
-> *(Espacio para insertar imagen de partidos: `HTML/partidos.html`)*
 
 ---
 
@@ -215,9 +197,6 @@ En esta sección se encuentra toda la información deportiva tras la disputa de 
   * **Final:** Encuentro definitorio con marcador final y mención al equipo Campeón.
 * Cuenta con el botón **"Volver a Grupos"** para regresar a la vista de tablas con un solo clic.
 
-> 📷 **[Captura de pantalla: Tablas de Grupos y Bracket Eliminatorio]**  
-> *(Espacio para insertar imagen de resultados: `HTML/Resultados.html`)*
-
 ---
 
 ## 8. Tienda Oficial y Carrito de Compras (`productos.html`)
@@ -249,9 +228,6 @@ Es el módulo de comercio electrónico de **D10S Cup**, donde los aficionados pu
   * Botón para eliminar un ítem del carrito.
   * Subtotal actualizado en tiempo real.
   * Botón **"Finalizar Compra"**: Conduce a la confirmación de pago y emisión de los comprobantes y tickets con código QR / identificador de acceso al estadio.
-
-> 📷 **[Captura de pantalla: Catálogo de Productos y Carrito de Compras]**  
-> *(Espacio para insertar imagen de la tienda y carrito: `HTML/productos.html`)*
 
 ---
 

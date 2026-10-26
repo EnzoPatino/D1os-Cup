@@ -1,62 +1,80 @@
 # D10S Cup — Plan de pruebas funcionales
 
-**Versión 1.0 · Taller de Construcción de Software · 2026**
+**Versión:** 1.1
+**Fecha:** 26 de octubre de 2026
+**Proyecto:** Taller de Construcción de Software
 
-## 1. Objetivo y alcance
+## 1. Objetivo
 
-Definir una ejecución repetible de pruebas funcionales y de aceptación para las páginas y flujos disponibles: navegación, Auth, torneos, fixture, resultados, tienda/carrito, pedidos propios, contacto, permisos y persistencia. No reemplaza una auditoría de seguridad, pruebas de carga ni pruebas de cobro real.
+Definir las comprobaciones necesarias para evaluar la navegación, las cuentas, las secciones deportivas, la tienda y los permisos de D10S Cup. El documento describe pruebas por ejecutar; no presenta resultados ni evidencia de pruebas ya realizadas.
 
-## 2. Entornos y datos
+## 2. Alcance
 
-- **Entorno recomendado:** Preview o proyecto Supabase de demostración separado de producción.
-- Navegador actualizado, conexión estable y consola de desarrollador disponible.
-- Cuentas: usuario nuevo de prueba, usuario común y cuenta administradora controlada.
-- Datos: un torneo de prueba, encuentros programados/jugados, grupos y posiciones, productos con una variante disponible y otra sin stock.
-- Registrar fecha, navegador, build/commit, usuario de prueba, resultado, evidencia y defecto.
-- Antes de un checkout, confirmar entorno, producto y stock. El checkout cambia datos persistentes.
+Se probarán la portada y navegación responsive, registro e inicio de sesión, recuperación de contraseña, listado de torneos, partidos y resultados, catálogo y carrito, historial de compras, formulario de contacto y restricciones por rol.
 
-## 3. Severidad
+Quedan fuera del alcance el cobro real, pruebas de carga, auditoría completa de seguridad y validación de tickets con lector QR. El pago disponible es simulado.
 
-**Bloqueante:** impide demo segura o acceso esencial. **Alta:** flujo principal incorrecto o exposición de datos. **Media:** función secundaria no cumple. **Baja:** defecto visual/copy sin impedir uso.
+## 3. Entorno y preparación
 
-## 4. Casos de prueba
+- Usar un entorno de Preview o una instancia de Supabase destinada a pruebas. No ejecutar casos que escriban datos en producción.
+- Abrir el sitio mediante HTTP/HTTPS, no mediante `file://`. Para desarrollo local, ejecutar `npm run dev` y abrir <http://localhost:8000>.
+- Registrar versión o commit, fecha, navegador y tamaño de pantalla.
+- Preparar una cuenta nueva, una cuenta común confirmada, una cuenta administrativa de prueba y acceso a los correos de prueba.
+- Preparar datos conocidos: un torneo por modalidad, partidos programados y jugados, grupos con equipos, un producto con stock y otro sin stock.
+- Antes de probar pedidos, confirmar que se está en el entorno de prueba y anotar el stock inicial. Las compras crean registros y modifican stock.
+- Para probar el rol administrador, usar una cuenta de prueba autorizada. No cambiar roles de cuentas reales.
 
-| ID | Flujo y pasos | Resultado esperado | Tipo / impacto |
+## 4. Prioridad
+
+**P1 — Alta:** falla de acceso, exposición de datos, permisos incorrectos o bloqueo de un flujo principal.
+
+**P2 — Media:** función disponible con comportamiento incorrecto, sin comprometer datos sensibles.
+
+**P3 — Baja:** defecto visual o de texto que no impide completar el flujo.
+
+## 5. Casos de prueba
+
+El estado inicial de todos los casos es **Pendiente**. Registrar el resultado real en la tabla de ejecución después de realizarlos.
+
+| ID | Caso y pasos | Resultado esperado | Prioridad |
 |---|---|---|---|
-| NAV-01 | Abrir portada; seguir Productos, Torneos, Partidos, Resultados; usar volver e inicio. | Cada destino carga con estilos/scripts y sin 404 de recursos. | Manual, alta |
-| NAV-02 | Repetir navegación en ancho móvil; abrir/cerrar menú. | Controles accesibles y contenido sin desbordamiento crítico. | Manual, media |
-| AUTH-01 | Registrar correo de prueba con contraseña válida; completar confirmación si se solicita. | Mensaje de alta; cuenta creada según configuración Auth. | Integración, alta |
-| AUTH-02 | Iniciar sesión con cuenta de prueba y luego cerrar sesión. | Sesión reflejada en interfaz; cierre termina la sesión. | Integración, alta |
-| AUTH-03 | Intentar login con contraseña incorrecta. | Error claro; no se inicia sesión ni se revela información sensible. | Negativa, media |
-| AUTH-04 | Solicitar restablecimiento y seguir correo/enlace con URL permitida. | Página permite actualizar contraseña mientras el enlace sea válido. | Integración, alta |
-| TOR-01 | Buscar torneo por nombre y filtrar por modalidad. | Resultados coinciden con los criterios; vacío se comunica correctamente. | Funcional, media |
-| TOR-02 | Como usuario común, intentar alta; como admin, crear torneo de prueba con datos válidos. | Usuario común rechazado por autorización; admin crea registro y aparece en listado. | Permisos/DB, alta; limpiar datos luego |
-| FIX-01 | Abrir Partidos; recorrer carrusel; cambiar mes/día con partido. | Se muestran solo encuentros cargados y sus datos correctos. | Integración, media |
-| RES-01 | Abrir grupos y eliminatorias; contrastar tabla con partidos jugados. | PJ, G/E/P, GF/GC, diferencia y puntos son consistentes; faltantes se representan sin romper página. | Integración, alta |
-| SHOP-01 | Buscar y filtrar productos; abrir detalle; elegir variante. | Catálogo muestra activos; variante, precio y disponibilidad correctos. | Funcional, alta |
-| SHOP-02 | Agregar producto disponible, modificar cantidad y quitar ítem. | Carrito y subtotales se actualizan correctamente. | Funcional, media |
-| SHOP-03 | Con cuenta autenticada, completar checkout solo en entorno demo. | Stock se reserva, pedido se confirma como simulado y ticket QR aparece si incluye entrada. | Escritura/DB, alta; requiere aprobación del responsable de demo |
-| SHOP-04 | Repetir con stock insuficiente o usuario sin sesión. | Operación se rechaza con mensaje; no queda pedido pagado/ticket indebido. | Negativa, alta; entorno demo |
-| SHOP-05 | Abrir Mis compras con el dueño y después con otra cuenta. | Dueño ve el pedido; segunda cuenta no puede consultar los datos ajenos. | Aislamiento/RLS, bloqueante |
-| CONTACT-01 | Enviar formulario válido y luego inválido/incompleto. | Válido da confirmación y persiste; inválido no genera mensaje y muestra validación. | Integración, media |
-| SEC-01 | Como usuario común, intentar manipular interfaz para mostrar acción admin y enviar operación. | La base/RLS rechaza la operación, aunque se altere la UI. | Permisos, bloqueante |
-| SEC-02 | Revisar frontend/red: no deben aparecer `service_role`, `sb_secret` ni credenciales privadas. | Solo clave publicable en el cliente; ninguna clave privada filtrada. | Seguridad, bloqueante |
-| ERR-01 | Simular pérdida de red o consultar con backend no disponible. | La página informa estado/error sin bloquear toda la navegación ni mostrar falso éxito. | Resiliencia, media |
-
-## 5. Criterios de salida
-
-- 100% de casos bloqueantes y altos aprobados o con excepción documentada.
-- Sin fuga de datos entre cuentas ni credenciales privadas en bundle.
-- Flujos de escritura corridos únicamente sobre datos/cuentas de demo.
-- Evidencias guardadas en el repositorio de trabajo del equipo con datos personales ocultos.
-- Defectos pendientes con responsable, severidad y decisión de aceptación.
+| NAV-01 | Desde Inicio abrir Torneos, Partidos, Resultados y Tienda; volver a Inicio desde cada sección. | Cada página abre correctamente, conserva estilos y carga sus recursos sin errores 404. | P2 |
+| NAV-02 | Repetir la navegación en móvil; abrir y cerrar el menú lateral y usar sus enlaces. | El menú responde, se puede cerrar y el contenido no queda cortado ni provoca desplazamiento horizontal. | P2 |
+| AUTH-01 | Registrar una cuenta nueva con nombre, correo y contraseña válida; confirmar el correo si se solicita. | Se informa el resultado del registro y la cuenta queda disponible según la configuración de Auth. | P1 |
+| AUTH-02 | Iniciar sesión con el correo y contraseña correctos; cerrar sesión desde el menú de usuario. | Se muestra la sesión y el cierre elimina el acceso autenticado. | P1 |
+| AUTH-03 | Iniciar sesión con el nombre de usuario y la contraseña correctos. | La cuenta inicia sesión y el perfil muestra el usuario esperado. | P1 |
+| AUTH-04 | Probar correo o usuario inexistente y contraseña incorrecta. | Se muestra un error entendible; no se inicia sesión ni se revela información privada. | P1 |
+| AUTH-05 | Solicitar recuperación de contraseña, abrir el enlace recibido y guardar una contraseña nueva. | El enlace permitido abre el formulario y la contraseña se actualiza; un enlace vencido informa el problema. | P1 |
+| TOR-01 | Buscar un torneo existente y filtrar por fútbol 11, 8 y 5. Repetir con una búsqueda sin resultados. | Los filtros y la búsqueda corresponden con los datos; el estado vacío se informa claramente. | P2 |
+| TOR-02 | Con cuenta común intentar crear torneo; luego repetir con la cuenta administradora de prueba. | La cuenta común no puede crear; el administrador crea el registro y aparece en el listado. | P1 |
+| FIX-01 | Abrir Partidos, recorrer el carrusel y cambiar el mes del calendario. Seleccionar días con y sin partidos. | Se muestran los partidos cargados con fecha y equipos correctos; los días vacíos no muestran cruces falsos. | P2 |
+| RES-01 | Abrir Resultados y comparar una tabla con los partidos jugados del grupo. Cambiar entre grupos y eliminatorias. | PJ, ganados, empatados, perdidos, goles y puntos coinciden con los datos; la navegación entre vistas funciona. | P1 |
+| SHOP-01 | Buscar productos y filtrar por categoría; abrir un detalle y elegir una variante disponible. | Se ven productos activos, precio y variantes correctas; no se ofrece stock inexistente. | P1 |
+| SHOP-02 | Añadir un producto al carrito, cambiar cantidad, quitarlo y volver a cargar la página. | Cantidades y total se actualizan; al recargar, el carrito conserva solo los artículos guardados por la aplicación. | P2 |
+| SHOP-03 | Con usuario autenticado y producto de prueba con stock, finalizar un pedido de demostración. | Se crea el pedido, el stock se reserva y el sitio identifica el pago como simulado. Si incluye entrada, aparece el ticket emitido. | P1 |
+| SHOP-04 | Intentar comprar una variante sin stock y probar checkout sin sesión. | La operación se rechaza con un mensaje; no aparece una compra pagada ni un ticket indebido. | P1 |
+| SHOP-05 | Abrir Mis compras con la cuenta propietaria y luego con una segunda cuenta. | La primera cuenta ve sus pedidos; la segunda no puede consultar los pedidos ni tickets ajenos. | P1 |
+| CONTACT-01 | Enviar el formulario de contacto completo y luego intentar enviarlo vacío o con datos inválidos. | El envío válido confirma el resultado; los datos inválidos se rechazan y no generan un registro. | P2 |
+| SEC-01 | Con cuenta común intentar forzar desde el navegador la creación de un torneo u otra operación restringida. | La base rechaza la operación aunque se altere la interfaz. | P1 |
+| SEC-02 | Revisar los recursos del cliente y las respuestas de red durante una sesión. | No se exponen claves privadas o `service_role`; el cliente usa solo credenciales publicables. | P1 |
+| ERR-01 | Desconectar la red o impedir temporalmente la respuesta de Supabase y abrir una sección con datos. | Se informa el error o estado de carga; no se muestra un éxito falso y el resto de la navegación sigue disponible. | P2 |
 
 ## 6. Registro de ejecución
 
-| ID | Fecha / entorno | Resultado (Aprobado/Fallido/No ejecutado) | Evidencia / incidencia | Responsable |
+Completar una fila por cada ejecución. Usar `Aprobado`, `Fallido` o `No ejecutado`. Adjuntar una captura o referencia de incidencia cuando corresponda y ocultar datos personales.
+
+| ID | Fecha y entorno | Resultado | Evidencia o incidencia | Responsable |
 |---|---|---|---|---|
-| Completar durante la sesión de prueba | | | | |
+| Completar al ejecutar los casos | | Pendiente | | |
 
-## 7. Límites
+## 7. Criterios de aceptación
 
-La confirmación de pago simulada no verifica una transacción externa. El QR no se validó con lector. Las pruebas destructivas o con impacto de stock quedan fuera de producción. Este plan no afirma que los casos estén ejecutados; es la guía para la sesión de QA y defensa.
+- Todos los casos P1 se aprueban o tienen una incidencia aceptada y documentada por el equipo.
+- No hay acceso entre cuentas a compras, tickets o datos privados.
+- Las acciones administrativas son rechazadas para una cuenta común tanto en la interfaz como en la base.
+- Los casos que modifican datos se ejecutan solo en un entorno de prueba y sus registros se identifican para limpieza posterior.
+- Se conserva evidencia suficiente para reproducir cada fallo y se registran navegador, fecha y versión probada.
+
+## 8. Límites
+
+La confirmación de compra es simulada y no verifica una transacción monetaria. El QR identifica un ticket, pero este plan no comprueba su lectura o validación en una entrada. La ejecución de este plan no sustituye una auditoría de seguridad ni pruebas de carga.

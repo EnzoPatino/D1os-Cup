@@ -1,0 +1,148 @@
+.home-page {
+  --navbar-height: 76px;
+}
+
+.home-page .navbar {
+  background: rgba(7, 10, 16, .82);
+  border-bottom-color: rgba(229, 184, 66, .12);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, .12);
+}
+
+.home-page .navbar.page-scrolled {
+  background: rgba(7, 10, 16, .95);
+  border-bottom-color: rgba(229, 184, 66, .24);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .34);
+}
+
+.home-page .nav-container {
+  max-width: 1440px;
+  gap: clamp(12px, 2vw, 30px);
+}
+
+.home-page .nav-logo { gap: 12px; }
+
+.home-page .nav-logo-img {
+  width: 48px;
+  height: 48px;
+  transition: transform 300ms ease, filter 300ms ease;
+}
+
+.home-page .nav-logo:hover .nav-logo-img {
+  transform: rotate(-5deg) scale(1.05);
+  filter: drop-shadow(0 0 12px rgba(229, 184, 66, .42));
+}
+
+.home-page .nav-logo-copy {
+  display: grid;
+  gap: 1px;
+  line-height: 1;
+}
+
+.home-page .nav-logo-text {
+  font-size: 1.22rem;
+  letter-spacing: .7px;
+}
+
+.home-page .nav-logo-caption {
+  color: var(--accent-gold);
+  font-size: .59rem;
+  font-weight: 700;
+  letter-spacing: 1.15px;
+}
+
+.home-page .nav-menu {
+  flex: 1;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.8vw, 28px);
+}
+
+.home-page .nav-list {
+  align-items: center;
+  gap: 3px;
+}
+
+.home-page .nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px clamp(9px, 1vw, 15px);
+  font-size: .84rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.home-page .nav-link:hover { transform: translateY(-1px); }
+
+.home-page .nav-link.active { border: 1px solid rgba(229, 184, 66, .12); }
+
+.home-page .nav-menu .nav-auth {
+  gap: 9px;
+  justify-content: flex-end;
+}
+
+.home-page .navbar .nav-auth .auth-nav-link {
+  min-height: 39px;
+  padding: 8px 14px;
+  font-size: .81rem;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, filter 180ms ease;
+}
+
+.home-page .navbar .nav-auth .auth-nav-link:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.home-page .navbar a:focus-visible,
+.home-page .nav-toggle:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1050px) and (min-width: 769px) {
+  .home-page .nav-container { padding: 0 16px; }
+  .home-page .nav-logo { gap: 8px; }
+  .home-page .nav-logo-img { width: 42px; height: 42px; }
+  .home-page .nav-logo-text { font-size: 1.08rem; }
+  .home-page .nav-logo-caption { font-size: .53rem; letter-spacing: .8px; }
+  .home-page .nav-menu { gap: 8px; }
+  .home-page .nav-link { padding-inline: 8px; font-size: .78rem; }
+  .home-page .auth-profile-trigger-copy { display: none; }
+  .home-page .auth-profile-trigger { padding-right: 7px; }
+}
+
+@media (max-width: 768px) {
+  .home-page { --navbar-height: 76px; }
+  .home-page .nav-container { gap: 12px; }
+  .home-page .nav-menu {
+    max-height: calc(100dvh - var(--navbar-height));
+    overflow-y: auto;
+  }
+  .home-page .nav-menu .nav-auth {
+    justify-content: flex-end;
+    padding: 14px 4px 4px;
+  }
+  .home-page .nav-menu .auth-profile { margin-left: auto; }
+  .home-page .nav-menu .auth-profile-trigger { max-width: min(300px, calc(100vw - 64px)); }
+  .home-page .nav-menu .auth-profile-menu { top: auto; bottom: calc(100% + 8px); }
+}
+
+@media (max-width: 480px) {
+  .home-page { --navbar-height: 70px; }
+  .home-page .nav-logo-img { width: 39px; height: 39px; }
+  .home-page .nav-logo-text { font-size: 1.04rem; }
+  .home-page .nav-logo-caption { font-size: .5rem; }
+  .home-page .nav-menu .nav-auth { gap: 7px; }
+  .home-page .navbar .nav-auth .auth-nav-link { min-height: 36px; padding: 7px 10px; font-size: .74rem; }
+  .home-page .auth-profile-trigger { min-height: 42px; gap: 8px; }
+  .home-page .auth-profile-avatar { flex-basis: 32px; width: 32px; height: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .nav-logo-img,
+  .home-page .nav-link,
+  .home-page .navbar .nav-auth .auth-nav-link { transition: none; }
+}

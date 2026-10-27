@@ -2,16 +2,40 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>D10S CUP - Resultados</title>
 <link rel="stylesheet" href="../CSS/resultados.css">
+<link rel="stylesheet" href="../CSS/auth.css">
+<link rel="stylesheet" href="../CSS/profile.css">
+<link rel="stylesheet" href="../CSS/sidebar.css">
+<link rel="stylesheet" href="../CSS/scroll-animations.css">
 </head>
-<body>
+<body class="has-sidebar">
+  <div class="app-container">
+    <aside class="sidebar" id="sidebar">
+      <a href="../index.html" class="sidebar-header">
+        <img src="../assets/WhatsApp Image 2026-04-07 at 10.10.12 (1).png" alt="D10S Cup" class="sidebar-logo">
+        <div class="logo-text"><h2>D10S CUP</h2><span>Torneo de Fútbol</span></div>
+      </a>
+      <ul class="sidebar-menu">
+        <li class="menu-category">Navegación</li>
+        <li class="menu-item"><a href="../index.html" class="menu-link"><span>Inicio</span></a></li>
+        <li class="menu-item"><a href="torneos.html" class="menu-link"><span>Torneos</span></a></li>
+        <li class="menu-item"><a href="partidos.html" class="menu-link"><span>Partidos</span></a></li>
+        <li class="menu-item"><a href="Resultados.html" class="menu-link active" aria-current="page"><span>Resultados</span></a></li>
+        <li class="menu-item"><a href="productos.html" class="menu-link"><span>Tienda</span></a></li>
+        <li class="menu-category">Usuario</li>
+        <li class="menu-item"><a href="misCompras.html" class="menu-link"><span>Mis compras / entradas</span></a></li>
+        <li class="menu-item"><a href="../index.html" class="menu-link logout-link"><span>Cerrar sesión</span></a></li>
+      </ul>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-  <a href="../HTML/productos.html" class="back-btn">
-    <span class="arrow">←</span> Volver
-  </a>
-
-  <h1>Resultados</h1>
+    <main class="main-content results-content">
+      <header class="topbar">
+        <div class="topbar-left"><button class="action-btn mobile-toggle" id="mobile-menu-toggle" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><h1 class="page-title">Resultados</h1></div>
+        <div class="topbar-actions"><div class="nav-auth" data-auth-nav aria-label="Sesión de usuario"></div></div>
+      </header>
 
   <div class="tabs">
     <button class="tab-btn active" data-view="grupos">Fase de Grupos</button>
@@ -35,6 +59,11 @@
     <div class="bracket-container" id="bracketContainer"></div>
   </div>
 
-<script src="../JS/resultados.js"></script>
+    </main>
+  </div>
+<script type="module" src="../JS/resultados.js"></script>
+<script type="module" src="../JS/auth.js"></script>
+<script src="../JS/sidebar.js" defer></script>
+<script src="../JS/scroll-animations.js" defer></script>
 </body>
 </html>

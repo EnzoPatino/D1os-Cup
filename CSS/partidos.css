@@ -193,8 +193,18 @@
 @media (max-width: 768px) {
   .carousel { grid-template-columns: 1fr; }
   .cal-day { min-height: 70px; padding: 4px; }
+  .calendar-header { align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+  .calendar-nav { max-width: 100%; }
 }
 @media (max-width: 480px) {
   .cal-day { min-height: 56px; }
   .cal-event { display: none; }
+  .calendar-header { flex-direction: column; }
+  .calendar-nav { width: 100%; justify-content: space-between; }
+  .calendar-nav span { min-width: 0; flex: 1; }
+  .match-card { padding: 16px; }
 }
+.match-actions { display: flex; gap: 8px; margin-top: 12px; }
+.match-actions .match-btn { flex: 1; text-align: center; text-decoration: none; }
+.cal-event { overflow: hidden; max-height: 3.2em; padding: 2px 4px; border-radius: 4px; font-size: .62rem; line-height: 1.25; overflow-wrap: anywhere; }
+.cal-event--more { color: var(--gold, #e8b94d); }

@@ -1,0 +1,8 @@
+{
+  "name": "d10s-cup",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "python3 -m http.server 8000"
+  }
+}

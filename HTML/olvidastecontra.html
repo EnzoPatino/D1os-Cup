@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Olvidaste tu contraseña?</title>
     <link rel="stylesheet" href="../CSS/olvidastecontra.css">
+    <link rel="stylesheet" href="../CSS/auth.css">
+  <link rel="stylesheet" href="../CSS/profile.css">
+  <link rel="stylesheet" href="../CSS/scroll-animations.css">
 </head>
 <body>
      <header class="header">
@@ -15,17 +18,22 @@
         <p>Torneo de Fútbol</p>
       </div>
     </div>
+    <div class="nav-auth" data-auth-nav aria-label="Sesión de usuario"></div>
   </header>
   <div class="login-container">
     <div class="login-box">
       <h2>Ingrese su email</h2>
-      <form id="loginForm">
+      <form id="resetRequestForm">
         <input type="email" id="email" placeholder="Correo electrónico" required>
         <button type="submit" class="btn-ingresar">Confirmar</button>
+        <button type="submit" class="btn-ingresar">Ingresar</button>
+        <p id="auth-message" class="auth-message" role="status" aria-live="polite" hidden></p>
       </form>
       <button class="btn-volver" onclick="window.location.href='../index.html'">Volver</button>
     </div>
   </div>
-    
+  <script type="module" src="../JS/olvidastecontra.js"></script>
+  <script type="module" src="../JS/auth.js"></script>
+  <script src="../JS/scroll-animations.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis compras y entradas - D10S Cup</title>
+    <link rel="stylesheet" href="../CSS/base.css" />
+    <link rel="stylesheet" href="../CSS/auth.css" />
+    <link rel="stylesheet" href="../CSS/profile.css" />
+    <link rel="stylesheet" href="../CSS/tienda.css" />
+    <link rel="stylesheet" href="../CSS/sidebar.css" />
+    <link rel="stylesheet" href="../CSS/scroll-animations.css" />
+  </head>
+  <body class="purchases-page has-sidebar">
+    <div class="app-container">
+      <aside class="sidebar" id="sidebar">
+        <a href="../index.html" class="sidebar-header">
+          <img src="../assets/WhatsApp Image 2026-04-07 at 10.10.12 (1).png" alt="D10S Cup" class="sidebar-logo" />
+          <div class="logo-text"><h2>D10S CUP</h2><span>Torneo de Fútbol</span></div>
+        </a>
+        <ul class="sidebar-menu">
+          <li class="menu-category">Navegación</li>
+          <li class="menu-item"><a href="../index.html" class="menu-link"><span>Inicio</span></a></li>
+          <li class="menu-item"><a href="torneos.html" class="menu-link"><span>Torneos</span></a></li>
+          <li class="menu-item"><a href="partidos.html" class="menu-link"><span>Partidos</span></a></li>
+          <li class="menu-item"><a href="Resultados.html" class="menu-link"><span>Resultados</span></a></li>
+          <li class="menu-item"><a href="productos.html" class="menu-link"><span>Tienda</span></a></li>
+          <li class="menu-category">Usuario</li>
+          <li class="menu-item"><a href="misCompras.html" class="menu-link active" aria-current="page"><span>Mis compras / entradas</span></a></li>
+          <li class="menu-item"><a href="../index.html" class="menu-link logout-link"><span>Cerrar sesión</span></a></li>
+        </ul>
+      </aside>
+      <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+      <main class="main-content purchases-main">
+        <header class="topbar">
+          <div class="topbar-left"><button class="action-btn mobile-toggle" id="mobile-menu-toggle" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><h1 class="page-title">Mis compras y entradas</h1></div>
+          <div class="topbar-actions"><div class="nav-auth" data-auth-nav aria-label="Sesión de usuario"></div></div>
+        </header>
+      <p id="purchases-status" class="data-status" role="status">Cargando tus compras…</p>
+      <div id="purchases-list" class="purchases-list"></div>
+      </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="../JS/misCompras.js"></script>
+    <script type="module" src="../JS/auth.js"></script>
+    <script src="../JS/sidebar.js" defer></script>
+    <script src="../JS/scroll-animations.js" defer></script>
+  </body>
+</html>

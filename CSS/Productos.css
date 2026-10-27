@@ -239,6 +239,30 @@ body {
   color: var(--accent-gold);
 }
 
+.cart-trigger {
+  width: auto;
+  min-width: 104px;
+  height: 42px;
+  padding: 0 13px;
+  gap: 8px;
+  border-radius: 999px;
+  font-size: .84rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cart-trigger-icon {
+  width: 19px;
+  height: 19px;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.mobile-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
 .badge {
   position: absolute;
   top: -4px;
@@ -663,6 +687,10 @@ body {
 .sidebar-overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+@media (max-width: 900px) {
+  body.sidebar-open { overflow: hidden; }
 }
 
 /* Shopping Cart Drawer */
@@ -1221,6 +1249,8 @@ body {
   }
   .main-content {
     margin-left: 0;
+    width: 100%;
+    min-width: 0;
     padding: 24px 20px;
   }
   .mobile-toggle {
@@ -1237,18 +1267,110 @@ body {
 }
 
 @media (max-width: 500px) {
+  .main-content {
+    padding: 18px 14px 28px;
+  }
+
   .cart-drawer {
     width: 100%;
     right: -100%;
   }
   .topbar {
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 12px 8px;
+    margin-bottom: 22px;
   }
+
+  .topbar-left {
+    min-width: 0;
+    gap: 9px;
+  }
+
   .page-title {
-    font-size: 1.5rem;
+    font-size: 1.45rem;
   }
+
+  .mobile-toggle {
+    flex: 0 0 38px;
+  }
+
   .topbar-actions {
-    gap: 10px;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 7px;
+  }
+
+  .topbar-actions > .action-btn {
+    width: auto;
+    height: 36px;
+    padding: 0 11px;
+    border-radius: 9px;
+    font-size: .88rem;
+    white-space: nowrap;
+  }
+
+  .product-auth-nav {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .product-auth-nav .auth-nav-link {
+    min-height: 36px;
+    padding: 6px 8px;
+    font-size: .74rem;
+    white-space: nowrap;
+  }
+
+  .product-auth-nav .auth-user-name {
+    display: none;
+  }
+
+  .filter-tabs {
+    flex-wrap: wrap;
+    overflow: visible;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .filter-tabs .tab-btn {
+    padding: 9px 13px;
+  }
+
+  .catalog-search {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    flex: 1 0 100%;
+    margin: 4px 0 0;
+  }
+
+  .catalog-search input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .section-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .store-card-actions {
+    flex-direction: row;
+  }
+
+  .store-card-actions .btn {
+    padding: 10px 8px;
+    font-size: .82rem;
   }
 }
 
